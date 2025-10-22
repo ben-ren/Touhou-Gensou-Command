@@ -1,0 +1,24 @@
+# Ignore generated stuff
+[Ll]ibrary/
+[Tt]emp/
+[Bb]uild*/
+[Oo]bj/
+[Ll]ogs/
+UserSettings/
+MemoryCaptures/
+
+# Ignore per-user files
+*.csproj
+*.sln
+*.user
+*.pidb
+*.tmp
+*.booproj
+*.svd
+.vscode/
+.vs/
+.idea/
+
+# OS noise
+.DS_Store
+Thumbs.db
