@@ -1,21 +1,36 @@
 using UnityEngine;
 
-/*
-* Rotate's Camera to point at a target
-*/
 public class CameraController : MonoBehaviour
 {
-    public GameObject target;           // The object the camera should look at
-    private Rigidbody rb;
+    public GameObject target;
+    public float rotateSpeed = 5f;
+    public float followSpeed = 5f;
+    Vector3 offset;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        offset = transform.position - target.transform.position;
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
-        transform.LookAt(target.transform);
+        Debug.Log(offset);
+        CameraFollow();
+        //CameraRotate();
     }
-    
+
+    //Follow player position
+    void CameraFollow()
+    {
+        transform.position = target.transform.position + offset;
+    }
+
+    //Rotate around player to match player rotation, with a delay (use Slerp).
+    void CameraRotate()
+    {
+        Vector3 currentDir = transform.forward;
+        Vector3 targetDir = (target.transform.position - transform.position).normalized;
+        transform.Rotate(Vector3.Slerp(currentDir, targetDir, rotateSpeed * Time.deltaTime));
+
+    }
 }
