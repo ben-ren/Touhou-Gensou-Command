@@ -1,36 +1,34 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject target;
-    public float rotateSpeed = 5f;
-    public float followSpeed = 5f;
-    Vector3 offset;
+    [SerializeField] Transform player;
+    Vector3 cameraTargetPosition;
+    [SerializeField] float smoothing = 5f; // smoothing
+
+    private Vector3 offset;
 
     void Start()
     {
-        offset = transform.position - target.transform.position;
+        // Store initial offset from player
+        offset = transform.position - player.position;
+        cameraTargetPosition = player.position + offset;
     }
 
     void LateUpdate()
     {
-        Debug.Log(offset);
-        CameraFollow();
-        //CameraRotate();
+        UpdateCameraTargetPosition();
+        //Slerp towards cameraTarget y-axis position
+        transform.position = Vector3.Slerp(transform.position, cameraTargetPosition, smoothing * Time.deltaTime);
+        //LookAt player
+        transform.LookAt(player.position);
     }
-
-    //Follow player position
-    void CameraFollow()
+    
+    void UpdateCameraTargetPosition()
     {
-        transform.position = target.transform.position + offset;
-    }
-
-    //Rotate around player to match player rotation, with a delay (use Slerp).
-    void CameraRotate()
-    {
-        Vector3 currentDir = transform.forward;
-        Vector3 targetDir = (target.transform.position - transform.position).normalized;
-        transform.Rotate(Vector3.Slerp(currentDir, targetDir, rotateSpeed * Time.deltaTime));
-
+         // Rotate the offset by the player's rotation around Y-axis
+        Quaternion rotationY = Quaternion.Euler(0f, player.rotation.eulerAngles.y, 0f);
+        cameraTargetPosition = player.position + rotationY * offset;
     }
 }

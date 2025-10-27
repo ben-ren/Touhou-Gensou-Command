@@ -8,7 +8,7 @@ public class InputHandler : MonoBehaviour
     private InputAction _look;
     private InputAction _move;
 
-    public PlayerController player;
+    public GameObject player;
     public GameObject crosshair;
 
     private Vector3 offset;

@@ -9,9 +9,12 @@ public class PlayerController : MonoBehaviour
     private InputAction _look;
     private InputAction _move;
     private InputAction _boost;
+    InputDevice device;
     private Rigidbody rb;
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float lookSensitivity = 2f;
+    [SerializeField] private float joystickSensitivity = 50f;
+    [SerializeField] private bool inverted;
 
     private Vector3 moveDirection;
     private Quaternion initialRotation;
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        device = _look.activeControl?.device;
         PlayerMovement();
         PlayerRotation();   
     }
@@ -49,6 +53,13 @@ public class PlayerController : MonoBehaviour
     {
         //input
         Vector2 lookAmount = _look.ReadValue<Vector2>();
+        if (!inverted) lookAmount.y *= -1f;
+
+        // Check if input is joystick (roughly, if values are between -1 and 1)
+        if (device is Gamepad || device is Joystick)
+        {
+            lookAmount *= joystickSensitivity; // joystick multiplier — tweak until it feels right
+        }
 
         // rotation angles
         rotationY += lookAmount.x * lookSensitivity * Time.fixedDeltaTime;
@@ -66,7 +77,7 @@ public class PlayerController : MonoBehaviour
     void RotationRangeClamp()
     {
         Camera cam = Camera.main;
-        if(cam != null)
+        if (cam != null)
         {
             //Derive clamp values from camera fov
             float halfFOV = Camera.main.fieldOfView;
@@ -78,7 +89,9 @@ public class PlayerController : MonoBehaviour
 
             // Clamp player rotation so it stays within the camera's visible FOV cone
             rotationX = Mathf.Clamp(rotationX, camEuler.x - halfFOV, camEuler.x + halfFOV);
-            rotationY = Mathf.Clamp(rotationY, camEuler.y - halfFOV, camEuler.y + halfFOV);   
+            rotationY = Mathf.Clamp(rotationY, camEuler.y - halfFOV, camEuler.y + halfFOV);
         }
     }
+    
+    public void ToggleInvertLook() => inverted = !inverted;
 }
