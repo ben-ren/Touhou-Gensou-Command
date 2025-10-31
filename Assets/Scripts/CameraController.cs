@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     {
         // Store initial offset from player
         offset = transform.position - player.position;
+        offset.y = 1.5f;
         cameraTargetPosition = player.position + offset;
     }
 

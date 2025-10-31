@@ -7,18 +7,18 @@ public class ProjectileSpawner : MonoBehaviour
     public InputActionAsset inputActionAsset;
     private InputAction _fire;
 
-    [Header("References")]
-    public Transform crosshair;
-    public Transform CameraRig;
-
     [Header("Projectile")]
     public GameObject prefab;
+
+    [Header("References")]
+    private GameObject parent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _fire = inputActionAsset.FindAction("Player/PrimaryFire");
         _fire?.Enable();
+        parent = gameObject.transform.parent.gameObject;
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class ProjectileSpawner : MonoBehaviour
     //Move into position between crosshair & camera
     void RepositionSpawner()
     {
-        transform.position = (CameraRig.position + crosshair.position) * 0.5f;
+        
     }
 
     //BUG: Doesn't fire projectile from ProjectileSpawner
@@ -39,7 +39,7 @@ public class ProjectileSpawner : MonoBehaviour
     void FireProjectile()
     {
         if (_fire.WasPerformedThisFrame()){
-            Instantiate(prefab);    
+            Instantiate(prefab, transform.position, transform.rotation); //(prefab object, new postion, new rotation, parent object, WorldSpace?:boolean)   
         }
     }
 }
