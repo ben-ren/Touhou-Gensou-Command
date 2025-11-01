@@ -1060,8 +1060,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1449873640}
-  - component: {fileID: 1449873642}
   - component: {fileID: 1449873643}
+  - component: {fileID: 1449873642}
   - component: {fileID: 1449873644}
   m_Layer: 0
   m_Name: Player
@@ -1129,7 +1129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController1
   inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  moveSpeed: 2
+  panSpeed: 2
+  thrust: 5
+  boostSpeed: 20
   lookSensitivity: 10
   joystickSensitivity: 20
   inverted: 0

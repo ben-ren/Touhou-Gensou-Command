@@ -97,9 +97,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Brake",
+                    "type": "Button",
+                    "id": "e7b9bca5-d470-4201-99c3-172c47534704",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "PrimaryFire",
                     "type": "Button",
                     "id": "8d05243d-ea8e-4813-a964-278fedd8abd6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SecondaryFire",
+                    "type": "Button",
+                    "id": "229bb5bc-5fff-4ce3-9986-73048148e830",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -533,6 +551,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "PrimaryFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "124cfe9f-42e1-4f16-ac0e-74db63b8f96f",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Brake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6e9c998-887f-4a09-8211-3f8c1cf3df44",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Brake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b7451b8-5587-44b1-b98a-518a62528858",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondaryFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c1d2e93-1740-44d5-8a09-caf414cea98b",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondaryFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -37,7 +37,6 @@ public class Straight_Shot_Type : MonoBehaviour
         if (!(other.CompareTag("Player") || other.CompareTag("HomingSystem")))
         {
             Destroy(gameObject);
-            Debug.Log(other);
         }
     }
 }
