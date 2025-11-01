@@ -626,6 +626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 891449895}
+  - component: {fileID: 891449898}
   - component: {fileID: 891449896}
   - component: {fileID: 891449897}
   m_Layer: 0
@@ -700,6 +701,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &891449898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891449894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c21bb71b77e818646a59b7d60ca6fcb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntitySystems
+  health: 50
+  power: 0
+  graze: 0
+  bombs: 0
 --- !u!1 &954059657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1449873640}
   - component: {fileID: 1449873643}
+  - component: {fileID: 1449873645}
   - component: {fileID: 1449873642}
   - component: {fileID: 1449873644}
   m_Layer: 0
@@ -1161,6 +1179,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1449873645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449873639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c21bb71b77e818646a59b7d60ca6fcb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSystems
+  health: 50
+  power: 0
+  graze: 0
+  bombs: 2
 --- !u!1 &1616530031
 GameObject:
   m_ObjectHideFlags: 0
