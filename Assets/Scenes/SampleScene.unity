@@ -564,7 +564,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileSpawner
   inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  prefab: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
+  primaryPrefab: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
+  secondaryPrefab: {fileID: 6756610444652708229, guid: 1ab0c562dc736fc4b8b54ee8818e43dd, type: 3}
+  primaryFireRate: 10
+  secondaryFireRate: 3
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,9 +1135,11 @@ MonoBehaviour:
   panSpeed: 2
   thrust: 5
   boostSpeed: 20
+  brakeSpeed: 1
   lookSensitivity: 10
   joystickSensitivity: 20
   inverted: 0
+  onRailsMode: 0
 --- !u!65 &1449873644
 BoxCollider:
   m_ObjectHideFlags: 0
