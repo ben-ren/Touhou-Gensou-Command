@@ -16,10 +16,12 @@ public class ProjectileSpawner : MonoBehaviour
     [Header("Firing Settings")]
     [SerializeField] private float primaryFireRate = 1f; // shots per second for primary fire
     [SerializeField] private float secondaryFireRate = 5f; // shots per second for secondary fire (focus mode)
+    [SerializeField] private bool automaticFiring; // Applies continuous firing without input
     private float fireRate = 5f; // shots per second
     private float nextFireTime = 0f;              // internal timer
 
-    [Header("References")]
+    [Header("Team Alignment")]
+    [SerializeField] private Team spawnerTeam = Team.Player;
     private GameObject parent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,9 +38,14 @@ public class ProjectileSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float fireInput = _fire.ReadValue<float>();
+
         SwitchFiringModes();
-        RepositionSpawner();
-        FireProjectile();
+
+        if (automaticFiring ^ fireInput > 0)
+        {
+            FireProjectile();
+        }
     }
 
     void SwitchFiringModes()
@@ -48,21 +55,18 @@ public class ProjectileSpawner : MonoBehaviour
         fireRate = brakeValue > 0 ? secondaryFireRate : primaryFireRate;
     }
 
-    //Move into position between crosshair & camera
-    void RepositionSpawner()
-    {
-        
-    }
-
-    //BUG: Doesn't fire projectile from ProjectileSpawner
-    //BUG: Doesn't fire projectile in direction of ProjectileSpawner. (Instantiate in same rotational direction as ProjectileSpawner)
     void FireProjectile()
     {
-        float fireInput = _fire.ReadValue<float>();
-
-        if (fireInput > 0 && Time.time >= nextFireTime){
+        if (Time.time >= nextFireTime){
             nextFireTime = Time.time + (1f / fireRate); // set next available fire time
-            Instantiate(projectile, transform.position, transform.rotation); //(prefab object, new postion, new rotation, parent object, WorldSpace?:boolean)   
+            GameObject proj = Instantiate(projectile, transform.position, transform.rotation);
+
+            //Assign team to projectile
+            Projectile projectileScript = proj.GetComponent<Projectile>();
+            if (projectileScript != null)
+            {
+                projectileScript.SetTeam(spawnerTeam);
+            }
         }
     }
 }

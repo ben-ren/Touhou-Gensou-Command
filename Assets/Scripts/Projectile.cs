@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [Header("Projectile Stats")]
     public float projectileDamage = 5f;
     public float projectileSpeed = 10f;
     public float projectileLifeSpan = 5f;
-    
+
+    [Header("")]
+    [SerializeField] private Team team = Team.Neutral;
+    public Team TeamAlignment => team;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public virtual void Start()
     {
@@ -23,35 +28,27 @@ public class Projectile : MonoBehaviour
     }
 
     // Update is called once per frame
-    public virtual void Update()
-    {
-    }
+    public virtual void Update(){}
 
-    public float GetProjectileDamage()
-    {
-        return projectileDamage;
-    }
-
-    public float GetProjectileSpeed()
-    {
-        return projectileSpeed;
-    }
-
-    public float GetProjectileLifeSpan()
-    {
-        return projectileLifeSpan;
-    }
+    public float GetProjectileDamage() => projectileDamage;
+    public float GetProjectileSpeed() => projectileSpeed;
+    public float GetProjectileLifeSpan() => projectileLifeSpan;
+    public void SetTeam(Team newTeam) => team = newTeam;
     
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("HomingSystem") || other.CompareTag("Player")) return;
+        EntitySystems entity = other.GetComponent<EntitySystems>();
+        if (other.CompareTag("HomingSystem") || (entity!=null && entity.TeamAlignment == team)) return;
 
-        EntitySystems target = other.GetComponent<EntitySystems>();
-
-        if (target != null && other.CompareTag("Enemy")  )
+        
+        if (entity != null)
         {
-            target.ApplyDamage(GetProjectileDamage());
+            if (entity.TeamAlignment != team)
+            {
+                entity.ApplyDamage(GetProjectileDamage());
+            }
         }
+        Debug.Log(other);
         
         Destroy(gameObject);
     }

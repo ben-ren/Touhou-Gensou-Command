@@ -8,6 +8,10 @@ public class EntitySystems : MonoBehaviour
     [SerializeField] private int graze = 0;
     [SerializeField] private int bombs = 0;
 
+    [Header("Team Alignment")]
+    [SerializeField] private Team team = Team.Neutral;
+    public Team TeamAlignment => team;
+    
     public int GetHealth() => health;
     public int GetPower() => power;
     public int GetGraze() => graze;
@@ -22,6 +26,7 @@ public class EntitySystems : MonoBehaviour
     {
         health -= Mathf.RoundToInt(amount);
         Debug.Log($"{gameObject.name} took {amount} damage! Remaining health: {health}");
+        if (health <= 0) Kill();
     }
 
     public void Kill()

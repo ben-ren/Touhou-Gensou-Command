@@ -55,7 +55,10 @@ public class HomingShot : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        EntitySystems entity = other.GetComponent<EntitySystems>();
+        if (entity == null) return;
+
+        if(entity.TeamAlignment != parent.GetComponent<Projectile>().TeamAlignment)
         {
             target = other.transform;
             homingActive = true;
@@ -64,7 +67,10 @@ public class HomingShot : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Enemy") && other.transform == target)
+        EntitySystems entity = other.GetComponent<EntitySystems>();
+        if (entity == null) return;
+
+        if(other.transform == target && entity.TeamAlignment != parent.GetComponent<Projectile>().TeamAlignment)
         {
             homingActive = false;
             target = null;
