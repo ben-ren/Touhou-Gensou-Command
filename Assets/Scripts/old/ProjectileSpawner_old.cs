@@ -1,12 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ProjectileSpawner : MonoBehaviour
+public class ProjectileSpawnerOld : MonoBehaviour
 {
-    [Header("Input Settings")]
-    public InputActionAsset inputActionAsset;
-    private InputAction _fire;
-    private InputAction _brake;
+    [Header("Inputs")]
+    [SerializeField] private InputController IC;
 
     [Header("Projectile")]
     public GameObject primaryPrefab;
@@ -27,10 +25,6 @@ public class ProjectileSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _fire = inputActionAsset.FindAction("Player/PrimaryFire");
-        _fire?.Enable();
-        _brake = inputActionAsset.FindAction("Brake");
-
         parent = gameObject.transform.parent.gameObject;
         projectile = primaryPrefab; // default mode
     }
@@ -38,7 +32,7 @@ public class ProjectileSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float fireInput = _fire.ReadValue<float>();
+        float fireInput = IC.GetFire();
 
         SwitchFiringModes();
 
@@ -50,7 +44,7 @@ public class ProjectileSpawner : MonoBehaviour
 
     void SwitchFiringModes()
     {
-        float brakeValue = _brake.ReadValue<float>();
+        float brakeValue = IC.GetBrake();
         projectile = brakeValue > 0 ? secondaryPrefab : primaryPrefab;
         fireRate = brakeValue > 0 ? secondaryFireRate : primaryFireRate;
     }

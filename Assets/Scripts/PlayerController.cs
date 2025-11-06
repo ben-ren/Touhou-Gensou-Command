@@ -5,12 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Inputs")]   
-    public InputActionAsset inputActionAsset;
-    private InputAction _look;
-    private InputAction _move;
-    private InputAction _boost;
-    private InputAction _brake;
-    InputDevice device;
+    [SerializeField] private InputController IC;
     private Rigidbody rb;
     [Header("Movement Settings")]
     [SerializeField] private float panSpeed = 2f;
@@ -36,28 +31,17 @@ public class PlayerController : MonoBehaviour
     {
         initialRotation = transform.rotation;
         rb = GetComponent<Rigidbody>();
-
-        _look = inputActionAsset.FindAction("Look");
-        _move = inputActionAsset.FindAction("Move");
-        _boost = inputActionAsset.FindAction("Boost");
-        _brake = inputActionAsset.FindAction("Brake");
-
-        _move.Enable();
-        _look.Enable();
-        _boost.Enable();
-        _brake.Enable();
-
         rb.MoveRotation(initialRotation);
         oldThrust = thrust;
+        
+        if(IC == null)
+        {
+            IC = GetComponent<InputController>();
+        }
     }
 
     void FixedUpdate()
     {
-        float boostAmount = _boost.ReadValue<float>();
-        float brakeAmount = _brake.ReadValue<float>();
-
-        device = _look.activeControl?.device;
-
         PlayerRotation();
 
         if (onRailsMode)
@@ -66,7 +50,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            ThrustHandler(boostAmount, brakeAmount);
+            ThrustHandler(IC.GetBoost(), IC.GetBrake());
         }
     }
 
@@ -97,7 +81,7 @@ public class PlayerController : MonoBehaviour
     //
     private void PlayerMovement()
     {
-        Vector2 moveAmount = _move.ReadValue<Vector2>();
+        Vector2 moveAmount = IC.GetMove();
         
         moveDirection = new Vector3(moveAmount.x, moveAmount.y, 1).normalized;
         rb.MovePosition(transform.position + transform.rotation * moveDirection * panSpeed * Time.fixedDeltaTime);
@@ -107,11 +91,11 @@ public class PlayerController : MonoBehaviour
     private void PlayerRotation()
     {
         //input
-        Vector2 lookAmount = _look.ReadValue<Vector2>();
+        Vector2 lookAmount = IC.GetLook();
         if (!inverted) lookAmount.y *= -1f;
 
         // Check if input is joystick (roughly, if values are between -1 and 1)
-        if (device is Gamepad || device is Joystick)
+        if (IC.GetActiveDevice() is Gamepad || IC.GetActiveDevice() is Joystick)
         {
             lookAmount *= joystickSensitivity; // joystick multiplier — tweak until it feels right
         }
