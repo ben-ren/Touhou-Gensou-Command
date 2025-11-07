@@ -136,8 +136,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e197c9903411347add5c7d8ab9a63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Straight_Shot_Type
+  projectileDamage: 5
   projectileSpeed: 50
   projectileLifeSpan: 5
+  team: 0
+  grazePoints: 2
 --- !u!65 &5132869459460236068
 BoxCollider:
   m_ObjectHideFlags: 0

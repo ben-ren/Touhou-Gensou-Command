@@ -56,7 +56,7 @@ public class HomingShot : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         EntitySystems entity = other.GetComponent<EntitySystems>();
-        if (entity == null) return;
+        if (entity == null || other.CompareTag("GrazeBox")) return;
 
         if(entity.TeamAlignment != parent.GetComponent<Projectile>().TeamAlignment)
         {

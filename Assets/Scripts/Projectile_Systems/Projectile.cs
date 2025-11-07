@@ -1,15 +1,21 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, ITeamMember
 {
     [Header("Projectile Stats")]
     public float projectileDamage = 5f;
     public float projectileSpeed = 10f;
     public float projectileLifeSpan = 5f;
 
-    [Header("")]
+    [Header("Team Assignment")]
     [SerializeField] private Team team = Team.Neutral;
     public Team TeamAlignment => team;
+    
+    [Header("Resources")]
+    [SerializeField] private int grazePoints = 0;
+
+    public int GetGrazePoints() => grazePoints;
+    public void SetGrazePoints(int value) => grazePoints = value;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public virtual void Start()
@@ -34,22 +40,20 @@ public class Projectile : MonoBehaviour
     public float GetProjectileSpeed() => projectileSpeed;
     public float GetProjectileLifeSpan() => projectileLifeSpan;
     public void SetTeam(Team newTeam) => team = newTeam;
-    
+
     void OnTriggerEnter(Collider other)
     {
         EntitySystems entity = other.GetComponent<EntitySystems>();
-        if (other.CompareTag("HomingSystem") || (entity!=null && entity.TeamAlignment == team)) return;
 
-        
+        if (other.CompareTag("HomingSystem") || (entity != null && entity.TeamAlignment == team)) return;
+
         if (entity != null)
         {
             if (entity.TeamAlignment != team)
             {
                 entity.ApplyDamage(GetProjectileDamage());
+                Destroy(gameObject);
             }
         }
-        Debug.Log(other);
-        
-        Destroy(gameObject);
     }
 }

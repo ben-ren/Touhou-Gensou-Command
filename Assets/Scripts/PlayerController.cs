@@ -61,17 +61,17 @@ public class PlayerController : MonoBehaviour
         if (boostAmount > 0)
         {
             thrust = boostSpeed;
-            Debug.Log("BOOST! | " + thrust);
+            //Debug.Log("BOOST! | " + thrust);
         }
         else if (brakeAmount > 0)
         {
             thrust = brakeSpeed;
-            Debug.Log("BRAKE! | " + thrust);
+            //Debug.Log("BRAKE! | " + thrust);
         }
         else
         {
             thrust = oldThrust;
-            Debug.Log("RESET SPEED | " + thrust);
+            //Debug.Log("RESET SPEED | " + thrust);
         }
 
         moveDirection = new Vector3(moveDirection.x, moveDirection.y, 1);
