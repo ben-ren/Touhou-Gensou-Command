@@ -4,9 +4,11 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Inputs")]   
+    [Header("Inputs")]
     [SerializeField] private InputController IC;
+    private GrazeAbility ability;
     private Rigidbody rb;
+
     [Header("Movement Settings")]
     [SerializeField] private float panSpeed = 2f;
     [SerializeField] private float thrust = 5f;
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         PlayerRotation();
-
+        TriggerAbility();
         if (onRailsMode)
         {
             PlayerMovement();
@@ -105,11 +107,17 @@ public class PlayerController : MonoBehaviour
         rotationX += lookAmount.y * lookSensitivity * Time.fixedDeltaTime;
 
         RotationRangeClamp(); //Clamp player rotation range to within cameras bounds
-        
+
         //compute target rotation
         targetRotation = Quaternion.Euler(rotationX, rotationY, 0f);
         smoothRotation = Quaternion.Slerp(rb.rotation, targetRotation, lookSensitivity * Time.fixedDeltaTime);
         rb.MoveRotation(smoothRotation);
+    }
+    
+    private void TriggerAbility()
+    {
+        if (!TryGetComponent<GrazeAbility>(out ability)) return;
+        ability.ActivateAbility(IC.GetFire2() > 0f);
     }
 
     //clamps rotation range to within camera FOV.

@@ -11,6 +11,7 @@ public class InputController : MonoBehaviour
     private InputAction boost;
     private InputAction brake;
     private InputAction fire;
+    private InputAction fire2;
     InputDevice ActiveDevice;
 
     private void Awake()
@@ -21,6 +22,7 @@ public class InputController : MonoBehaviour
         boost = map.FindAction("Boost");
         brake = map.FindAction("Brake");
         fire = map.FindAction("PrimaryFire");
+        fire2 = map.FindAction("SecondaryFire");
     }
 
     private void Update()
@@ -35,6 +37,7 @@ public class InputController : MonoBehaviour
         boost.Enable();
         brake.Enable();
         fire.Enable();
+        fire2.Enable();
     }
 
     private void OnDisable()
@@ -44,6 +47,7 @@ public class InputController : MonoBehaviour
         boost.Disable();
         brake.Disable();
         fire.Disable();
+        fire2.Disable();
     }
 
     public void UpdateActiveDevice() => ActiveDevice = look?.activeControl?.device;
@@ -54,5 +58,6 @@ public class InputController : MonoBehaviour
     public float GetBoost() => boost.ReadValue<float>();
     public float GetBrake() => brake.ReadValue<float>();
     public float GetFire() => fire.ReadValue<float>();
+    public float GetFire2() => fire2.ReadValue<float>();
     public InputDevice GetActiveDevice() => ActiveDevice;
 }

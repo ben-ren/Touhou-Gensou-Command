@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 public class Graze : MonoBehaviour
@@ -21,7 +23,7 @@ public class Graze : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void ApplyGraze(EntitySystems entity, int points)
@@ -39,7 +41,7 @@ public class Graze : MonoBehaviour
             AccumulatedGrazePoints++;
         }
     }
-    
+
     //Apply the graze effect & calculation when projectile leaves graze box
     void OnTriggerExit(Collider other)
     {
