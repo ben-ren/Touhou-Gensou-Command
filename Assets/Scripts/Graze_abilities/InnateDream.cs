@@ -24,7 +24,10 @@ public class InnateDream : GrazeAbility
         {
             col.enabled = false;
         }
-        //decrease Alpha Value of model to 50% (0.5)
+        
+        // Optional placeholder visual feedback
+        foreach (var r in GetComponentsInChildren<Renderer>())
+            r.enabled = false;  // hide meshes for now
     }
 
     public override void Deactivate()
@@ -34,6 +37,9 @@ public class InnateDream : GrazeAbility
         {
             col.enabled = true;
         }
-        //reset Alpha Value of model to 100% (1.0)
+        
+        // restore visuals
+        foreach (var r in GetComponentsInChildren<Renderer>())
+            r.enabled = true;
     }
 }
