@@ -10,9 +10,13 @@ public class Projectile : MonoBehaviour, ITeamMember
     [Header("Team Assignment")]
     [SerializeField] private Team team = Team.Neutral;
     public Team TeamAlignment => team;
-    
+
     [Header("Resources")]
     [SerializeField] private int grazePoints = 0;
+    
+    [Header("Spawn Settings")]
+    [SerializeField] private ProjectileSpawnMode spawnMode = ProjectileSpawnMode.Global;
+    public ProjectileSpawnMode SpawnMode => spawnMode;
 
     public int GetGrazePoints() => grazePoints;
     public void SetGrazePoints(int value) => grazePoints = value;
