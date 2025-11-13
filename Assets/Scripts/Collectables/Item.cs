@@ -5,8 +5,9 @@ public class Item : MonoBehaviour
     public bool IsCollected;
     protected bool destroyObject = false;
     protected EntitySystems entity;
-    //Get reference to other's entitySystem
-    //On collision, set public flag for EneitySystem value update then destroy current item
+    protected float moveSpeed = 10f;
+    protected GameObject target;
+
     public bool GetIsCollected()
     {
         return IsCollected;
@@ -17,9 +18,25 @@ public class Item : MonoBehaviour
         this.IsCollected = isCollected;
     }
 
+    public GameObject SetTarget()
+    {
+        return target;
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        this.target = target;
+    }
+
     public virtual void Start(){}
 
-    public virtual void Update(){}
+    public virtual void Update()
+    {
+        if (this.target != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position,target.transform.position, moveSpeed * Time.deltaTime);
+        }
+    }
 
     public virtual void ChangeValue(){}
     
