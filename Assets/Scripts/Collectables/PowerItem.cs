@@ -1,0 +1,21 @@
+using UnityEngine;
+
+public class PowerItem : Item
+{
+    public int powerItemValue = 1;
+    public override void Start()
+    {
+        base.Start();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+    }
+
+    public override void ChangeValue()
+    {
+        base.ChangeValue();
+        entity.SetPower(entity.GetPower() + powerItemValue);
+    }
+}

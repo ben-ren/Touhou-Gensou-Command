@@ -6,6 +6,8 @@ public class EntitySystems : MonoBehaviour, ITeamMember
     [SerializeField] private int health = 50;
     [SerializeField] private int power = 0;
     [SerializeField] private int graze = 0;
+    [SerializeField] private int fuel = 0;
+    [SerializeField] private int money = 0;
     [SerializeField] private int bombs = 0;
 
     [Header("Team Alignment")]
@@ -20,12 +22,16 @@ public class EntitySystems : MonoBehaviour, ITeamMember
     public int GetHealth() => health;
     public int GetPower() => power;
     public int GetGraze() => graze;
+    public int GetFuel() => fuel;
+    public int GetMoney() => money;
     public int GetBombs() => bombs;
     public int GetGrazePoints() => grazePoints;
 
     public void SetHealth(int value) => health = value;
     public void SetPower(int value) => power = value;
     public void SetGraze(int value) => graze = value;
+    public void SetFuel(int value) => fuel = value;
+    public void SetMoney(int value) => money = value;
     public void SetBombs(int value) => bombs = value;
     public void SetGrazePoints(int value) => grazePoints = value;
 
