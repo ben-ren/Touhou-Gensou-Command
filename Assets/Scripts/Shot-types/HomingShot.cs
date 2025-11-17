@@ -40,6 +40,10 @@ public class HomingShot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (parent == null)
+        {
+            parent = transform.parent.gameObject;
+        }
         AimObjectTowardsTarget(parent, target);
     }
 
@@ -55,6 +59,7 @@ public class HomingShot : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        parent = transform.parent.gameObject;
         EntitySystems entity = other.GetComponent<EntitySystems>();
         if (entity == null || other.CompareTag("GrazeBox")) return;
 
@@ -67,6 +72,7 @@ public class HomingShot : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        parent = transform.parent.gameObject;
         EntitySystems entity = other.GetComponent<EntitySystems>();
         if (entity == null) return;
 

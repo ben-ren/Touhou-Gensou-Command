@@ -7,20 +7,33 @@ public class PlayerProjManager : ProjSpawnManager
     [SerializeField] private InputController IC;
     [SerializeField] private GameObject primaryProjectile;
     [SerializeField] private GameObject secondaryProjectile;
+    [SerializeField] private BombSpawner bombSpawner;
     [SerializeField] private float primaryFireRate = 1f;
     [SerializeField] private float secondaryFireRate = 5f;
+
+    private bool firingLocked = false;
+    private float bombLockTimer = 0f;
 
     protected override void Update()
     {
         base.Update();  // handle active spawners
 
-        if (IC != null && primaryProjectile != null && secondaryProjectile != null)
+        FiringLock();
+
+        if (!firingLocked && IC != null && primaryProjectile != null && secondaryProjectile != null)
         {
             UpdateProjectileType();
+            FiringControls();
         }
-        FiringControls();
+
+        // Bomb input
+        if (IC.GetBomb() > 0f && bombSpawner != null)
+        {
+            LaunchBomb();
+        }
     }
 
+    //Update the projectile primary fire when braking.
     private void UpdateProjectileType()
     {
         bool isFocus = IC.GetBrake() > 0;
@@ -35,12 +48,34 @@ public class PlayerProjManager : ProjSpawnManager
         }
     }
     
+    //Fires projectiles from all spawners when fire button is held down.
     void FiringControls()
     {
         bool shoot = IC.GetFire() > 0f;
         foreach (var spawner in spawners)
         {
             spawner.IsFiring = shoot;
+        }
+    }
+
+    //ticks firing lock in-line with bomb lifespan
+    void FiringLock()
+    {
+        if (firingLocked)
+        {
+            bombLockTimer -= Time.deltaTime;
+            if (bombLockTimer <= 0f)
+                firingLocked = false;
+                bombSpawner.ClearCurrentBomb(); // allow spawning another bomb
+        }
+    }
+
+    void LaunchBomb()
+    {
+        if (bombSpawner.TrySpawnBomb(out float bombDuration))
+        {
+            firingLocked = true;
+            bombLockTimer = bombDuration;
         }
     }
 }
