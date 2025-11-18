@@ -35,11 +35,8 @@ public class ProjectileSpawner : MonoBehaviour
         GameObject proj = Instantiate(projectilePrefab, transform.position, transform.rotation);
 
         // Assign the team to the projectile
-        Projectile projectileScript = proj.GetComponent<Projectile>();
-        if (projectileScript != null)
-        {
-            projectileScript.SetTeam(team);
-        }
+        IWeaponTeam weapon = proj.GetComponent<IWeaponTeam>();
+        weapon?.SetTeam(team);
     }
 
     void Targeting()

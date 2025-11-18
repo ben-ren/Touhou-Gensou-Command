@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour, ITeamMember
+public class Projectile : MonoBehaviour, ITeamMember, IWeaponTeam
 {
     [Header("Projectile Stats")]
     public float projectileDamage = 5f;
@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour, ITeamMember
         Collider col = GetComponent<Collider>();
         col.isTrigger = true;
 
-        //Destory after set period of time
+        //Destroy after set period of time
         Destroy(gameObject, projectileLifeSpan);
     }
 

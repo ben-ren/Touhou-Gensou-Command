@@ -8,6 +8,7 @@ TagManager:
   - HomingSystem
   - GrazeBox
   - Item
+  - Level_geometry
   layers:
   - Default
   - TransparentFX

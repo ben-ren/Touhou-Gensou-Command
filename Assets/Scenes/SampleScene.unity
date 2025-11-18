@@ -382,7 +382,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
   fireRate: 1
   team: 2
-  IsFiring: 1
+  IsFiring: 0
   enableTargeting: 0
   target: {fileID: 0}
 --- !u!1 &433046912
@@ -584,7 +584,7 @@ Transform:
   m_GameObject: {fileID: 891449894}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 4, y: 2, z: 20}
+  m_LocalPosition: {x: 0, y: 2, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -613,7 +613,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6, y: 1, z: 1}
+  m_Size: {x: 0.6, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &891449897
 Rigidbody:
@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: 1082165172}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Level_geometry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1243,7 +1243,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1616530031
 GameObject:

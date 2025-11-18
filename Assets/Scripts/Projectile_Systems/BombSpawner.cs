@@ -16,12 +16,9 @@ public class BombSpawner : MonoBehaviour
         // Spawn bomb
         currentBomb = Instantiate(bombPrefab, transform.position, transform.rotation);
 
-        Bomb bomb = currentBomb.GetComponent<Bomb>();
-        if (bomb != null)
-        {
-            bomb?.SetTeam(team);
-            bombLifespan = bomb.projectileLifeSpan;
-        }
+        // Assign the team to the projectile
+        IWeaponTeam weapon = currentBomb.GetComponent<IWeaponTeam>();
+        weapon?.SetTeam(team);
 
         return true;
     }
