@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Laser : MonoBehaviour, ITeamMember, IWeaponTeam
+public class Laser : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode
 {
     [Header("Laser Settings")]
     public float laserDamage = 1f;
@@ -18,10 +18,15 @@ public class Laser : MonoBehaviour, ITeamMember, IWeaponTeam
 
     [Header("Spawn Settings")]
     [SerializeField] private ProjectileSpawnMode spawnMode = ProjectileSpawnMode.Global;
+    public ProjectileSpawnMode SpawnMode => spawnMode;
 
     private Transform beam; // child cylinder
     EntitySystems entity = null;
     private float nextTick;
+
+    Vector3 start;
+    Vector3 direction;
+    Vector3 end;
 
     public void SetTeam(Team newTeam) => team = newTeam;
 
@@ -37,18 +42,18 @@ public class Laser : MonoBehaviour, ITeamMember, IWeaponTeam
 
     public virtual void Update()
     {
+        start = transform.position;
+        direction = transform.forward;
+        end = start + direction * laserRange;
+        
+        BeamLength();
         BeamWidth();
         FireLaser();
     }
 
     void FireLaser()
     {
-        Vector3 start = transform.position;
-        Vector3 direction = transform.forward;
-        Vector3 end = start + direction * laserRange;
-
         RaycastHit[] hits = Physics.RaycastAll(start, direction, laserRange);
-
         // Sort by distance
         System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
 
@@ -62,7 +67,7 @@ public class Laser : MonoBehaviour, ITeamMember, IWeaponTeam
             }
 
             // Skip non-entities
-            if (!hit.collider.TryGetComponent(out EntitySystems entity))
+            if (!hit.collider.TryGetComponent(out entity))
                 continue;
 
             // Skip friendly or neutral entities
@@ -76,13 +81,15 @@ public class Laser : MonoBehaviour, ITeamMember, IWeaponTeam
                 entity.ApplyDamage(laserDamage);
             }
 
-            end = hit.point;
-
             // Stop if not penetrating enemies
             if (!penetrateEnemies)
+                end = hit.point;
                 break;
         }
+    }
 
+    void BeamLength()
+    {
         // Position beam at midpoint
         Vector3 midPoint = (start + end) * 0.5f;
         beam.position = midPoint;

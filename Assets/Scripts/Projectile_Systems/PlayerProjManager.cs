@@ -65,8 +65,10 @@ public class PlayerProjManager : ProjSpawnManager
         {
             bombLockTimer -= Time.deltaTime;
             if (bombLockTimer <= 0f)
+            {
                 firingLocked = false;
                 bombSpawner.ClearCurrentBomb(); // allow spawning another bomb
+            }
         }
     }
 

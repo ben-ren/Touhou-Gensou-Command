@@ -136,11 +136,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Laser
   laserDamage: 1
+  laserTickRate: 0.15
   laserRange: 100
-  laserLifeSpan: 0.1
+  laserLifeSpan: 0.2
   laserWidth: 0.5
+  penetrateEnemies: 0
   team: 0
-  spawnMode: 0
+  spawnMode: 1
 --- !u!1 &8370762328448224147
 GameObject:
   m_ObjectHideFlags: 0

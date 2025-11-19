@@ -1,16 +1,26 @@
 using UnityEngine;
 
-public class MasterSpark : Laser
+[RequireComponent(typeof(Laser))]
+public class MasterSpark : Bomb
 {
+    private Laser laserComponent;
+
     public override void Start()
     {
         base.Start();
-    }
-    
-    public override void Update()
-    {
-        base.Update();
+        
+        // Grab the Laser component
+        laserComponent = GetComponent<Laser>();
+        if (laserComponent != null)
+            laserComponent.laserLifeSpan = projectileLifeSpan;
+            laserComponent.SetTeam(TeamAlignment);
+
+        Destroy(gameObject, projectileLifeSpan);
     }
 
-    
+    public override void Update()
+    {
+        // Only update the laser if the component exists
+        laserComponent?.Update();
+    }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour, ITeamMember, IWeaponTeam
+public class Projectile : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode
 {
     [Header("Projectile Stats")]
     public float projectileDamage = 5f;

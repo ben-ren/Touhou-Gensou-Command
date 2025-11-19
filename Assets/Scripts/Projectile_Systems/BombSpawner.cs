@@ -13,12 +13,19 @@ public class BombSpawner : MonoBehaviour
         if (currentBomb != null || bombPrefab == null)
             return false;
 
-        // Spawn bomb
-        currentBomb = Instantiate(bombPrefab, transform.position, transform.rotation);
+        // Read spawn mode from the bomb prefab
+        ProjectileSpawnMode mode = ProjectileSpawnMode.Global; // fallback
+        if (bombPrefab.TryGetComponent<ISpawnMode>(out var spawnSource))
+            mode = spawnSource.SpawnMode;
 
-        // Assign the team to the projectile
-        IWeaponTeam weapon = currentBomb.GetComponent<IWeaponTeam>();
-        weapon?.SetTeam(team);
+        // Instantiate bomb according to spawn mode
+        if (mode == ProjectileSpawnMode.Attached)
+            currentBomb = Instantiate(bombPrefab, transform.position, transform.rotation, transform);
+        else
+            currentBomb = Instantiate(bombPrefab, transform.position, transform.rotation);
+
+        // Assign team
+        currentBomb.GetComponent<IWeaponTeam>()?.SetTeam(team);
 
         return true;
     }

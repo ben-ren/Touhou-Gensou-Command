@@ -13,7 +13,6 @@ public class ProjectileSpawner : MonoBehaviour
     [Header("Targeting Settings")]
     [SerializeField] private bool enableTargeting = false; // toggle on/off
     [SerializeField] private Transform target;            // optional target
-
     private float nextFireTime = 0f;
 
     void Update()
@@ -32,11 +31,21 @@ public class ProjectileSpawner : MonoBehaviour
     {
         if (projectilePrefab == null) return;
 
-        GameObject proj = Instantiate(projectilePrefab, transform.position, transform.rotation);
+        // Read spawn mode from the projectile prefab
+        ProjectileSpawnMode mode = ProjectileSpawnMode.Global; // fallback
+        if (projectilePrefab.TryGetComponent<ISpawnMode>(out var spawnSource))
+            mode = spawnSource.SpawnMode;
 
-        // Assign the team to the projectile
-        IWeaponTeam weapon = proj.GetComponent<IWeaponTeam>();
-        weapon?.SetTeam(team);
+        GameObject proj;
+
+        // Instantiate based on mode
+        if (mode == ProjectileSpawnMode.Attached)
+            proj = Instantiate(projectilePrefab, transform.position, transform.rotation, this.transform);
+        else
+            proj = Instantiate(projectilePrefab, transform.position, transform.rotation);
+
+        // Assign team to projectile
+        proj.GetComponent<IWeaponTeam>()?.SetTeam(team);
     }
 
     void Targeting()
