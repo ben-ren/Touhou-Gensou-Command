@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] Transform player;
     Vector3 cameraTargetPosition;
-    [SerializeField] float smoothing = 5f; // smoothing
+    [SerializeField] float smoothing = 10f; // smoothing
 
     private Vector3 offset;
 

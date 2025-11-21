@@ -9,6 +9,7 @@ TagManager:
   - GrazeBox
   - Item
   - Level_geometry
+  - boundary
   layers:
   - Default
   - TransparentFX

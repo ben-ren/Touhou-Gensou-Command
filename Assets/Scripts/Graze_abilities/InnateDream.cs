@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-[RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(Collider))]
 public class InnateDream : GrazeAbility
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,7 +20,7 @@ public class InnateDream : GrazeAbility
         base.Activate();
         Debug.Log("Innate Dream!");
         //turn off Capsule Collider
-        if (TryGetComponent<CapsuleCollider>(out CapsuleCollider col))
+        if (TryGetComponent<Collider>(out Collider col))
         {
             col.enabled = false;
         }
@@ -33,7 +33,7 @@ public class InnateDream : GrazeAbility
     public override void Deactivate()
     {
         base.Deactivate();
-        if (TryGetComponent<CapsuleCollider>(out CapsuleCollider col))
+        if (TryGetComponent<Collider>(out Collider col))
         {
             col.enabled = true;
         }
