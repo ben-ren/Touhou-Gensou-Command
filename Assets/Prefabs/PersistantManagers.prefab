@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4817623688779262867}
   - component: {fileID: 548902158513112428}
   - component: {fileID: 4738701483983644988}
+  - component: {fileID: 2392515473303481753}
   m_Layer: 0
   m_Name: PersistantManagers
   m_TagString: Untagged
@@ -59,3 +60,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SFXManager
   audioSourcePrefab: {fileID: 4404596127719043263, guid: 3cf8c6dc6d8aadb4baf2b49b4fd75f5e, type: 3}
+--- !u!114 &2392515473303481753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5850239579180972878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699852c7a25218f44b9eb3a68f01273f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXManager
