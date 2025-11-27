@@ -57,12 +57,16 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8546641194740559845, guid: 29976cfa71eaa5a44825918465fd35e5, type: 3}
+      propertyPath: laserDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546641194740559845, guid: 29976cfa71eaa5a44825918465fd35e5, type: 3}
       propertyPath: laserLifeSpan
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8546641194740559845, guid: 29976cfa71eaa5a44825918465fd35e5, type: 3}
       propertyPath: laserTickRate
-      value: 0.3
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8546641194740559845, guid: 29976cfa71eaa5a44825918465fd35e5, type: 3}
       propertyPath: penetrateEnemies
@@ -99,3 +103,4 @@ MonoBehaviour:
   team: 0
   grazePoints: 0
   spawnMode: 1
+  sparkVFXPrefab: {fileID: 2924752200186461745, guid: c55ff9136c3009e42a262f0f17d3bf6b, type: 3}

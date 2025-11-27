@@ -58,7 +58,7 @@ public class EntitySystems : MonoBehaviour, ITeamMember
         }
     }
 
-    public void ApplyDamage(float amount)
+    public void ApplyDamage(float amount, bool ignoreIFrames = false)
     {
         if (isInvincible) return; // skip damage if in I-frames
 
@@ -69,9 +69,11 @@ public class EntitySystems : MonoBehaviour, ITeamMember
 
         Debug.Log($"{gameObject.name} took {amount} damage! Remaining health: {health}");
 
-        // Trigger I-frames
-        isInvincible = true;
-        iFrameTimer = iFrameDuration;
+        if(ignoreIFrames){
+            // Trigger I-frames
+            isInvincible = true;
+            iFrameTimer = iFrameDuration;
+        }
 
         if (iFrameVisuals != null)  // Trigger visual feedback on all renderers under Visuals
         {

@@ -12,4 +12,17 @@ public class SealOrb : Straight_Shot_Type
     {
         base.Update();
     }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+
+        // Destroy other projectiles on contact
+        if (other.TryGetComponent<Projectile>(out Projectile proj))
+        {
+            // Avoid self-destroying
+            if (proj != this)
+                Destroy(proj.gameObject);
+        }
+    }
 }

@@ -142,6 +142,7 @@ MonoBehaviour:
   team: 0
   grazePoints: 2
   spawnMode: 0
+  sparkVFXPrefab: {fileID: 2924752200186461745, guid: c55ff9136c3009e42a262f0f17d3bf6b, type: 3}
   projectileSoundClip: {fileID: 8300000, guid: f5b357c0495a8f248aca44b454f68717, type: 3}
 --- !u!65 &5132869459460236068
 BoxCollider:

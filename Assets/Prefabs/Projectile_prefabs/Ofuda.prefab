@@ -151,6 +151,7 @@ MonoBehaviour:
   team: 0
   grazePoints: 0
   spawnMode: 0
+  sparkVFXPrefab: {fileID: 2924752200186461745, guid: c55ff9136c3009e42a262f0f17d3bf6b, type: 3}
   projectileSoundClip: {fileID: 8300000, guid: ab82494b6e98bad43ba8ff78190f8bc2, type: 3}
 --- !u!33 &3502931997169860741
 MeshFilter:

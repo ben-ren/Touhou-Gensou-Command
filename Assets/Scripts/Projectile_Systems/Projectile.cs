@@ -18,6 +18,9 @@ public class Projectile : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode
     [SerializeField] private ProjectileSpawnMode spawnMode = ProjectileSpawnMode.Global;
     public ProjectileSpawnMode SpawnMode => spawnMode;
 
+    [Header("Effects")]
+    public ParticleSystem sparkVFXPrefab;
+
     public int GetGrazePoints() => grazePoints;
     public void SetGrazePoints(int value) => grazePoints = value;
 
@@ -45,19 +48,21 @@ public class Projectile : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode
     public float GetProjectileLifeSpan() => projectileLifeSpan;
     public void SetTeam(Team newTeam) => team = newTeam;
 
-    void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         EntitySystems entity = other.GetComponent<EntitySystems>();
 
         if (other.CompareTag("HomingSystem") || (entity != null && entity.TeamAlignment == team)) return;
 
-        if (entity != null)
+        if (entity != null && entity.TeamAlignment != team)
         {
-            if (entity.TeamAlignment != team)
-            {
-                entity.ApplyDamage(GetProjectileDamage());
-                Destroy(gameObject);
+            entity.ApplyDamage(GetProjectileDamage());
+
+            if(sparkVFXPrefab != null){
+                VFXManager.Instance.GenerateParticleVFX(sparkVFXPrefab, transform, .1f);
             }
+
+            Destroy(gameObject);
         }
     }
 }

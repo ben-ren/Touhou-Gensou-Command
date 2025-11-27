@@ -72,3 +72,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699852c7a25218f44b9eb3a68f01273f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VFXManager
+  particleSystem: {fileID: 9082348470009629637, guid: 19a9725ffc98c364da72854f66bf466a, type: 3}

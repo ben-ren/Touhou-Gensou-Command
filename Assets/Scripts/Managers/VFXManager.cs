@@ -21,8 +21,18 @@ public class VFXManager : MonoBehaviour
             CameraShake.Instance.ShakeCamera(duration, magnitude);
     }
 
-    public void GenerateSparkParticles()
+    public void GenerateParticleVFX(ParticleSystem particleSystemPrefab, Transform spawnPoint, float lifespan)
     {
+        // Instantiate a new particle system at the spawn point
+        ParticleSystem particles = Instantiate(particleSystemPrefab, spawnPoint.position, Quaternion.identity);
         
+        // Optional: set rotation to match spawnPoint
+        particles.transform.rotation = spawnPoint.rotation;
+
+        // Destroy after lifespan
+        Destroy(particles.gameObject, lifespan);
+
+        // Play the particles immediately
+        particles.Play();
     }
 }

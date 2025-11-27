@@ -79,7 +79,7 @@ public class Laser : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode
             if (Time.time >= nextTick)
             {
                 nextTick = Time.time + 1f / laserTickRate;
-                entity.ApplyDamage(laserDamage);
+                entity.ApplyDamage(laserDamage, true);
             }
 
             // Stop if not penetrating enemies
