@@ -19,7 +19,7 @@ public class Laser : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode
     [Header("Spawn Settings")]
     [SerializeField] private ProjectileSpawnMode spawnMode = ProjectileSpawnMode.Global;
     public ProjectileSpawnMode SpawnMode => spawnMode;
-
+    [SerializeField] private AudioClip laserSoundClip;
     private Transform beam; // child cylinder
     EntitySystems entity = null;
     private float nextTick;
@@ -35,6 +35,7 @@ public class Laser : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode
         // Get child cylinder
         beam = transform.GetChild(0);
         Destroy(gameObject, laserLifeSpan);
+        SFXManager.instance.PlaySFXClip(laserSoundClip,transform,1f);
 
         if (spawnMode == ProjectileSpawnMode.Attached && transform.parent != null)
             transform.localPosition = Vector3.zero;

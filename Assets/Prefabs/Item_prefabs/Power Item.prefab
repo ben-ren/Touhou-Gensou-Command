@@ -191,5 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920a5e2e226eb154894b7664ca0c8c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerItem
+  itemCollectSoundClip: {fileID: 8300000, guid: 607cc71eb3a61814ba405bca46221f37, type: 3}
   IsCollected: 0
   powerItemValue: 1

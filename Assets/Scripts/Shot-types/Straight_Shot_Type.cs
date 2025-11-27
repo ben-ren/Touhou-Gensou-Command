@@ -4,10 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Straight_Shot_Type : Projectile
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private AudioClip projectileSoundClip;
+    
     public override void Start()
     {
         base.Start();
+        SFXManager.instance.PlaySFXClip(projectileSoundClip,transform,1f);
     }
 
     // Update is called once per frame

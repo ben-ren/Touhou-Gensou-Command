@@ -191,5 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1482169f20da30348bf23b0780fd9f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FuelItem
+  itemCollectSoundClip: {fileID: 8300000, guid: 8cf6ac957e19c7248b4806867a9012f8, type: 3}
   IsCollected: 0
   fuelItemValue: 1

@@ -143,6 +143,7 @@ MonoBehaviour:
   penetrateEnemies: 0
   team: 0
   spawnMode: 1
+  laserSoundClip: {fileID: 8300000, guid: 513cbddfd9f93d24191d39643802207e, type: 3}
 --- !u!1 &8370762328448224147
 GameObject:
   m_ObjectHideFlags: 0

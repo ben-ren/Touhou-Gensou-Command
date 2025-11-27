@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
+    public static InputController instance { get; private set;}
+
     [Header("Input Settings")]
     [SerializeField] private InputActionAsset inputActionAsset;
 
@@ -17,6 +19,15 @@ public class InputController : MonoBehaviour
 
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);   // ← persists across scene loads
+
         var map = inputActionAsset.FindActionMap("Player");
         move = map.FindAction("Move");
         look = map.FindAction("Look");

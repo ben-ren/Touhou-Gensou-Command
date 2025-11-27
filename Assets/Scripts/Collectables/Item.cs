@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    [SerializeField] private AudioClip itemCollectSoundClip;
     public bool IsCollected;
     protected bool destroyObject = false;
     protected EntitySystems entity;
@@ -48,6 +49,7 @@ public class Item : MonoBehaviour
         }
         if (IsCollected & other.TryGetComponent(out entity))
         {
+            SFXManager.instance.PlaySFXClip(itemCollectSoundClip,transform,1f);
             ChangeValue();
             Destroy(gameObject);
         }

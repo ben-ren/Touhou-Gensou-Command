@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerProjManager : ProjSpawnManager
 {
     [Header("Input & Projectiles")]
-    [SerializeField] private InputController IC;
+    private InputController IC => InputController.instance;
     [SerializeField] private GameObject primaryProjectile;
     [SerializeField] private GameObject secondaryProjectile;
     [SerializeField] private BombSpawner bombSpawner;

@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a3439934b1587c4cb14c4c05c2e1a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BombItem
+  itemCollectSoundClip: {fileID: 8300000, guid: 8cf6ac957e19c7248b4806867a9012f8, type: 3}
   IsCollected: 0
   bombItemValue: 1
 --- !u!1 &9010704002885460470

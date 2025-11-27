@@ -16,7 +16,8 @@ public class EntitySystems : MonoBehaviour, ITeamMember
 
     [Header("Resources")]
     [SerializeField] private int grazePoints = 0;
-
+    [SerializeField] private AudioClip damageRecievedSoundClip;
+    [SerializeField] private AudioClip entityDefeatedSoundClip;
     public bool RecentlyDamaged { get; private set; } = false;
     
     public int GetHealth() => health;
@@ -39,8 +40,13 @@ public class EntitySystems : MonoBehaviour, ITeamMember
     {
         health -= Mathf.RoundToInt(amount);
         RecentlyDamaged = true;  // mark that entity was damaged
+        SFXManager.instance.PlaySFXClip(damageRecievedSoundClip,transform,1f);
         Debug.Log($"{gameObject.name} took {amount} damage! Remaining health: {health}");
-        if (health <= 0) Kill();
+        if (health <= 0)
+        {
+            SFXManager.instance.PlaySFXClip(entityDefeatedSoundClip,transform,1f);
+            Kill();
+        }
     }
 
     public void Kill()

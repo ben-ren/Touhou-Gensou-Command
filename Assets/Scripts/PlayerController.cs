@@ -6,7 +6,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     [Header("Inputs")]
-    [SerializeField] private InputController IC;
+    private InputController IC;
     private GrazeAbility ability;
     private Rigidbody rb;
 
@@ -40,15 +40,11 @@ public class PlayerController : MonoBehaviour
         rb.MoveRotation(initialRotation);
         oldThrust = thrust;
         
-        if(IC == null)
-        {
-            IC = GetComponent<InputController>();
-        }
+        IC = InputController.instance;
     }
 
     void FixedUpdate()
     {
-        Debug.Log(rotationX + " | "+ rotationY);
         HandleMovement();
         TriggerAbility();
         HandleRotation();

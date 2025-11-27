@@ -145,8 +145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e197c9903411347add5c7d8ab9a63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ofuda_Shot_Type
+  projectileDamage: 5
   projectileSpeed: 20
   projectileLifeSpan: 3
+  team: 0
+  grazePoints: 0
+  spawnMode: 0
+  projectileSoundClip: {fileID: 8300000, guid: ab82494b6e98bad43ba8ff78190f8bc2, type: 3}
 --- !u!33 &3502931997169860741
 MeshFilter:
   m_ObjectHideFlags: 0
