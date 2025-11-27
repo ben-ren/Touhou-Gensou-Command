@@ -18,6 +18,13 @@ public class EntitySystems : MonoBehaviour, ITeamMember
     [SerializeField] private int grazePoints = 0;
     [SerializeField] private AudioClip damageRecievedSoundClip;
     [SerializeField] private AudioClip entityDefeatedSoundClip;
+
+    [Header("Invincibility Frames")]
+    [SerializeField] private IFrameVisuals iFrameVisuals;
+    [SerializeField] private float iFrameDuration = 1f; // seconds
+    private bool isInvincible = false;
+    private float iFrameTimer = 0f;
+
     public bool RecentlyDamaged { get; private set; } = false;
     
     public int GetHealth() => health;
@@ -36,12 +43,46 @@ public class EntitySystems : MonoBehaviour, ITeamMember
     public void SetBombs(int value) => bombs = value;
     public void SetGrazePoints(int value) => grazePoints = value;
 
+    void Update()
+    {
+        IFrameTimer();
+    }
+
+    void IFrameTimer()
+    {
+        if (isInvincible)
+        {
+            iFrameTimer -= Time.deltaTime;
+            if (iFrameTimer <= 0f)
+                isInvincible = false;
+        }
+    }
+
     public void ApplyDamage(float amount)
     {
+        if (isInvincible) return; // skip damage if in I-frames
+
         health -= Mathf.RoundToInt(amount);
         RecentlyDamaged = true;  // mark that entity was damaged
+
         SFXManager.instance.PlaySFXClip(damageRecievedSoundClip,transform,1f);
+
         Debug.Log($"{gameObject.name} took {amount} damage! Remaining health: {health}");
+
+        // Trigger I-frames
+        isInvincible = true;
+        iFrameTimer = iFrameDuration;
+
+        if (iFrameVisuals != null)  // Trigger visual feedback on all renderers under Visuals
+        {
+            iFrameVisuals?.StartIFrameVisual(iFrameDuration);
+        }
+
+        if (TeamAlignment == Team.Player)   //shake camera if entity is player
+        {
+            VFXManager.Instance.ShakeCamera(.2f, .1f);
+        }
+
         if (health <= 0)
         {
             SFXManager.instance.PlaySFXClip(entityDefeatedSoundClip,transform,1f);

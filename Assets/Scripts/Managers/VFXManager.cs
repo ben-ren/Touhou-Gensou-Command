@@ -20,4 +20,9 @@ public class VFXManager : MonoBehaviour
         if (CameraShake.Instance != null)
             CameraShake.Instance.ShakeCamera(duration, magnitude);
     }
+
+    public void GenerateSparkParticles()
+    {
+        
+    }
 }

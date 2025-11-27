@@ -59,10 +59,5 @@ public class Projectile : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode
                 Destroy(gameObject);
             }
         }
-
-        if (entity != null && entity.TeamAlignment == Team.Player)
-        {
-            VFXManager.Instance.ShakeCamera(.4f, .2f);
-        }
     }
 }
