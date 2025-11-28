@@ -9,6 +9,8 @@ public class ProjectileSpawner : MonoBehaviour
 
     [Header("Firing Settings")]
     public bool IsFiring = false; // true for continuous shooting
+    [HideInInspector] public bool IsLaser = false;
+    private GameObject activeLaser;
 
     [Header("Targeting Settings")]
     [SerializeField] private bool enableTargeting = false; // toggle on/off
@@ -18,12 +20,38 @@ public class ProjectileSpawner : MonoBehaviour
     void Update()
     {
         if (!IsFiring) return;
+        
         Targeting();
 
-        if (Time.time >= nextFireTime)
+        if (IsLaser)
+        {
+            FireLaser();
+        }
+        else if (!IsLaser && Time.time >= nextFireTime)
         {
             nextFireTime = Time.time + (1f / fireRate);
             FireProjectile();
+        }
+    }
+
+    public void LaserCheck(bool shoot)
+    {
+        IsLaser = projectilePrefab.TryGetComponent(out Laser _);
+        // Handle laser instantiation/destruction 
+        if (IsLaser && shoot) return;
+
+        if (!shoot && activeLaser != null){
+            Destroy(activeLaser);
+            IsLaser = false;
+        }
+    }
+
+    void FireLaser()
+    {
+        if (activeLaser == null)
+        {
+            activeLaser = Instantiate(projectilePrefab, transform.position, transform.rotation, this.transform);
+            activeLaser.GetComponent<IWeaponTeam>()?.SetTeam(team);
         }
     }
 

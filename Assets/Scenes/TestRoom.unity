@@ -636,7 +636,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
   fireRate: 2
   team: 2
-  IsFiring: 0
+  IsFiring: 1
+  IsLaser: 0
   enableTargeting: 0
   target: {fileID: 0}
 --- !u!1 &433046912
@@ -739,6 +740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Graze
   grazeDelay: 0
   team: 1
+  VFXPrefab: {fileID: 1823307577868708432, guid: 3bacf5f27f8658a408d225c76001fa4e, type: 3}
 --- !u!65 &822184753
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1639,6 +1641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Graze
   grazeDelay: 0
   team: 2
+  VFXPrefab: {fileID: 0}
 --- !u!65 &1464647480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1874,6 +1877,7 @@ MonoBehaviour:
   fireRate: 1
   team: 1
   IsFiring: 0
+  IsLaser: 0
   enableTargeting: 0
   target: {fileID: 0}
 --- !u!1 &1948552591

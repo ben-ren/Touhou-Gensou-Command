@@ -53,6 +53,7 @@ public class PlayerProjManager : ProjSpawnManager
         foreach (var spawner in spawners)
         {
             spawner.IsFiring = shoot;
+            spawner.LaserCheck(shoot);
         }
     }
 

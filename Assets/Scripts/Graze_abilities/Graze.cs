@@ -14,6 +14,9 @@ public class Graze : MonoBehaviour
     [SerializeField] private Team team = Team.Neutral;
     public Team TeamAlignment => team;
 
+    [Header("Effects")]
+    public ParticleSystem VFXPrefab;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,10 +38,20 @@ public class Graze : MonoBehaviour
     //As long as projectile is in box accumulate graze points
     void OnTriggerStay(Collider other)
     {
-        if (Time.time >= nextTime)
+        EntitySystems entity = GetComponentInParent<EntitySystems>();
+
+        if (Time.time >= nextTime && other.TryGetComponent<IGrazable>(out IGrazable grazable))
         {
-            nextTime = Time.time + (1f / accumulationRate);
-            AccumulatedGrazePoints++;
+            if(grazable.GetGrazePoints() > 0){
+                nextTime = Time.time + (1f / accumulationRate);
+                
+                AccumulatedGrazePoints++;
+                grazable.SetGrazePoints(grazable.GetGrazePoints() - 1);
+
+                if(VFXPrefab != null && !entity.RecentlyDamaged){
+                    VFXManager.Instance.GenerateParticleVFX(VFXPrefab, transform, .1f);
+                }
+            }
         }
     }
 

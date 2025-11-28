@@ -13,4 +13,23 @@ public class Bomb : Projectile
     {
         
     }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Projectile proj))
+        {
+            if (proj != this){
+                Destroy(proj.gameObject);   // Destroy other projectiles on contact
+            }
+        }
+
+        EntitySystems entity = other.GetComponent<EntitySystems>();
+
+        if (other.CompareTag("HomingSystem") || (entity != null && entity.TeamAlignment == team)) return;
+
+        if (entity != null && entity.TeamAlignment != team)
+        {
+            entity.ApplyDamage(GetProjectileDamage());
+        }
+    }
 }

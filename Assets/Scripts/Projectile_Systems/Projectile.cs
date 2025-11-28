@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode
+public class Projectile : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode, IGrazable
 {
     [Header("Projectile Stats")]
     public float projectileDamage = 5f;
@@ -8,21 +8,25 @@ public class Projectile : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode
     public float projectileLifeSpan = 5f;
 
     [Header("Team Assignment")]
-    [SerializeField] private Team team = Team.Neutral;
+    [SerializeField] protected Team team = Team.Neutral;
     public Team TeamAlignment => team;
 
     [Header("Resources")]
-    [SerializeField] private int grazePoints = 0;
+    [SerializeField] protected int grazePoints = 0;
     
     [Header("Spawn Settings")]
     [SerializeField] private ProjectileSpawnMode spawnMode = ProjectileSpawnMode.Global;
     public ProjectileSpawnMode SpawnMode => spawnMode;
 
     [Header("Effects")]
-    public ParticleSystem sparkVFXPrefab;
+    public ParticleSystem VFXPrefab;
 
     public int GetGrazePoints() => grazePoints;
     public void SetGrazePoints(int value) => grazePoints = value;
+    public float GetProjectileDamage() => projectileDamage;
+    public float GetProjectileSpeed() => projectileSpeed;
+    public float GetProjectileLifeSpan() => projectileLifeSpan;
+    public void SetTeam(Team newTeam) => team = newTeam;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public virtual void Start()
@@ -42,12 +46,7 @@ public class Projectile : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode
 
     // Update is called once per frame
     public virtual void Update(){}
-
-    public float GetProjectileDamage() => projectileDamage;
-    public float GetProjectileSpeed() => projectileSpeed;
-    public float GetProjectileLifeSpan() => projectileLifeSpan;
-    public void SetTeam(Team newTeam) => team = newTeam;
-
+    
     protected virtual void OnTriggerEnter(Collider other)
     {
         EntitySystems entity = other.GetComponent<EntitySystems>();
@@ -58,8 +57,8 @@ public class Projectile : MonoBehaviour, ITeamMember, IWeaponTeam, ISpawnMode
         {
             entity.ApplyDamage(GetProjectileDamage());
 
-            if(sparkVFXPrefab != null){
-                VFXManager.Instance.GenerateParticleVFX(sparkVFXPrefab, transform, .1f);
+            if(VFXPrefab != null){
+                VFXManager.Instance.GenerateParticleVFX(VFXPrefab, transform, .1f);
             }
 
             Destroy(gameObject);

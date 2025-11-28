@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SealOrb : Straight_Shot_Type
+public class SealOrb : Bomb
 {
     public override void Start()
     {
@@ -11,18 +11,19 @@ public class SealOrb : Straight_Shot_Type
     public override void Update()
     {
         base.Update();
+        transform.position += transform.forward * projectileSpeed * Time.deltaTime;
     }
 
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
 
-        // Destroy other projectiles on contact
-        if (other.TryGetComponent<Projectile>(out Projectile proj))
-        {
-            // Avoid self-destroying
-            if (proj != this)
-                Destroy(proj.gameObject);
-        }
+        // // Destroy other projectiles on contact
+        // if (other.TryGetComponent<Projectile>(out Projectile proj))
+        // {
+        //     // Avoid self-destroying
+        //     if (proj != this)
+        //         Destroy(proj.gameObject);
+        // }
     }
 }
