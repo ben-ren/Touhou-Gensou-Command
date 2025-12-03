@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 292306136}
   - component: {fileID: 292306137}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (1)
   m_TagString: boundary
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 331526751}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 336861978}
   - component: {fileID: 336861977}
   - component: {fileID: 336861980}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof
   m_TagString: boundary
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 389688551}
   - component: {fileID: 389688552}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: boundary
   m_Icon: {fileID: 0}
@@ -636,7 +636,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
   fireRate: 2
   team: 2
-  IsFiring: 1
+  IsFiring: 0
   IsLaser: 0
   enableTargeting: 0
   target: {fileID: 0}
@@ -820,6 +820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 891449895}
+  - component: {fileID: 891449900}
   - component: {fileID: 891449898}
   - component: {fileID: 891449899}
   - component: {fileID: 891449896}
@@ -840,7 +841,7 @@ Transform:
   m_GameObject: {fileID: 891449894}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 2, z: 20}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -916,10 +917,9 @@ MonoBehaviour:
   money: 0
   bombs: 0
   team: 2
-  grazePoints: 0
+  grazePoints: 5
   damageRecievedSoundClip: {fileID: 8300000, guid: fe8927c690576cb4e874c5f849728c53, type: 3}
   entityDefeatedSoundClip: {fileID: 8300000, guid: ebd5138ba23ecfb45886b4145437e445, type: 3}
-  iFrameVisuals: {fileID: 891449899}
   iFrameDuration: 0.1
 --- !u!114 &891449899
 MonoBehaviour:
@@ -937,6 +937,33 @@ MonoBehaviour:
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   flashInterval: 0.1
   useEmission: 1
+--- !u!114 &891449900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891449894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6893c4aaa75eb7248b9293d10535cddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HostileAI
+  target: {fileID: 1449873640}
+  spawners: []
+  terrainMask:
+    serializedVersion: 2
+    m_Bits: 128
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 8
+  moveSpeed: 10
+  rotationSpeed: 10
+  enableTargeting: 0
+  patrolRadius: 10
+  visionRange: 20
+  engagementRange: 10
+  StopMovingToFire: 1
 --- !u!1 &954059657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,7 +1130,7 @@ GameObject:
   - component: {fileID: 1082165174}
   - component: {fileID: 1082165173}
   - component: {fileID: 1082165177}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Level_geometry
   m_Icon: {fileID: 0}
@@ -1333,7 +1360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1286201488}
   - component: {fileID: 1286201489}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (3)
   m_TagString: boundary
   m_Icon: {fileID: 0}
@@ -1386,7 +1413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1309001960}
   - component: {fileID: 1309001961}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (2)
   m_TagString: boundary
   m_Icon: {fileID: 0}
@@ -1444,7 +1471,7 @@ GameObject:
   - component: {fileID: 1449873650}
   - component: {fileID: 1449873642}
   - component: {fileID: 1449873649}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1540,7 +1567,6 @@ MonoBehaviour:
   grazePoints: 0
   damageRecievedSoundClip: {fileID: 8300000, guid: fe8927c690576cb4e874c5f849728c53, type: 3}
   entityDefeatedSoundClip: {fileID: 8300000, guid: ebd5138ba23ecfb45886b4145437e445, type: 3}
-  iFrameVisuals: {fileID: 1449873650}
   iFrameDuration: 1.5
 --- !u!114 &1449873648
 MonoBehaviour:
@@ -1721,7 +1747,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8fa28250b022a1444a2bcae150f28457, type: 2}
+  - {fileID: 2100000, guid: e53a6b3ec94c42d46a57266616ee93b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2017,7 +2043,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c43bee686501a7b4aa7fae7b1bbbceac, type: 2}
+  - {fileID: 2100000, guid: e53a6b3ec94c42d46a57266616ee93b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

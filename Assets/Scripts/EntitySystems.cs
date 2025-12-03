@@ -20,7 +20,7 @@ public class EntitySystems : MonoBehaviour, ITeamMember
     [SerializeField] private AudioClip entityDefeatedSoundClip;
 
     [Header("Invincibility Frames")]
-    [SerializeField] private IFrameVisuals iFrameVisuals;
+    private IFrameVisuals iFrameVisuals;
     [SerializeField] private float iFrameDuration = 1f; // seconds
     private bool isInvincible = false;
     private float iFrameTimer = 0f;
@@ -34,6 +34,7 @@ public class EntitySystems : MonoBehaviour, ITeamMember
     public int GetMoney() => money;
     public int GetBombs() => bombs;
     public int GetGrazePoints() => grazePoints;
+    public Team GetTeam() => team;
 
     public void SetHealth(int value) => health = value;
     public void SetPower(int value) => power = value;
@@ -42,6 +43,15 @@ public class EntitySystems : MonoBehaviour, ITeamMember
     public void SetMoney(int value) => money = value;
     public void SetBombs(int value) => bombs = value;
     public void SetGrazePoints(int value) => grazePoints = value;
+    public void SetTeam(Team newTeam) => team = newTeam;
+
+    void Start()
+    {
+        if (gameObject.TryGetComponent(out IFrameVisuals vis))
+        {
+            iFrameVisuals = vis;
+        }
+    }
 
     void Update()
     {
@@ -95,6 +105,7 @@ public class EntitySystems : MonoBehaviour, ITeamMember
     public void Kill()
     {
         Debug.Log($"{gameObject.name} has been killed!");
+        gameObject.SetActive(false);
     }
 
     // Reset damaged flag.
