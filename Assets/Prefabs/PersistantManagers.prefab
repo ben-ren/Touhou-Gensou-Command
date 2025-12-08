@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 548902158513112428}
   - component: {fileID: 4738701483983644988}
   - component: {fileID: 2392515473303481753}
+  - component: {fileID: 3367559976042391231}
   m_Layer: 0
   m_Name: PersistantManagers
   m_TagString: Untagged
@@ -72,4 +73,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699852c7a25218f44b9eb3a68f01273f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VFXManager
-  particleSystem: {fileID: 9082348470009629637, guid: 19a9725ffc98c364da72854f66bf466a, type: 3}
+--- !u!114 &3367559976042391231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5850239579180972878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1553f60c8837fe04baac6cdbe19dd589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIHelper
