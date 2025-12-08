@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1677856363315197446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5582872020959833411}
+  - component: {fileID: 4887766224086973633}
+  m_Layer: 0
+  m_Name: ResourceDeploy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5582872020959833411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677856363315197446}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4887766224086973633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677856363315197446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd3ab00e53c8814fbba773976113a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceDeploy
+  health: 0
+  power: 0
+  graze: 0
+  fuel: 0
+  money: 0
+  bombs: 0
+  healthItem: {fileID: 7959218664267287112, guid: c0c5e8eb416976348995d7e0f655d56f, type: 3}
+  powerItem: {fileID: 1332664047875675897, guid: f1d234ca5644adf48b807d0f6416341c, type: 3}
+  grazeItem: {fileID: 6140078963078992039, guid: 8599ff32d879bbd4f849e445e997b144, type: 3}
+  fuelItem: {fileID: 6838047296091717409, guid: 346724045f13f454cac634993431bf29, type: 3}
+  moneyItem: {fileID: 40047368637934498, guid: 02b1e89c784a02c4e9d749cfe54ea36a, type: 3}
+  bombItem: {fileID: 4820383568777805397, guid: 84ccca184d2e6d3458aa6e0ffa6270cf, type: 3}

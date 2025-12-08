@@ -67,7 +67,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 50
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4105587948435453264
 Rigidbody:
@@ -151,7 +151,7 @@ MonoBehaviour:
   team: 0
   grazePoints: 10
   spawnMode: 0
-  projectileSoundClip: {fileID: 8300000, guid: c783287c4ffcb79419d4345e141c540e, type: 3}
+  VFXPrefab: {fileID: 0}
 --- !u!135 &869671981323047473
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class Graze : MonoBehaviour
     private int AccumulatedGrazePoints = 0;
     private float nextTime = 0f;
     private float accumulationRate = 1f;
+    [SerializeField] private GameObject resource;
     
     [Header("Team Assignment")]
     [SerializeField] private Team team = Team.Neutral;
@@ -63,7 +64,14 @@ public class Graze : MonoBehaviour
         // Skip if the object was recently damaged by a projectile
         if (GetComponentInParent<EntitySystems>() is EntitySystems entity && !entity.RecentlyDamaged && teamMember.TeamAlignment != team)
         {
-            ApplyGraze(entity, AccumulatedGrazePoints);     //apply graze function from script
+            GameObject drop = Instantiate(resource, other.transform.position, Quaternion.identity);
+            
+            if (drop.TryGetComponent(out ResourceDeploy res))
+            {
+                res.graze = AccumulatedGrazePoints;
+                // You can immediately deploy here OR let the prefab’s Start trigger it
+                res.DeployItems();
+            }
         }
 
         AccumulatedGrazePoints = 0;         // Reset point accumulation

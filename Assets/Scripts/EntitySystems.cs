@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using UnityEngine;
 
 public class EntitySystems : MonoBehaviour, ITeamMember
@@ -16,6 +17,7 @@ public class EntitySystems : MonoBehaviour, ITeamMember
 
     [Header("Resources")]
     [SerializeField] private int grazePoints = 0;
+    [SerializeField] private GameObject resource;
     [SerializeField] private AudioClip damageRecievedSoundClip;
     [SerializeField] private AudioClip entityDefeatedSoundClip;
 
@@ -105,7 +107,26 @@ public class EntitySystems : MonoBehaviour, ITeamMember
     public void Kill()
     {
         Debug.Log($"{gameObject.name} has been killed!");
+
+        GameObject reso = Instantiate(resource, transform.position, Quaternion.identity);
+
+        if (reso.TryGetComponent(out ResourceDeploy newRes))
+        {
+            SetResources(newRes);
+            newRes.DeployItems();
+        }
+        
         gameObject.SetActive(false);
+    }
+
+    void SetResources(ResourceDeploy res)
+    {
+        res.health = this.health;
+        res.power = this.power;
+        res.graze = this.graze;
+        res.fuel = this.fuel;
+        res.money = this.money;
+        res.bombs = this.bombs;
     }
 
     // Reset damaged flag.
