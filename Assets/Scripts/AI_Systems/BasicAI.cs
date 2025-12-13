@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(EntitySystems))]
-public class BasicAI : MonoBehaviour
+public class BasicAI : MonoBehaviour, IGrazable
 {
     [Header("References")]
     [SerializeField] protected Transform target;
@@ -27,6 +27,10 @@ public class BasicAI : MonoBehaviour
 
     protected bool isTargetVisible;
     protected bool isTargetInRange;
+
+    [SerializeField] protected int grazePoints = 0;
+    public int GetGrazePoints() => grazePoints;
+    public void SetGrazePoints(int value) => grazePoints = value;
 
     public virtual void Start()
     {

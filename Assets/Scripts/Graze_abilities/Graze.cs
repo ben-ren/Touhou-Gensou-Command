@@ -69,7 +69,6 @@ public class Graze : MonoBehaviour
             if (drop.TryGetComponent(out ResourceDeploy res))
             {
                 res.graze = AccumulatedGrazePoints;
-                // You can immediately deploy here OR let the prefab’s Start trigger it
                 res.DeployItems();
             }
         }
