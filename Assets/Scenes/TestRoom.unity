@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1118e03f218c9f44860e78a0082084a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Graze
-  grazeDelay: 1
+  accumulationRate: 0.5
   resource: {fileID: 1677856363315197446, guid: da341ea2b16dfbc4d9fd4ee12a1374c0, type: 3}
   team: 1
   VFXPrefab: {fileID: 1823307577868708432, guid: 3bacf5f27f8658a408d225c76001fa4e, type: 3}
@@ -1355,8 +1355,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSystems
   health: 50
-  power: 0
-  graze: 0
+  power: 100
+  graze: 10
   fuel: 0
   money: 0
   bombs: 2
@@ -1366,6 +1366,7 @@ MonoBehaviour:
   damageRecievedSoundClip: {fileID: 8300000, guid: fe8927c690576cb4e874c5f849728c53, type: 3}
   entityDefeatedSoundClip: {fileID: 8300000, guid: ebd5138ba23ecfb45886b4145437e445, type: 3}
   iFrameDuration: 1.5
+  isInvincible: 0
 --- !u!114 &1449873648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1673,6 +1674,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fairy
       objectReference: {fileID: 0}
+    - target: {fileID: 2778782068755326364, guid: 69cb4178c3f68b2429ac6b6753feee91, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3050103618261447830, guid: 69cb4178c3f68b2429ac6b6753feee91, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -1715,7 +1720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4998669957305164288, guid: 69cb4178c3f68b2429ac6b6753feee91, type: 3}
       propertyPath: IsFiring
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5226799318814003860, guid: 69cb4178c3f68b2429ac6b6753feee91, type: 3}
       propertyPath: target

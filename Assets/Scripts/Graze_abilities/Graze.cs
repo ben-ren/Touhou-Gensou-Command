@@ -5,10 +5,10 @@ using UnityEngine;
 public class Graze : MonoBehaviour
 {
     [Header("Variables")]
-    public float grazeDelay = 0f;
+    [SerializeField] private float accumulationRate = 0f;
     private int AccumulatedGrazePoints = 0;
     private float nextTime = 0f;
-    private float accumulationRate = 1f;
+
     [SerializeField] private GameObject resource;
     
     [Header("Team Assignment")]
@@ -18,10 +18,12 @@ public class Graze : MonoBehaviour
     [Header("Effects")]
     public ParticleSystem VFXPrefab;
 
+    private EntitySystems entity;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        
+        entity = GetComponentInParent<EntitySystems>();
     }
 
     // Update is called once per frame
@@ -39,40 +41,42 @@ public class Graze : MonoBehaviour
     //As long as projectile is in box accumulate graze points
     void OnTriggerStay(Collider other)
     {
-        EntitySystems entity = GetComponentInParent<EntitySystems>();
+        if (entity.isInvincible) return;  // Block accumulation during I-frames
+        if (Time.time < nextTime) return;
+        if (!other.TryGetComponent(out IGrazable grazable)) return;
+        if (!other.TryGetComponent(out ITeamMember otherTeam)) return;
+        if (otherTeam.TeamAlignment == team) return;
+        if (grazable.GetGrazePoints() <= 0) return;
 
-        if (Time.time >= nextTime && other.TryGetComponent<IGrazable>(out IGrazable grazable))
-        {
-            if(grazable.GetGrazePoints() > 0){
-                nextTime = Time.time + (1f / accumulationRate);
-                
-                AccumulatedGrazePoints++;
-                grazable.SetGrazePoints(grazable.GetGrazePoints() - 1);
+        nextTime = Time.time + accumulationRate;
+        AccumulatedGrazePoints++;
+        grazable.SetGrazePoints(grazable.GetGrazePoints() - 1);
 
-                if(VFXPrefab != null && !entity.RecentlyDamaged){
-                    VFXManager.Instance.GenerateParticleVFX(VFXPrefab, transform, .1f);
-                }
-            }
-        }
+        if(VFXPrefab != null)
+            VFXManager.Instance.GenerateParticleVFX(VFXPrefab, transform, .1f);
     }
 
     //Apply the graze effect & calculation when projectile leaves graze box
     void OnTriggerExit(Collider other)
     {
+        if (AccumulatedGrazePoints <= 0) return;
         if (!other.TryGetComponent(out ITeamMember teamMember)) return;
-
-        // Skip if the object was recently damaged by a projectile
-        if (GetComponentInParent<EntitySystems>() is EntitySystems entity && !entity.RecentlyDamaged && teamMember.TeamAlignment != team)
+        if (teamMember.TeamAlignment == team) return;
+        if (entity.isInvincible)
         {
-            GameObject drop = Instantiate(resource, other.transform.position, Quaternion.identity);
-            
-            if (drop.TryGetComponent(out ResourceDeploy res))
-            {
-                res.graze = AccumulatedGrazePoints;
-                res.DeployItems();
-            }
+            AccumulatedGrazePoints = 0; // Reset
+            return;    // Only payout if not invincible  
+        } 
+
+        GameObject drop = Instantiate(resource, other.transform.position, Quaternion.identity);
+
+        if (drop.TryGetComponent(out ResourceDeploy res))
+        {
+            res.graze = AccumulatedGrazePoints;
+            res.health = 1;
+            res.DeployItems();
         }
 
-        AccumulatedGrazePoints = 0;         // Reset point accumulation
+        AccumulatedGrazePoints = 0; // Reset
     }
 }

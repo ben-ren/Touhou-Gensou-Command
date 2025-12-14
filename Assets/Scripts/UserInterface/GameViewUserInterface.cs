@@ -53,7 +53,7 @@ public class GameViewUserInterface : MonoBehaviour
         _healthValue.value = player.GetHealth();
         _grazeValue.value = player.GetGraze();
         _fuelValue.text = $": {player.GetFuel()}";
-        _powerValue.text = $": {player.GetPower()}";
+        _powerValue.text = $"{(float)player.GetPower() / 100:F2} / 4.00";
 
         int bombs = player.GetBombs();
 

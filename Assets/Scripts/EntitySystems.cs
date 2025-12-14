@@ -1,7 +1,7 @@
 using Mono.Cecil;
 using UnityEngine;
 
-public class EntitySystems : MonoBehaviour, ITeamMember
+public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
 {
     [Header("Entity Stats")]
     [SerializeField] private int health = 50;
@@ -10,6 +10,9 @@ public class EntitySystems : MonoBehaviour, ITeamMember
     [SerializeField] private int fuel = 0;
     [SerializeField] private int money = 0;
     [SerializeField] private int bombs = 0;
+
+    private int initialHealth;
+    private int initialBombs;
 
     [Header("Team Alignment")]
     [SerializeField] private Team team = Team.Neutral;
@@ -24,7 +27,7 @@ public class EntitySystems : MonoBehaviour, ITeamMember
     [Header("Invincibility Frames")]
     private IFrameVisuals iFrameVisuals;
     [SerializeField] private float iFrameDuration = 1f; // seconds
-    private bool isInvincible = false;
+    [HideInInspector] public bool isInvincible = false;
     private float iFrameTimer = 0f;
 
     public bool RecentlyDamaged { get; private set; } = false;
@@ -49,6 +52,8 @@ public class EntitySystems : MonoBehaviour, ITeamMember
 
     void Start()
     {
+        initialHealth = health;
+        initialBombs = bombs;
         if (gameObject.TryGetComponent(out IFrameVisuals vis))
         {
             iFrameVisuals = vis;
@@ -57,6 +62,7 @@ public class EntitySystems : MonoBehaviour, ITeamMember
 
     void Update()
     {
+        ResourceCap();
         IFrameTimer();
     }
 
@@ -127,6 +133,13 @@ public class EntitySystems : MonoBehaviour, ITeamMember
         res.fuel = this.fuel;
         res.money = this.money;
         res.bombs = this.bombs;
+    }
+
+    void ResourceCap()
+    {
+        health = Mathf.Clamp(health, 0, initialHealth);
+        bombs = Mathf.Clamp(bombs, 0, initialBombs);
+        power = Mathf.Clamp(power, 0, 400);
     }
 
     // Reset damaged flag.
