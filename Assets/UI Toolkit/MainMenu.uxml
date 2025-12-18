@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Container" style="flex-grow: 1;">
+        <ui:Button text="Start Game" name="PlayGameButton" style="position: absolute; top: 81px; left: 445px;" />
+        <ui:Button text="Settings" name="SettingsButton" style="position: absolute; top: 191px; left: 458px;" />
+        <ui:Button text="Quit Game" name="QuitButton" style="position: absolute; top: 286px; left: 455px;" />
+        <ui:Button text="Gallery" name="GalleryButton" style="position: absolute; top: 237px; left: 461px;" />
+        <ui:Button text="Load Saves" name="LoadButton" style="position: absolute; top: 141px; left: 448px;" />
+    </ui:VisualElement>
+</ui:UXML>

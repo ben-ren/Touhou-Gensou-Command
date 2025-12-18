@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4817623688779262867}
   - component: {fileID: 548902158513112428}
+  - component: {fileID: 1111882027107882582}
   - component: {fileID: 4738701483983644988}
   - component: {fileID: 2392515473303481753}
   - component: {fileID: 3367559976042391231}
@@ -47,6 +48,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166266003a4bc0b49a4264e360a48de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputController
+  inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!114 &1111882027107882582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5850239579180972878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcd4d0f585ae5b4c8f5d450f15f97bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIController
   inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &4738701483983644988
 MonoBehaviour:

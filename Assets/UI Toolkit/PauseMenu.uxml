@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/UnityStyleSheets/PauseMenuStyle.uss?fileID=7433441132597879392&amp;guid=2f966daec80439e43b413ec8556250e8&amp;type=3#PauseMenuStyle" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; -unity-background-image-tint-color: rgba(0, 0, 0, 0.52); background-image: url(&quot;project://database/Assets/Sprites/greybox_sprites/square.png?fileID=2800000&amp;guid=02ed11967dd71204cbb1ed59a26173ca&amp;type=3#square&quot;);">
+        <ui:Button text="Resume" name="ResumeButton" style="position: absolute; top: 81px; left: 445px;" />
+        <ui:Button text="Settings" name="SettingsButton" style="position: absolute; top: 191px; left: 458px;" />
+        <ui:Button text="Quit Game" name="QuitButton" style="position: absolute; top: 286px; left: 455px;" />
+        <ui:Button text="Gallery" name="GalleryButton" style="position: absolute; top: 237px; left: 461px;" />
+        <ui:Button text="Load Saves" name="LoadButton" style="position: absolute; top: 141px; left: 448px;" />
+    </ui:VisualElement>
+</ui:UXML>
