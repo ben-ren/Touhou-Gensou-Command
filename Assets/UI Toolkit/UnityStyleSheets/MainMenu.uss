@@ -6,6 +6,6 @@
 }
 
 .hidden {
-    display: flex;
+    display: none;
     visibility: hidden;
 }

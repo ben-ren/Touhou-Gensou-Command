@@ -57,8 +57,10 @@ public class MainMenu : MonoBehaviour
         {
             button.RegisterCallback<ClickEvent>(OnAllButtonsClick);
         }
+    }
 
-        // Ensure starting state
+    private void OnStart()
+    {
         ShowMenu(_mainMenu);
     }
 
@@ -109,7 +111,7 @@ public class MainMenu : MonoBehaviour
     private void OnPlayClicked()
     {
         // Example: load next scene (replace with your scene index or name)
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("TestRoom");
     }
 
     private void OnLoadClicked()
