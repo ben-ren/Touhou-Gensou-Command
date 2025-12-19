@@ -1,0 +1,11 @@
+:root {
+}
+
+.menu {
+    flex-direction: column;
+}
+
+.hidden {
+    display: flex;
+    visibility: hidden;
+}

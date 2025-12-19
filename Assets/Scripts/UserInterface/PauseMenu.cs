@@ -5,7 +5,7 @@ public class PauseMenu : MonoBehaviour
 {
     [Header("References")]
     private UIController UIC;
-    [SerializeField] private UIDocument _document;
+    private UIDocument _document;
 
     //--------------Menu Input Controls----------------
     
@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         UIC = UIController.instance;
+        _document = GetComponent<UIDocument>();
         //-----Menu Controls------
         
 
