@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+[Serializable]
+public class GameData
+{
+    //--------------------------------------
+    // Persistent resources
+    //--------------------------------------
+    public int money;
+    public int fuel;
+    public int lives; // YES — include if your design wants persistence
+
+    //--------------------------------------
+    // World / map state
+    //--------------------------------------
+    public int currentLevelIndex;
+
+    // Which levels are unlocked
+    public List<LevelUnlockData> unlockedLevels = new();
+
+    // Entity positions on the map scene saved by ID
+    public List<EntityPositionData> entityPositions = new();
+
+    // Pickups / items state
+    public List<ItemStateData> itemStates = new();
+
+    //--------------------------------------
+    // Character (overwritten per level)
+    //--------------------------------------
+    public CharacterData characterData = new();
+
+    //--------------------------------------
+    // Settings
+    //--------------------------------------
+    public SettingsData settingsData = new();
+}

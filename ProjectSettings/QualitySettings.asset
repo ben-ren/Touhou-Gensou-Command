@@ -6,7 +6,7 @@ QualitySettings:
   serializedVersion: 5
   m_CurrentQuality: 1
   m_QualitySettings:
-  - serializedVersion: 4
+  - serializedVersion: 5
     name: Mobile
     pixelLightCount: 2
     shadows: 2
@@ -34,6 +34,7 @@ QualitySettings:
     adaptiveVsyncExtraA: 0
     adaptiveVsyncExtraB: 0
     lodBias: 1
+    meshLodThreshold: 1
     maximumLODLevel: 0
     enableLODCrossFade: 1
     streamingMipmapsActive: 0
@@ -47,8 +48,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: 5e6cbd92db86f4b18aec3ed561671858,
-      type: 2}
+    customRenderPipeline: {fileID: 11400000, guid: 5e6cbd92db86f4b18aec3ed561671858, type: 2}
     terrainQualityOverrides: 0
     terrainPixelError: 1
     terrainDetailDensityScale: 1
@@ -60,8 +60,8 @@ QualitySettings:
     terrainMaxTrees: 50
     excludedTargetPlatforms:
     - Standalone
-  - serializedVersion: 4
-    name: PC
+  - serializedVersion: 5
+    name: Default
     pixelLightCount: 2
     shadows: 2
     shadowResolution: 1
@@ -88,6 +88,7 @@ QualitySettings:
     adaptiveVsyncExtraA: 0
     adaptiveVsyncExtraB: 0
     lodBias: 2
+    meshLodThreshold: 1
     maximumLODLevel: 0
     enableLODCrossFade: 1
     streamingMipmapsActive: 0
@@ -101,8 +102,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: 4b83569d67af61e458304325a23e5dfd,
-      type: 2}
+    customRenderPipeline: {fileID: 11400000, guid: 4b83569d67af61e458304325a23e5dfd, type: 2}
     terrainQualityOverrides: 0
     terrainPixelError: 1
     terrainDetailDensityScale: 1
@@ -112,6 +112,171 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
+    excludedTargetPlatforms:
+    - Android
+    - iPhone
+  - serializedVersion: 5
+    name: Fast
+    pixelLightCount: 2
+    shadows: 2
+    shadowResolution: 1
+    shadowProjection: 1
+    shadowCascades: 2
+    shadowDistance: 40
+    shadowNearPlaneOffset: 3
+    shadowCascade2Split: 0.33333334
+    shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
+    shadowmaskMode: 0
+    skinWeights: 1
+    globalTextureMipmapLimit: 3
+    textureMipmapLimitSettings: []
+    anisotropicTextures: 0
+    antiAliasing: 0
+    softParticles: 0
+    softVegetation: 1
+    realtimeReflectionProbes: 0
+    billboardsFaceCameraPosition: 1
+    useLegacyDetailDistribution: 1
+    adaptiveVsync: 0
+    vSyncCount: 0
+    realtimeGICPUUsage: 25
+    adaptiveVsyncExtraA: 0
+    adaptiveVsyncExtraB: 0
+    lodBias: 0.5
+    meshLodThreshold: 1
+    maximumLODLevel: 2
+    enableLODCrossFade: 1
+    streamingMipmapsActive: 1
+    streamingMipmapsAddAllCameras: 0
+    streamingMipmapsMemoryBudget: 128
+    streamingMipmapsRenderersPerFrame: 128
+    streamingMipmapsMaxLevelReduction: 2
+    streamingMipmapsMaxFileIORequests: 256
+    particleRaycastBudget: 10
+    asyncUploadTimeSlice: 2
+    asyncUploadBufferSize: 8
+    asyncUploadPersistentBuffer: 0
+    resolutionScalingFixedDPIFactor: 1
+    customRenderPipeline: {fileID: 11400000, guid: 4b83569d67af61e458304325a23e5dfd, type: 2}
+    terrainQualityOverrides: 255
+    terrainPixelError: 200
+    terrainDetailDensityScale: 0.3
+    terrainBasemapDistance: 2500
+    terrainDetailDistance: 300
+    terrainTreeDistance: 1000
+    terrainBillboardStart: 500
+    terrainFadeLength: 50
+    terrainMaxTrees: 2000
+    excludedTargetPlatforms:
+    - Android
+    - iPhone
+  - serializedVersion: 5
+    name: Balanced
+    pixelLightCount: 2
+    shadows: 2
+    shadowResolution: 1
+    shadowProjection: 1
+    shadowCascades: 2
+    shadowDistance: 40
+    shadowNearPlaneOffset: 3
+    shadowCascade2Split: 0.33333334
+    shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
+    shadowmaskMode: 0
+    skinWeights: 2
+    globalTextureMipmapLimit: 1
+    textureMipmapLimitSettings: []
+    anisotropicTextures: 1
+    antiAliasing: 0
+    softParticles: 0
+    softVegetation: 1
+    realtimeReflectionProbes: 1
+    billboardsFaceCameraPosition: 1
+    useLegacyDetailDistribution: 1
+    adaptiveVsync: 0
+    vSyncCount: 2
+    realtimeGICPUUsage: 50
+    adaptiveVsyncExtraA: 0
+    adaptiveVsyncExtraB: 0
+    lodBias: 1
+    meshLodThreshold: 1
+    maximumLODLevel: 3
+    enableLODCrossFade: 1
+    streamingMipmapsActive: 1
+    streamingMipmapsAddAllCameras: 1
+    streamingMipmapsMemoryBudget: 256
+    streamingMipmapsRenderersPerFrame: 256
+    streamingMipmapsMaxLevelReduction: 1
+    streamingMipmapsMaxFileIORequests: 512
+    particleRaycastBudget: 50
+    asyncUploadTimeSlice: 4
+    asyncUploadBufferSize: 16
+    asyncUploadPersistentBuffer: 1
+    resolutionScalingFixedDPIFactor: 1
+    customRenderPipeline: {fileID: 11400000, guid: 4b83569d67af61e458304325a23e5dfd, type: 2}
+    terrainQualityOverrides: 255
+    terrainPixelError: 100
+    terrainDetailDensityScale: 0.6
+    terrainBasemapDistance: 10000
+    terrainDetailDistance: 500
+    terrainTreeDistance: 2500
+    terrainBillboardStart: 1000
+    terrainFadeLength: 100
+    terrainMaxTrees: 5000
+    excludedTargetPlatforms:
+    - Android
+    - iPhone
+  - serializedVersion: 5
+    name: Ultra
+    pixelLightCount: 2
+    shadows: 2
+    shadowResolution: 1
+    shadowProjection: 1
+    shadowCascades: 2
+    shadowDistance: 40
+    shadowNearPlaneOffset: 3
+    shadowCascade2Split: 0.33333334
+    shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
+    shadowmaskMode: 1
+    skinWeights: 4
+    globalTextureMipmapLimit: 0
+    textureMipmapLimitSettings: []
+    anisotropicTextures: 2
+    antiAliasing: 0
+    softParticles: 0
+    softVegetation: 1
+    realtimeReflectionProbes: 1
+    billboardsFaceCameraPosition: 1
+    useLegacyDetailDistribution: 1
+    adaptiveVsync: 0
+    vSyncCount: 1
+    realtimeGICPUUsage: 75
+    adaptiveVsyncExtraA: 0
+    adaptiveVsyncExtraB: 0
+    lodBias: 2
+    meshLodThreshold: 1
+    maximumLODLevel: 0
+    enableLODCrossFade: 1
+    streamingMipmapsActive: 1
+    streamingMipmapsAddAllCameras: 1
+    streamingMipmapsMemoryBudget: 512
+    streamingMipmapsRenderersPerFrame: 512
+    streamingMipmapsMaxLevelReduction: 1
+    streamingMipmapsMaxFileIORequests: 1024
+    particleRaycastBudget: 256
+    asyncUploadTimeSlice: 8
+    asyncUploadBufferSize: 32
+    asyncUploadPersistentBuffer: 1
+    resolutionScalingFixedDPIFactor: 1
+    customRenderPipeline: {fileID: 11400000, guid: 4b83569d67af61e458304325a23e5dfd, type: 2}
+    terrainQualityOverrides: 255
+    terrainPixelError: 20
+    terrainDetailDensityScale: 1
+    terrainBasemapDistance: 20000
+    terrainDetailDistance: 1000
+    terrainTreeDistance: 5000
+    terrainBillboardStart: 2000
+    terrainFadeLength: 200
+    terrainMaxTrees: 10000
     excludedTargetPlatforms:
     - Android
     - iPhone

@@ -12,12 +12,18 @@ public class MainMenu : MonoBehaviour
     private AudioSource _audioSource;
 
     //----------Menu Containers---------------
-    private VisualElement _mainMenu;
+    [HideInInspector] public VisualElement _mainMenu;
     private VisualElement _loadMenu;
     private VisualElement _settingsMenu;
     private VisualElement _galleryMenu;
     private VisualElement _confirmQuitMenu;
     private Button _backButton;
+
+    //------------Menu Scripts-----------------
+    LoadMenu loadMenuUI;
+    SettingsMenu settingsMenuUI;
+    GalleryUI galleryUI;
+
 
     private void Awake()
     {
@@ -27,6 +33,16 @@ public class MainMenu : MonoBehaviour
 
         // Get root element
         var root = _document.rootVisualElement;
+
+        //Get menu references
+        loadMenuUI = GetComponent<LoadMenu>();
+        settingsMenuUI = GetComponent<SettingsMenu>();
+        galleryUI = GetComponent<GalleryUI>();
+
+        //disable menus
+        loadMenuUI.enabled = false;
+        settingsMenuUI.enabled = false;
+        galleryUI.enabled = false;
 
         // Cache all menu containers
         _mainMenu        = root.Q<VisualElement>("MainMenu");
@@ -43,12 +59,12 @@ public class MainMenu : MonoBehaviour
         _buttonActions = new Dictionary<string, System.Action>()
         {
             { "PlayButton", OnPlayClicked },
-            { "LoadButton", () => ShowMenu(_loadMenu) },
-            { "SettingsButton", () => ShowMenu(_settingsMenu) },
-            { "GalleryButton", () => ShowMenu(_galleryMenu) },
+            { "LoadButton", () => OnLoadClicked() },
+            { "SettingsButton", () => OnSettingsClicked() },
+            { "GalleryButton", () => OnGalleryClicked() },
             { "QuitButton", () => ShowMenu(_confirmQuitMenu) },
 
-            { "BackButton", () => ShowMenu(_mainMenu) },
+            { "BackButton", () => OnBackClicked() },
             { "ConfirmQuitButton", OnQuitClicked }
         };
 
@@ -94,7 +110,7 @@ public class MainMenu : MonoBehaviour
     }
 
     // Shows the selected menu and handles Back button visibility
-    private void ShowMenu(VisualElement menu)
+    public void ShowMenu(VisualElement menu)
     {
         HideAllMenus();
         menu.RemoveFromClassList("hidden");
@@ -116,17 +132,28 @@ public class MainMenu : MonoBehaviour
 
     private void OnLoadClicked()
     {
-        
+        loadMenuUI.enabled = true;
+        ShowMenu(_loadMenu);
     }
 
     private void OnSettingsClicked()
     {
-        
+        settingsMenuUI.enabled = true;
+        ShowMenu(_settingsMenu); 
     }
 
     private void OnGalleryClicked()
     {
-        
+        galleryUI.enabled = true;
+        ShowMenu(_galleryMenu);
+    }
+
+    private void OnBackClicked()
+    {
+        loadMenuUI.enabled = false;
+        settingsMenuUI.enabled = false;
+        galleryUI.enabled = false;
+        ShowMenu(_mainMenu);
     }
 
     private void OnQuitClicked()
