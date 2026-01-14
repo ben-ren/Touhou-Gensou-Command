@@ -1,9 +1,11 @@
 :root {
 }
 
-.header {
-    font-size: 40px;
-    -unity-font-style: bold;
-    color: rgb(255, 255, 255);
-    -unity-font-definition: url("project://database/Packages/com.unity.cinemachine/Runtime/Debug/CinemachineRuntimeTheme.tss?fileID=2230732570650464555&guid=df9aec944f4474a04847b6d6375e4138&type=3#NotInter-Regular");
+.menu {
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
 }

@@ -1597,6 +1597,7 @@ GameObject:
   - component: {fileID: 1753476502}
   - component: {fileID: 1753476501}
   - component: {fileID: 1753476500}
+  - component: {fileID: 1753476503}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -1616,6 +1617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763ac260333eefc41bb56dc295933ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  _userInterface: {fileID: 1934422645}
 --- !u!114 &1753476501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1623,7 +1625,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753476499}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
@@ -1654,6 +1656,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1753476503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753476499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7447e7c4207fd8a4ead2cd6f807e89c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsMenu
+  _audioMixer: {fileID: 24100000, guid: 127f1fe84c18aa54e9090185d6bf778c, type: 2}
 --- !u!1 &1795025402
 GameObject:
   m_ObjectHideFlags: 0

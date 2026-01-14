@@ -1,10 +1,41 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/UnityStyleSheets/PauseMenuStyle.uss?fileID=7433441132597879392&amp;guid=2f966daec80439e43b413ec8556250e8&amp;type=3#PauseMenuStyle" />
-    <ui:VisualElement name="Container" style="flex-grow: 1; -unity-background-image-tint-color: rgba(0, 0, 0, 0.52); background-image: url(&quot;project://database/Assets/Sprites/greybox_sprites/square.png?fileID=2800000&amp;guid=02ed11967dd71204cbb1ed59a26173ca&amp;type=3#square&quot;);">
-        <ui:Button text="Settings" name="SettingsButton" style="position: absolute; top: 55%; left: 45%; align-content: auto; align-items: auto; width: 10%; height: 5%; background-color: rgba(188, 188, 188, 0); color: rgb(255, 235, 4); font-size: 30px; -unity-font-style: bold; -unity-text-outline-color: rgb(125, 86, 34); -unity-text-outline-width: 2px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
-        <ui:Button text="Quit Game" name="QuitButton" style="position: absolute; top: 65%; left: 45%; align-items: auto; align-content: auto; width: 10%; height: 5%; color: rgb(255, 235, 4); background-color: rgba(188, 188, 188, 0); -unity-text-outline-width: 2px; font-size: 30px; -unity-text-outline-color: rgb(125, 86, 34); -unity-font-style: bold; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
-        <ui:Button text="Gallery" name="GalleryButton" style="position: absolute; top: 60%; left: 45%; align-items: auto; align-content: auto; width: 10%; height: 5%; color: rgb(255, 235, 4); background-color: rgba(188, 188, 188, 0); -unity-text-outline-color: rgb(125, 86, 34); font-size: 30px; -unity-font-style: bold; -unity-text-outline-width: 2px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
-        <ui:Button text="Load Saves" name="LoadButton" style="position: absolute; top: 50%; left: 45%; align-items: auto; align-content: auto; width: 10%; height: 5%; background-color: rgba(188, 188, 188, 0); color: rgb(255, 235, 4); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(125, 86, 34); font-size: 30px; -unity-font-style: bold; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
-        <ui:Button text="Resume" name="PlayGameButton" style="position: absolute; top: 45%; left: 45%; align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto; -unity-text-align: middle-center; width: 10%; height: 5%; background-color: rgba(188, 188, 188, 0); color: rgb(255, 235, 4); -unity-font-style: bold; font-size: 30px; -unity-text-outline-color: rgb(125, 86, 34); -unity-text-outline-width: 2px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+    <ui:VisualElement name="PauseContainer" focusable="true" style="flex-grow: 1;">
+        <ui:VisualElement name="PauseMenu" style="flex-grow: 1; position: absolute; right: auto; bottom: auto; top: auto; left: auto; width: 100%; height: 100%;">
+            <ui:Button text="Resume" name="ResumeButton" enabled="true" style="position: absolute; top: 45%; left: 45%; align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto; -unity-text-align: middle-center; width: 10%; height: 5%;" />
+            <ui:Button text="Settings" name="SettingsButton" style="position: absolute; top: 55%; left: 45%; align-content: auto; align-items: auto; width: 10%; height: 5%;" />
+            <ui:Button text="Quit To Title" name="QuitButton" style="position: absolute; top: 65%; left: 45%; align-items: auto; align-content: auto; width: 10%; height: 5%;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="SettingsMenu" class="hidden" style="flex-grow: 1; position: absolute; top: 0%; left: 0%; right: 0%; bottom: 0%; background-color: rgb(255, 0, 249);">
+            <ui:Button text="Graphics" name="GraphicsSettingsButton" enable-rich-text="true" style="position: absolute; left: 2%; right: auto; height: 50px; width: 30%; align-self: flex-start; top: 2%;" />
+            <ui:Button text="Audio" name="AudioSettingsButton" style="left: 34%; width: 30%; height: 50px; -unity-text-align: middle-center; white-space: pre; justify-content: flex-start; align-self: center; position: absolute; align-items: stretch; top: 2%;" />
+            <ui:Button text="Controls" name="ControlSettingsButton" style="left: 66%; width: 30%; height: 50px; position: absolute; align-self: flex-end; top: 2%;" />
+            <ui:Button text="Apply" name="ApplyButton" style="position: absolute; right: 10%; bottom: 1%; width: 8%; height: 5%;" />
+            <ui:VisualElement name="AudioSettings" style="flex-grow: 1; position: absolute; top: 10%; left: 2%; width: 94%; height: 80%;">
+                <ui:Scroller high-value="100" direction="Vertical" value="0" name="AudioScroller" style="position: absolute; top: 0%; left: 99%; max-height: 100%; height: 100%; width: 25px; align-self: flex-end;" />
+                <ui:SliderInt label="Master Volume" value="0" high-value="20" name="MasterVolumeSlider" low-value="-80" style="max-width: 95%;" />
+                <ui:SliderInt label="SFX Volume" value="0" high-value="20" name="SFXVolumeSlider" low-value="-80" style="max-width: 95%;" />
+                <ui:SliderInt label="Music Volume" value="0" high-value="20" name="MusicVolumeSlider" low-value="-80" style="max-width: 95%;" />
+                <ui:SliderInt label="UI Volume" value="0" high-value="20" name="UIVolumeSlider" low-value="-80" style="max-width: 95%;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ControlSettings" style="flex-grow: 1; position: absolute; top: 10%; left: 2%; width: 94%; height: 80%;">
+                <ui:Scroller high-value="100" direction="Vertical" value="0" name="ControlsScroller" style="position: absolute; top: 0%; left: 99%; max-height: 100%; height: 100%; width: 25px; align-self: flex-end;" />
+                <ui:DropdownField label="Control Scheme" name="ControlScheme" style="max-width: 90%;" />
+                <ui:Slider label="Mouse Sensitivity" value="0.5" high-value="1" name="MouseSensitivitySlider" style="max-width: 95%;" />
+                <ui:Slider label="Joystick Sensitivity" value="0.5" high-value="1" name="JoystickSensitivitySlider" style="max-width: 95%;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="GraphicsSettings" style="flex-grow: 1; position: absolute; top: 10%; left: 2%; height: 80%; width: 94%;">
+                <ui:Scroller high-value="100" direction="Vertical" value="0" name="GraphicsScroller" style="position: absolute; top: 0%; left: 99%; max-height: 100%; height: 100%; width: 25px; align-self: flex-end;" />
+                <ui:DropdownField label="Display Resolution" name="DisplayResolution" style="max-width: 90%;" />
+                <ui:DropdownField label="Display Quality" name="DisplayQuality" style="max-width: 90%;" />
+                <ui:DropdownField label="Display Mode" name="DisplayMode" choices="Full Screen,Windowed" style="max-width: 90%;" />
+            </ui:VisualElement>
+            <ui:Button text="Reset To Default Settings" name="ResetButton" style="position: absolute; right: 79%; bottom: 1%; width: 10%; height: 5%;" />
+            <ui:Button text="Back" name="BackButton" style="position: absolute; top: 94%; left: 90%; width: 10%; height: 5%; color: rgb(255, 235, 4); background-color: rgba(188, 188, 188, 0); -unity-text-outline-width: 2px; font-size: 30%; -unity-text-outline-color: rgb(125, 86, 34); -unity-font-style: bold; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; right: auto; bottom: auto;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ConfirmQuit" class="hidden" style="flex-grow: 1; position: absolute; top: 45%; left: 30%; right: 30%; bottom: 40%; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgb(0, 24, 255);">
+            <ui:Button text="Yes" name="YesButton" style="position: absolute; top: 30%; left: 10%; height: 65px; width: 148px;" />
+            <ui:Button text="No" name="NoButton" style="position: absolute; top: 30%; left: 70%; height: 65px; width: 148px; right: auto;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

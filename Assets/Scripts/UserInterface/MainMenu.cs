@@ -27,24 +27,23 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        // Get components
-        _audioSource = GetComponent<AudioSource>();
         _document = GetComponent<UIDocument>();
+        _audioSource = GetComponent<AudioSource>();
 
-        // Get root element
-        var root = _document.rootVisualElement;
-
-        //Get menu references
         loadMenuUI = GetComponent<LoadMenu>();
         settingsMenuUI = GetComponent<SettingsMenu>();
         galleryUI = GetComponent<GalleryUI>();
 
-        //disable menus
         loadMenuUI.enabled = false;
         settingsMenuUI.enabled = false;
         galleryUI.enabled = false;
+    }
 
-        // Cache all menu containers
+    private void OnEnable()
+    {
+        var root = _document.rootVisualElement;
+        if (root == null) return;
+
         _mainMenu        = root.Q<VisualElement>("MainMenu");
         _loadMenu        = root.Q<VisualElement>("LoadMenu");
         _settingsMenu    = root.Q<VisualElement>("SettingsMenu");
@@ -52,40 +51,35 @@ public class MainMenu : MonoBehaviour
         _confirmQuitMenu = root.Q<VisualElement>("ConfirmQuit");
         _backButton      = root.Q<Button>("BackButton");
 
-        // Cache all buttons
         _buttons = root.Query<Button>().ToList();
 
-        // Map buttons to actions
-        _buttonActions = new Dictionary<string, System.Action>()
+        _buttonActions = new()
         {
             { "PlayButton", OnPlayClicked },
-            { "LoadButton", () => OnLoadClicked() },
-            { "SettingsButton", () => OnSettingsClicked() },
-            { "GalleryButton", () => OnGalleryClicked() },
+            { "LoadButton", OnLoadClicked },
+            { "SettingsButton", OnSettingsClicked },
+            { "GalleryButton", OnGalleryClicked },
             { "QuitButton", () => ShowMenu(_confirmQuitMenu) },
-
-            { "BackButton", () => OnBackClicked() },
+            { "BackButton", OnBackClicked },
             { "ConfirmQuitButton", OnQuitClicked }
         };
 
-        // Register the same callback for all buttons
         foreach (var button in _buttons)
-        {
             button.RegisterCallback<ClickEvent>(OnAllButtonsClick);
-        }
-    }
 
-    private void OnStart()
-    {
         ShowMenu(_mainMenu);
     }
 
     private void OnDisable()
     {
+        if (_buttons == null) return;
         foreach (var button in _buttons)
-        {
             button.UnregisterCallback<ClickEvent>(OnAllButtonsClick);
-        }
+    }
+
+    private void OnStart()
+    {
+        ShowMenu(_mainMenu);
     }
 
     // Central button click handler
@@ -139,7 +133,8 @@ public class MainMenu : MonoBehaviour
     private void OnSettingsClicked()
     {
         settingsMenuUI.enabled = true;
-        ShowMenu(_settingsMenu); 
+        ShowMenu(_settingsMenu);
+        settingsMenuUI.SetReturnMenu(_mainMenu);
     }
 
     private void OnGalleryClicked()

@@ -10,7 +10,6 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private AudioMixer _audioMixer;
 
     private UIDocument _document;
-    private MainMenu _mainMenu;
     private SettingsData _settings;
 
     // ---------- Menu Containers ----------
@@ -41,11 +40,13 @@ public class SettingsMenu : MonoBehaviour
     private Slider _mouseSensitivity;
     private Slider _joystickSensitivity;
 
+    // ---------- Universal Return ----------
+    private VisualElement _returnMenu; // the menu to return to after apply/reset
+
     // ======================================================
     void Awake()
     {
         _document = GetComponent<UIDocument>();
-        _mainMenu = GetComponent<MainMenu>();
 
         var root = _document.rootVisualElement;
 
@@ -109,6 +110,11 @@ public class SettingsMenu : MonoBehaviour
         _controlsSettings.style.display = DisplayStyle.None;
 
         menu.style.display = DisplayStyle.Flex;
+    }
+
+    public void SetReturnMenu(VisualElement returnToMenu = null)
+    {
+        _returnMenu = returnToMenu;
     }
 
     // ======================================================
@@ -208,7 +214,11 @@ public class SettingsMenu : MonoBehaviour
         ApplyAll();
         SettingsStorage.Save(_settings);
 
-        _mainMenu.ShowMenu(_mainMenu._mainMenu);
+        // Return to parent menu if set
+        if (_returnMenu != null)
+        {
+            _returnMenu.style.display = DisplayStyle.Flex;
+        }
     }
 
     // ======================================================
@@ -253,5 +263,10 @@ public class SettingsMenu : MonoBehaviour
 
         ApplyAll();
         SettingsStorage.Save(_settings);
+
+        if (_returnMenu != null)
+        {
+            _returnMenu.style.display = DisplayStyle.Flex;
+        }
     }
 }
