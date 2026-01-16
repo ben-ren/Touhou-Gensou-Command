@@ -14,7 +14,7 @@ public static class SettingsStorage
     public static SettingsData Load()
     {
         if (!PlayerPrefs.HasKey(KEY))
-            return new SettingsData(); // defaults
+            return SettingsData.Default(); // defaults
 
         string json = PlayerPrefs.GetString(KEY);
         return JsonUtility.FromJson<SettingsData>(json);

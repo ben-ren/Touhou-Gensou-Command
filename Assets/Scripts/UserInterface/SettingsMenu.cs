@@ -8,6 +8,8 @@ public class SettingsMenu : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private AudioMixer _audioMixer;
+    [Header("Optional")]
+    private PlayerController player; // ⚡ optional
 
     private UIDocument _document;
     private SettingsData _settings;
@@ -46,6 +48,9 @@ public class SettingsMenu : MonoBehaviour
     // ======================================================
     void Awake()
     {
+        if (player == null){
+            player = FindFirstObjectByType<PlayerController>();
+        }
         _document = GetComponent<UIDocument>();
 
         var root = _document.rootVisualElement;
@@ -171,8 +176,8 @@ public class SettingsMenu : MonoBehaviour
     {
         _controlScheme.choices = new()
         {
-            "Cursor Follow",
-            "Return To Center"
+            "Relative Input",   // 0
+            "Cursor Follow"     // 1
         };
     }
 
@@ -183,6 +188,9 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("JoystickSensitivity", _settings.joystickSensitivity);
 
         PlayerPrefs.Save();
+
+        //Refresh player settings if PlayerController exists
+        player?.RefreshSettings();
     }
 
     // ======================================================
@@ -213,6 +221,8 @@ public class SettingsMenu : MonoBehaviour
 
         ApplyAll();
         SettingsStorage.Save(_settings);
+
+        player?.RefreshSettings();  //Safe player refresh
 
         // Return to parent menu if set
         if (_returnMenu != null)
@@ -263,6 +273,9 @@ public class SettingsMenu : MonoBehaviour
 
         ApplyAll();
         SettingsStorage.Save(_settings);
+
+        //Refresh player settings if PlayerController exists
+        player?.RefreshSettings();
 
         if (_returnMenu != null)
         {

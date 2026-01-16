@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SFXManager
   audioSourcePrefab: {fileID: 4404596127719043263, guid: 3cf8c6dc6d8aadb4baf2b49b4fd75f5e, type: 3}
+  SFXMixerGroup: {fileID: 4295466682702936194, guid: 127f1fe84c18aa54e9090185d6bf778c, type: 2}
 --- !u!114 &2392515473303481753
 MonoBehaviour:
   m_ObjectHideFlags: 0

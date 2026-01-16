@@ -1427,8 +1427,8 @@ MonoBehaviour:
   thrust: 5
   boostSpeed: 20
   brakeSpeed: 1
-  lookSensitivity: 10
-  joystickSensitivity: 20
+  mouseSensitivity: 2
+  gamepadSensitivity: 50
   inverted: 0
   onRailsMode: 0
   rotationOverride: 0
@@ -1846,6 +1846,10 @@ PrefabInstance:
     - target: {fileID: 2057685721219649499, guid: 69cb4178c3f68b2429ac6b6753feee91, type: 3}
       propertyPath: m_Name
       value: Fairy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057685721219649499, guid: 69cb4178c3f68b2429ac6b6753feee91, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2778782068755326364, guid: 69cb4178c3f68b2429ac6b6753feee91, type: 3}
       propertyPath: m_IsActive

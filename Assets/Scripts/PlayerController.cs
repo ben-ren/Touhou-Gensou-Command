@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private InputController IC;
     private GrazeAbility ability;
     private Rigidbody rb;
+    private SettingsData settings;
 
     [Header("Movement Settings")]
     [SerializeField] private float panSpeed = 2f;
@@ -18,12 +19,14 @@ public class PlayerController : MonoBehaviour
     private float oldThrust;
 
     [Header("Aim Controls")]  
-    [SerializeField] private float lookSensitivity = 2f;
-    [SerializeField] private float joystickSensitivity = 50f;
+    [SerializeField] private float mouseSensitivity = 40f;
+    [SerializeField] private float gamepadSensitivity = 50f;
     [SerializeField] private bool inverted;
     [SerializeField] private bool onRailsMode;
     
     [HideInInspector] public bool rotationOverride = false;
+    private float lookSensitivity;
+    private float joystickSensitivity;
 
     private Vector3 moveDirection;
     private Quaternion initialRotation;
@@ -41,6 +44,10 @@ public class PlayerController : MonoBehaviour
         oldThrust = thrust;
         
         IC = InputController.instance;
+
+        settings = SettingsStorage.Load();
+
+        ApplySettings();
     }
 
     void FixedUpdate()
@@ -50,7 +57,10 @@ public class PlayerController : MonoBehaviour
         HandleRotation();
     }
 
-    //------Helper functions------
+    //=============================================
+    //              Helper functions
+    //=============================================
+
     //Player Movement logic
     void HandleMovement()
     {
@@ -67,7 +77,30 @@ public class PlayerController : MonoBehaviour
         PlayerRotation();
     }
 
-    //Used to increase speed.
+    //=============================================
+    //              Control settings load
+    //=============================================
+
+    private void ApplySettings()
+    {
+        lookSensitivity = settings.mouseSensitivity * 20f;
+
+        joystickSensitivity = settings.joystickSensitivity * 20f;
+    }
+
+    public void RefreshSettings()
+    {
+        settings = SettingsStorage.Load();
+        ApplySettings();
+
+        // Force rotation math to immediately use new sensitivity
+        lastLookInput = Vector2.zero;
+    }
+
+    //=============================================
+    //              Entity Movement
+    //=============================================
+
     //Can be fed other booleans & newThrust values to dynamically change speed.
     private void ThrustHandler(float boostAmount, float brakeAmount)
     {
@@ -100,39 +133,90 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + rb.rotation * moveDirection * panSpeed * Time.fixedDeltaTime);
     }
 
-    //Handles player rotation
-    private void PlayerRotation()
-    {
-        //input
-        Vector2 lookAmount = IC.GetLook();
-
-        if (!inverted) lookAmount.y *= -1f;
-
-        // Check if input is joystick (roughly, if values are between -1 and 1)
-        if (IC.GetActiveDevice() is Gamepad || IC.GetActiveDevice() is Joystick)
-        {
-            lookAmount *= joystickSensitivity; // joystick multiplier — tweak until it feels right
-        }
-
-        // rotation angles
-        rotationY += lookAmount.x * lookSensitivity * Time.fixedDeltaTime;
-        rotationX += lookAmount.y * lookSensitivity * Time.fixedDeltaTime;
-
-        RotationRangeClamp(); //Clamp player rotation range to within cameras bounds
-
-        //compute target rotation
-        targetRotation = Quaternion.Euler(rotationX, rotationY, 0f);
-        smoothRotation = Quaternion.Slerp(rb.rotation, targetRotation, lookSensitivity * Time.fixedDeltaTime);
-        rb.MoveRotation(smoothRotation);
-    }
-    
     private void TriggerAbility()
     {
         if (!TryGetComponent<GrazeAbility>(out ability)) return;
         ability.ActivateAbility(IC.GetFire2() > 0f);
     }
 
-    //clamps rotation range to within camera FOV.
+    //=============================================
+    //              Player Rotation
+    //=============================================
+    private void PlayerRotation()
+    {
+        Vector2 lookAmount = IC.GetLook();
+
+        if (!inverted) lookAmount.y *= -1f;
+
+        switch (settings.controlSchemeIndex)
+        {
+            case 0: // Relative Input (old method)
+            default:
+                RotateRelativeInput(lookAmount);
+                return;
+            case 1: // Cursor Follow
+                RotateTowardsCursor();
+                return;
+        }
+    }
+
+    //Default rotation method
+    private void RotateRelativeInput(Vector2 lookAmount)
+    {
+        // Check if input is joystick
+        if (IC.GetActiveDevice() is Gamepad || IC.GetActiveDevice() is Joystick)
+            lookAmount *= joystickSensitivity;
+
+        // rotation angles
+        rotationY += lookAmount.x * lookSensitivity * Time.fixedDeltaTime;
+        rotationX += lookAmount.y * lookSensitivity * Time.fixedDeltaTime;
+
+        RotationRangeClamp();
+
+        targetRotation = Quaternion.Euler(rotationX, rotationY, 0f);
+        smoothRotation = Quaternion.Slerp(rb.rotation, targetRotation, lookSensitivity * Time.fixedDeltaTime);
+        rb.MoveRotation(smoothRotation);
+    }
+
+    private void RotateTowardsCursor()
+    {
+        Camera cam = Camera.main;
+        if (cam == null) return;
+
+        // 1 Get mouse position in screen space
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+
+        // 2 Create a ray from the camera through the mouse position
+        Ray ray = cam.ScreenPointToRay(mousePos);
+
+        // 3 set fixed distance along ray (adjust as needed)
+        float rayDistance = 40f;
+
+        // 3 Choose a fixed distance along the ray
+        Vector3 targetPoint = ray.origin + ray.direction * rayDistance;
+
+        // 4 Compute direction from player to target point
+        Vector3 direction = (targetPoint - rb.position).normalized;
+
+        // 5 Compute target rotation for player
+        targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+
+        // 6 Smoothly rotate player towards target
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, lookSensitivity * Time.fixedDeltaTime));
+
+        // 7 Update internal rotation values so relative input still works
+        Vector3 euler = targetRotation.eulerAngles;
+        rotationY = euler.y;
+        rotationX = euler.x;
+    }
+
+
+
+
+    //=============================================
+    //              Camera Logic
+    //=============================================
+
     void RotationRangeClamp()
     {
         if (rotationOverride) return;
@@ -155,6 +239,10 @@ public class PlayerController : MonoBehaviour
     }
     
     public void ToggleInvertLook() => inverted = !inverted;
+
+    //=============================================
+    //              Collision
+    //=============================================
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -180,6 +268,10 @@ public class PlayerController : MonoBehaviour
             rotationX = targetX;
         }
     }
+
+    //=============================================
+    //              Timed automove logic
+    //=============================================
 
     private IEnumerator SlerpRotation(Quaternion from, Quaternion to, float duration)
     {

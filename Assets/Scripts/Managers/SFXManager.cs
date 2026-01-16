@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SFXManager : MonoBehaviour
 {
     //Generates class as a Singleton, allowing fucntions within to be called from anywhere in the
     public static SFXManager instance;
     [SerializeField] private AudioSource audioSourcePrefab;
+    [SerializeField] private AudioMixerGroup SFXMixerGroup;
 
     void Awake()
     {
@@ -23,6 +25,8 @@ public class SFXManager : MonoBehaviour
         AudioSource audioSource = Instantiate(audioSourcePrefab, spawnPoint.position, Quaternion.identity);
         //assign audioClip
         audioSource.clip = clip;
+        //assign MasterMixer SFXVolume group
+        audioSource.outputAudioMixerGroup = SFXMixerGroup;
         //assign volume
         audioSource.volume = volume;
         //play sound
