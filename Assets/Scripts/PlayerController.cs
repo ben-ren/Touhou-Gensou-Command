@@ -18,9 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float brakeSpeed = 1f;
     private float oldThrust;
 
-    [Header("Aim Controls")]  
-    [SerializeField] private float mouseSensitivity = 40f;
-    [SerializeField] private float gamepadSensitivity = 50f;
+    [Header("Aim Controls")]
     [SerializeField] private bool inverted;
     [SerializeField] private bool onRailsMode;
     
