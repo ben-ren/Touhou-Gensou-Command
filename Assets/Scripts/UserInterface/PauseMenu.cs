@@ -79,7 +79,9 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         PauseGame();
-        _userInterface.enabled = !isPaused;
+        if(_userInterface != null){
+            _userInterface.enabled = !isPaused;
+        }
     }
 
     // ==========================================================

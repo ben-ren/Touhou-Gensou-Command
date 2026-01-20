@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/UnityStyleSheets/PauseMenuStyle.uss?fileID=7433441132597879392&amp;guid=2f966daec80439e43b413ec8556250e8&amp;type=3#PauseMenuStyle" />
-    <ui:VisualElement name="PauseContainer" focusable="true" style="flex-grow: 1;">
+    <ui:VisualElement name="PauseContainer" focusable="true" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/greybox_sprites/square.png?fileID=2800000&amp;guid=02ed11967dd71204cbb1ed59a26173ca&amp;type=3#square&quot;); -unity-background-image-tint-color: rgba(75, 75, 75, 0.43);">
         <ui:VisualElement name="PauseMenu" style="flex-grow: 1; position: absolute; right: auto; bottom: auto; top: auto; left: auto; width: 100%; height: 100%;">
             <ui:Button text="Resume" name="ResumeButton" enabled="true" style="position: absolute; top: 45%; left: 45%; align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto; -unity-text-align: middle-center; width: 10%; height: 5%;" />
             <ui:Button text="Settings" name="SettingsButton" style="position: absolute; top: 55%; left: 45%; align-content: auto; align-items: auto; width: 10%; height: 5%;" />
