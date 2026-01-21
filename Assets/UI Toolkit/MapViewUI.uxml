@@ -7,7 +7,7 @@
                     <ui:Label text="Remaining" name="Label" />
                     <ui:VisualElement name="Orbs" style="width: 150px; height: 40px; top: auto; flex-direction: row;">
                         <ui:VisualElement name="OrbIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/YinYang_black.png?fileID=2800000&amp;guid=6a1344390483e7149ba3490c7f9433b3&amp;type=3#YinYang_black&quot;); width: 100%; height: 100%;" />
-                        <ui:TextField name="OrbValue" value="x 0" hide-placeholder-on-focus="false" style="left: -2px; width: 100px; color: rgb(0, 0, 0);" />
+                        <ui:TextField name="OrbValue" style="left: -2px; width: 100px; color: rgb(0, 0, 0);" />
                     </ui:VisualElement>
                     <ui:VisualElement name="Money" style="width: 150px; height: 40px; top: auto; flex-direction: row;">
                         <ui:VisualElement name="MoneyIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/Money_point.png?fileID=2800000&amp;guid=e5cd75a40a890b043bc0c5493dbf5fd3&amp;type=3#Money_point&quot;); width: 100%; height: 100%;" />
@@ -47,7 +47,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); visibility: hidden;">
+            <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
                 <ui:VisualElement name="Icons" style="flex-grow: 1;">
                     <ui:VisualElement name="CharacterIcon" style="background-image: url(&quot;project://database/Assets/Sprites/Characters/Reimu_profile.png?fileID=2800000&amp;guid=fd2897f044a645946986fd6e1845e094&amp;type=3#Reimu_profile&quot;); flex-grow: 0; height: 100px;" />
                     <ui:VisualElement name="Spellcards" style="flex-grow: 1; flex-direction: row;">
@@ -68,7 +68,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); visibility: hidden;">
+            <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
                 <ui:VisualElement name="Icons" style="flex-grow: 1;">
                     <ui:VisualElement name="CharacterIcon" style="background-image: url(&quot;project://database/Assets/Sprites/Characters/Reimu_profile.png?fileID=2800000&amp;guid=fd2897f044a645946986fd6e1845e094&amp;type=3#Reimu_profile&quot;); flex-grow: 0; height: 100px;" />
                     <ui:VisualElement name="Spellcards" style="flex-grow: 1; flex-direction: row;">
@@ -89,7 +89,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); visibility: hidden;">
+            <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
                 <ui:VisualElement name="Icons" style="flex-grow: 1;">
                     <ui:VisualElement name="CharacterIcon" style="background-image: url(&quot;project://database/Assets/Sprites/Characters/Reimu_profile.png?fileID=2800000&amp;guid=fd2897f044a645946986fd6e1845e094&amp;type=3#Reimu_profile&quot;); flex-grow: 0; height: 100px;" />
                     <ui:VisualElement name="Spellcards" style="flex-grow: 1; flex-direction: row;">

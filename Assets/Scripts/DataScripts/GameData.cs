@@ -6,10 +6,15 @@ using UnityEngine;
 public class GameData
 {
     //--------------------------------------
+    // Party (dynamic)
+    //--------------------------------------
+    public List<CharacterData> partyMembers = new();
+    //--------------------------------------
     // Persistent resources
     //--------------------------------------
     public int money;
     public int fuel;
+    public int orbs;
     public int lives; // YES — include if your design wants persistence
 
     //--------------------------------------
@@ -25,12 +30,7 @@ public class GameData
 
     // Pickups / items state
     public List<ItemStateData> itemStates = new();
-
-    //--------------------------------------
-    // Character (overwritten per level)
-    //--------------------------------------
-    public CharacterData characterData = new();
-
+    
     //--------------------------------------
     // Settings
     //--------------------------------------
