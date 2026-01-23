@@ -15,6 +15,7 @@ public class InputController : MonoBehaviour
     private InputAction fire;
     private InputAction fire2;
     private InputAction bomb;
+    private InputAction ui_click;
     InputDevice ActiveDevice;
 
     private void Awake()
@@ -29,6 +30,7 @@ public class InputController : MonoBehaviour
         DontDestroyOnLoad(gameObject);   // ← persists across scene loads
 
         var map = inputActionAsset.FindActionMap("Player");
+        var map2 = inputActionAsset.FindActionMap("UI");
         move = map.FindAction("Move");
         look = map.FindAction("Look");
         boost = map.FindAction("Boost");
@@ -36,6 +38,7 @@ public class InputController : MonoBehaviour
         fire = map.FindAction("PrimaryFire");
         fire2 = map.FindAction("SecondaryFire");
         bomb = map.FindAction("Bomb");
+        ui_click = map2.FindAction("Click");
     }
 
     private void Update()
@@ -52,6 +55,7 @@ public class InputController : MonoBehaviour
         fire.Enable();
         fire2.Enable();
         bomb.Enable();
+        ui_click.Enable();
     }
 
     private void OnDisable()
@@ -63,6 +67,7 @@ public class InputController : MonoBehaviour
         fire.Disable();
         fire2.Disable();
         bomb.Disable();
+        ui_click.Disable();
     }
 
     public void UpdateActiveDevice() => ActiveDevice = look?.activeControl?.device;
@@ -75,5 +80,6 @@ public class InputController : MonoBehaviour
     public float GetFire() => fire.ReadValue<float>();
     public float GetFire2() => fire2.ReadValue<float>();
     public float GetBomb() => bomb.ReadValue<float>();
+    public float GetClickState() => ui_click.ReadValue<float>();
     public InputDevice GetActiveDevice() => ActiveDevice;
 }
