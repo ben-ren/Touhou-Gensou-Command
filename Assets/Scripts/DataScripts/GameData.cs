@@ -35,4 +35,9 @@ public class GameData
     // Settings
     //--------------------------------------
     public SettingsData settingsData = new();
+
+    //--------------------------------------
+    //          Character Data
+    //--------------------------------------
+    //Global storage of CharacterData list
 }

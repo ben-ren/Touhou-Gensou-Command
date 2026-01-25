@@ -5,9 +5,7 @@ public class CursorFollowPoint : MonoBehaviour
 {
     [SerializeField] private float cursorPadding = 0.0f; 
     [SerializeField] private float leftInset = 2f;
-    [SerializeField] private float cursorRadius = 0.25f;
-    [Header("Blocking Settings")]
-    [SerializeField] private LayerMask blockingLayers; // mountains, walls, etc.
+    
     private InputController IC;
     private Rigidbody2D rb2d;
     private Vector3 mousePos;
@@ -21,11 +19,6 @@ public class CursorFollowPoint : MonoBehaviour
     void Update()
     {
         FollowMouseCursor();
-        if (IC.GetClickState() > 0)
-        {
-            
-        }
-        
     }
 
     //follow cursor position

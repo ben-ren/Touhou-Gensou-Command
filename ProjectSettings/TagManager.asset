@@ -10,6 +10,8 @@ TagManager:
   - Item
   - Level_geometry
   - boundary
+  - Token
+  - Cursor
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - Trigger
   - Terrain
   - Enemy
-  - 
-  - 
+  - Cursor
+  - Token
   - 
   - 
   - 
