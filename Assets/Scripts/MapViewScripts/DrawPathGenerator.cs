@@ -11,7 +11,9 @@ public class DrawPathGenerator : MonoBehaviour
     [SerializeField] private GameObject splinePrefab; // drag your "Spline" prefab here
     [SerializeField] private Material pathMaterial;   // assign default material
     [SerializeField] private float pathRadius = 0.15f;
+    [SerializeField] private int knotLimit = 20;  //check line 50
 
+    public event System.Action<int, int> OnKnotCountChanged; 
     public const float RESOLUTION = 1f;
 
     private GameObject currentPath;
@@ -22,6 +24,11 @@ public class DrawPathGenerator : MonoBehaviour
     private Vector3 lastPoint;
     private bool wasClicking;
     private bool isDrawing;
+    private int currentKnotCount;
+
+    public bool GetIsDrawing() => isDrawing;
+    public int GetKnotLimit() => knotLimit;     //public access to knotLimit
+    public int GetCurrentKnotCount() => currentKnotCount;   //public access to knot count
 
     void Start()
     {
@@ -49,10 +56,16 @@ public class DrawPathGenerator : MonoBehaviour
             CreateNewSpline(pathMaterial); // pass material here
             AddPoint(cursor.transform.position);
             isDrawing = true;
+
+            // Reset the progress bar immediately
+            OnKnotCountChanged?.Invoke(currentKnotCount, knotLimit);
         }
 
         if (clicking && isDrawing && spline != null)
         {
+            //Defensive: checks spline is below range/knot limit
+            if (spline.Count >= knotLimit) return;
+
             Vector3 pos = cursor.transform.position;
             pos.z = 0f;
 
@@ -105,6 +118,9 @@ public class DrawPathGenerator : MonoBehaviour
 
     private void AddPoint(Vector3 pos)
     {
+        //Defensive: checks spline exists and is below range/knot limit
+        if (spline == null || spline.Count >= knotLimit) return;
+
         pos.z = 0f;
 
         BezierKnot knot = new BezierKnot(pos);
@@ -120,5 +136,8 @@ public class DrawPathGenerator : MonoBehaviour
         // ---- Add to spline ----
         spline.Add(knot);
         lastPoint = pos;
+
+        currentKnotCount = spline.Count;
+        OnKnotCountChanged?.Invoke(currentKnotCount, knotLimit);
     }
 }

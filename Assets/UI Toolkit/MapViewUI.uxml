@@ -1,115 +1,118 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="Sidebar" picking-mode="Ignore" style="background-image: url(&quot;project://database/Assets/Sprites/greybox_sprites/square.png?fileID=2800000&amp;guid=02ed11967dd71204cbb1ed59a26173ca&amp;type=3#square&quot;); -unity-background-image-tint-color: rgb(118, 118, 118); width: 17%; height: 100%;">
-        <ui:VisualElement name="Display" style="flex-grow: 1; width: 100%; height: 40%; background-image: url(&quot;project://database/Assets/Sprites/greybox_sprites/square.png?fileID=2800000&amp;guid=02ed11967dd71204cbb1ed59a26173ca&amp;type=3#square&quot;); -unity-background-image-tint-color: rgb(111, 111, 111);">
-            <ui:VisualElement name="MotherShipResources" style="flex-grow: 1; width: 340px; height: 0; flex-direction: row;">
-                <ui:VisualElement name="ShipImage" style="background-image: url(&quot;project://database/Assets/Sprites/greybox_sprites/square.png?fileID=2800000&amp;guid=02ed11967dd71204cbb1ed59a26173ca&amp;type=3#square&quot;); width: 50%; height: 90%; background-size: 100% 100%; top: auto; left: auto;" />
-                <ui:VisualElement name="ResourceValues" style="width: auto; height: 170px; flex-grow: 0; top: auto; bottom: auto; justify-content: center;">
-                    <ui:Label text="Remaining" name="Label" />
-                    <ui:VisualElement name="Orbs" style="width: 150px; height: 40px; top: auto; flex-direction: row;">
-                        <ui:VisualElement name="OrbIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/YinYang_black.png?fileID=2800000&amp;guid=6a1344390483e7149ba3490c7f9433b3&amp;type=3#YinYang_black&quot;); width: 100%; height: 100%;" />
-                        <ui:TextField name="OrbValue" style="left: -2px; width: 100px; color: rgb(0, 0, 0);" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="Money" style="width: 150px; height: 40px; top: auto; flex-direction: row;">
-                        <ui:VisualElement name="MoneyIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/Money_point.png?fileID=2800000&amp;guid=e5cd75a40a890b043bc0c5493dbf5fd3&amp;type=3#Money_point&quot;); width: 100%; height: 100%;" />
-                        <ui:IntegerField name="MoneyValue" style="background-image: url(&quot;project://database/Assets/Sprites/UI/Money_point.png?fileID=2800000&amp;guid=e5cd75a40a890b043bc0c5493dbf5fd3&amp;type=3#Money_point&quot;); background-size: 35px 35px; background-position-x: left 2%; width: 100px; left: -2px;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="Fuel" style="width: 150px; height: 40px; top: auto; flex-direction: row;">
-                        <ui:VisualElement name="MoneyIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/sakabashira_small.png?fileID=2800000&amp;guid=561b9d0e963a7fd41b2dad31bf4bb4f3&amp;type=3#sakabashira_small&quot;); width: 100%; height: 100%;" />
-                        <ui:IntegerField name="FuelValue" style="background-image: url(&quot;project://database/Assets/Sprites/UI/sakabashira_small.png?fileID=2800000&amp;guid=561b9d0e963a7fd41b2dad31bf4bb4f3&amp;type=3#sakabashira_small&quot;); -unity-background-image-tint-color: rgb(255, 0, 236); background-size: 40px 30px; background-position-x: left 0%; width: 100px; left: -2px;" />
+    <ui:VisualElement picking-mode="Ignore" name="MapViewUIScreen" style="flex-grow: 1; width: 100%; height: 100%;">
+        <ui:VisualElement name="Sidebar" picking-mode="Ignore" style="background-image: url(&quot;project://database/Assets/Sprites/greybox_sprites/square.png?fileID=2800000&amp;guid=02ed11967dd71204cbb1ed59a26173ca&amp;type=3#square&quot;); -unity-background-image-tint-color: rgb(118, 118, 118); width: 17%; height: 100%;">
+            <ui:VisualElement name="Display" style="flex-grow: 1; width: 100%; height: 40%; background-image: url(&quot;project://database/Assets/Sprites/greybox_sprites/square.png?fileID=2800000&amp;guid=02ed11967dd71204cbb1ed59a26173ca&amp;type=3#square&quot;); -unity-background-image-tint-color: rgb(111, 111, 111);">
+                <ui:VisualElement name="MotherShipResources" style="flex-grow: 1; width: 340px; height: 0; flex-direction: row;">
+                    <ui:VisualElement name="ShipImage" style="background-image: url(&quot;project://database/Assets/Sprites/greybox_sprites/square.png?fileID=2800000&amp;guid=02ed11967dd71204cbb1ed59a26173ca&amp;type=3#square&quot;); width: 50%; height: 90%; background-size: 100% 100%; top: auto; left: auto;" />
+                    <ui:VisualElement name="ResourceValues" style="width: auto; height: 170px; flex-grow: 0; top: auto; bottom: auto; justify-content: center;">
+                        <ui:Label text="Remaining" name="Label" />
+                        <ui:VisualElement name="Orbs" style="width: 150px; height: 40px; top: auto; flex-direction: row;">
+                            <ui:VisualElement name="OrbIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/YinYang_black.png?fileID=2800000&amp;guid=6a1344390483e7149ba3490c7f9433b3&amp;type=3#YinYang_black&quot;); width: 100%; height: 100%;" />
+                            <ui:TextField name="OrbValue" style="left: -2px; width: 100px; color: rgb(0, 0, 0);" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Money" style="width: 150px; height: 40px; top: auto; flex-direction: row;">
+                            <ui:VisualElement name="MoneyIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/Money_point.png?fileID=2800000&amp;guid=e5cd75a40a890b043bc0c5493dbf5fd3&amp;type=3#Money_point&quot;); width: 100%; height: 100%;" />
+                            <ui:IntegerField name="MoneyValue" style="background-image: url(&quot;project://database/Assets/Sprites/UI/Money_point.png?fileID=2800000&amp;guid=e5cd75a40a890b043bc0c5493dbf5fd3&amp;type=3#Money_point&quot;); background-size: 35px 35px; background-position-x: left 2%; width: 100px; left: -2px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Fuel" style="width: 150px; height: 40px; top: auto; flex-direction: row;">
+                            <ui:VisualElement name="MoneyIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/sakabashira_small.png?fileID=2800000&amp;guid=561b9d0e963a7fd41b2dad31bf4bb4f3&amp;type=3#sakabashira_small&quot;); width: 100%; height: 100%;" />
+                            <ui:IntegerField name="FuelValue" style="background-image: url(&quot;project://database/Assets/Sprites/UI/sakabashira_small.png?fileID=2800000&amp;guid=561b9d0e963a7fd41b2dad31bf4bb4f3&amp;type=3#sakabashira_small&quot;); -unity-background-image-tint-color: rgb(255, 0, 236); background-size: 40px 30px; background-position-x: left 0%; width: 100px; left: -2px;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
+                <ui:VisualElement name="OfudaMissiles" style="width: 100px; height: 60px; min-height: 10%; max-height: 100%; flex-direction: row; justify-content: flex-start; left: 12%; top: -5%;">
+                    <ui:VisualElement name="OfudaMissile1" style="width: 40px; height: 60px; background-image: url(&quot;project://database/Assets/Sprites/UI/Ofuda.png?fileID=2800000&amp;guid=4ad49aef173a44543b878dd1eaec6641&amp;type=3#Ofuda&quot;); right: auto; left: -5px; position: relative; top: 0.5%; -unity-background-image-tint-color: rgb(255, 255, 255);" />
+                    <ui:VisualElement name="OfudaMissile2" style="width: 40px; height: 60px; background-image: url(&quot;project://database/Assets/Sprites/UI/Ofuda.png?fileID=2800000&amp;guid=4ad49aef173a44543b878dd1eaec6641&amp;type=3#Ofuda&quot;); right: auto; left: 0%; position: relative; top: 0.5%; -unity-background-image-tint-color: rgb(255, 255, 255);" />
+                    <ui:VisualElement name="OfudaMissile3" style="width: 40px; height: 60px; background-image: url(&quot;project://database/Assets/Sprites/UI/Ofuda.png?fileID=2800000&amp;guid=4ad49aef173a44543b878dd1eaec6641&amp;type=3#Ofuda&quot;); right: auto; left: 5px; position: relative; top: 0.5%; -unity-background-image-tint-color: rgb(255, 255, 255);" />
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="OfudaMissiles" style="width: 100px; height: 60px; min-height: 10%; max-height: 100%; flex-direction: row; justify-content: flex-start; left: 12%; top: -5%;">
-                <ui:VisualElement name="OfudaMissile1" style="width: 40px; height: 60px; background-image: url(&quot;project://database/Assets/Sprites/UI/Ofuda.png?fileID=2800000&amp;guid=4ad49aef173a44543b878dd1eaec6641&amp;type=3#Ofuda&quot;); right: auto; left: -5px; position: relative; top: 0.5%; -unity-background-image-tint-color: rgb(255, 255, 255);" />
-                <ui:VisualElement name="OfudaMissile2" style="width: 40px; height: 60px; background-image: url(&quot;project://database/Assets/Sprites/UI/Ofuda.png?fileID=2800000&amp;guid=4ad49aef173a44543b878dd1eaec6641&amp;type=3#Ofuda&quot;); right: auto; left: 0%; position: relative; top: 0.5%; -unity-background-image-tint-color: rgb(255, 255, 255);" />
-                <ui:VisualElement name="OfudaMissile3" style="width: 40px; height: 60px; background-image: url(&quot;project://database/Assets/Sprites/UI/Ofuda.png?fileID=2800000&amp;guid=4ad49aef173a44543b878dd1eaec6641&amp;type=3#Ofuda&quot;); right: auto; left: 5px; position: relative; top: 0.5%; -unity-background-image-tint-color: rgb(255, 255, 255);" />
+            <ui:VisualElement name="CharacterCards" style="flex-grow: 1; width: 100%; height: 100%;">
+                <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                    <ui:VisualElement name="Icons" style="flex-grow: 1;">
+                        <ui:VisualElement name="CharacterIcon" style="background-image: url(&quot;project://database/Assets/Sprites/Characters/Reimu_profile.png?fileID=2800000&amp;guid=fd2897f044a645946986fd6e1845e094&amp;type=3#Reimu_profile&quot;); flex-grow: 0; height: 100px;" />
+                        <ui:VisualElement name="Spellcards" style="flex-grow: 1; flex-direction: row;">
+                            <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 2px;" />
+                            <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 5px;" />
+                            <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 8px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ValueDisplay" style="flex-grow: 1; width: 55%; height: 100%;">
+                        <ui:ProgressBar value="100" title="Health" name="HealthBar" />
+                        <ui:VisualElement name="Power" style="flex-grow: 1; flex-direction: row;">
+                            <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/P_point.png?fileID=2800000&amp;guid=3ea097556b5348143a05b9b2a48a95cf&amp;type=3#P_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 0%; left: 5%; width: 10px; align-self: center;" />
+                            <ui:TextField placeholder-text="0.00/4.00" name="PowerValue" style="font-size: 40%; flex-grow: 1; width: auto; min-width: 76%; max-width: 0; max-height: 100%; left: 10%; -unity-font-style: bold; align-self: center;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Graze" style="flex-grow: 1; flex-direction: row; width: auto; height: auto;">
+                            <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/G_point.png?fileID=2800000&amp;guid=a728c0d71edcf7f4b98fb68b2c961795&amp;type=3#G_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 10%; left: 5%; width: 10px;" />
+                            <ui:ProgressBar value="22" name="GrazeBar" style="flex-grow: 1; max-width: 75%; max-height: 100%; left: 10%; width: 0%; height: 43%; align-self: center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                    <ui:VisualElement name="Icons" style="flex-grow: 1;">
+                        <ui:VisualElement name="CharacterIcon" style="background-image: url(&quot;project://database/Assets/Sprites/Characters/Reimu_profile.png?fileID=2800000&amp;guid=fd2897f044a645946986fd6e1845e094&amp;type=3#Reimu_profile&quot;); flex-grow: 0; height: 100px;" />
+                        <ui:VisualElement name="Spellcards" style="flex-grow: 1; flex-direction: row;">
+                            <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 2px;" />
+                            <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 5px;" />
+                            <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 8px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ValueDisplay" style="flex-grow: 1; width: 55%; height: 100%;">
+                        <ui:ProgressBar value="100" title="Health" name="HealthBar" />
+                        <ui:VisualElement name="Power" style="flex-grow: 1; flex-direction: row;">
+                            <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/P_point.png?fileID=2800000&amp;guid=3ea097556b5348143a05b9b2a48a95cf&amp;type=3#P_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 0%; left: 5%; width: 10px; align-self: center;" />
+                            <ui:TextField placeholder-text="0.00/4.00" name="PowerValue" style="font-size: 40%; flex-grow: 1; width: auto; min-width: 76%; max-width: 0; max-height: 100%; left: 10%; -unity-font-style: bold; align-self: center;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Graze" style="flex-grow: 1; flex-direction: row; width: auto; height: auto;">
+                            <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/G_point.png?fileID=2800000&amp;guid=a728c0d71edcf7f4b98fb68b2c961795&amp;type=3#G_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 10%; left: 5%; width: 10px;" />
+                            <ui:ProgressBar value="22" name="GrazeBar" style="flex-grow: 1; max-width: 75%; max-height: 100%; left: 10%; width: 0%; height: 43%; align-self: center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                    <ui:VisualElement name="Icons" style="flex-grow: 1;">
+                        <ui:VisualElement name="CharacterIcon" style="background-image: url(&quot;project://database/Assets/Sprites/Characters/Reimu_profile.png?fileID=2800000&amp;guid=fd2897f044a645946986fd6e1845e094&amp;type=3#Reimu_profile&quot;); flex-grow: 0; height: 100px;" />
+                        <ui:VisualElement name="Spellcards" style="flex-grow: 1; flex-direction: row;">
+                            <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 2px;" />
+                            <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 5px;" />
+                            <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 8px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ValueDisplay" style="flex-grow: 1; width: 55%; height: 100%;">
+                        <ui:ProgressBar value="100" title="Health" name="HealthBar" />
+                        <ui:VisualElement name="Power" style="flex-grow: 1; flex-direction: row;">
+                            <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/P_point.png?fileID=2800000&amp;guid=3ea097556b5348143a05b9b2a48a95cf&amp;type=3#P_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 0%; left: 5%; width: 10px; align-self: center;" />
+                            <ui:TextField placeholder-text="0.00/4.00" name="PowerValue" style="font-size: 40%; flex-grow: 1; width: auto; min-width: 76%; max-width: 0; max-height: 100%; left: 10%; -unity-font-style: bold; align-self: center;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Graze" style="flex-grow: 1; flex-direction: row; width: auto; height: auto;">
+                            <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/G_point.png?fileID=2800000&amp;guid=a728c0d71edcf7f4b98fb68b2c961795&amp;type=3#G_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 10%; left: 5%; width: 10px;" />
+                            <ui:ProgressBar value="22" name="GrazeBar" style="flex-grow: 1; max-width: 75%; max-height: 100%; left: 10%; width: 0%; height: 43%; align-self: center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                    <ui:VisualElement name="Icons" style="flex-grow: 1;">
+                        <ui:VisualElement name="CharacterIcon" style="background-image: url(&quot;project://database/Assets/Sprites/Characters/Reimu_profile.png?fileID=2800000&amp;guid=fd2897f044a645946986fd6e1845e094&amp;type=3#Reimu_profile&quot;); flex-grow: 0; height: 100px;" />
+                        <ui:VisualElement name="Spellcards" style="flex-grow: 1; flex-direction: row;">
+                            <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 2px;" />
+                            <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 5px;" />
+                            <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 8px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ValueDisplay" style="flex-grow: 1; width: 55%; height: 100%;">
+                        <ui:ProgressBar value="100" title="Health" name="HealthBar" />
+                        <ui:VisualElement name="Power" style="flex-grow: 1; flex-direction: row;">
+                            <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/P_point.png?fileID=2800000&amp;guid=3ea097556b5348143a05b9b2a48a95cf&amp;type=3#P_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 0%; left: 5%; width: 10px; align-self: center;" />
+                            <ui:TextField placeholder-text="0.00/4.00" name="PowerValue" style="font-size: 40%; flex-grow: 1; width: auto; min-width: 76%; max-width: 0; max-height: 100%; left: 10%; -unity-font-style: bold; align-self: center;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Graze" style="flex-grow: 1; flex-direction: row; width: auto; height: auto;">
+                            <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/G_point.png?fileID=2800000&amp;guid=a728c0d71edcf7f4b98fb68b2c961795&amp;type=3#G_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 10%; left: 5%; width: 10px;" />
+                            <ui:ProgressBar value="22" name="GrazeBar" style="flex-grow: 1; max-width: 75%; max-height: 100%; left: 10%; width: 0%; height: 43%; align-self: center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="CharacterCards" style="flex-grow: 1; width: 100%; height: 100%;">
-            <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-                <ui:VisualElement name="Icons" style="flex-grow: 1;">
-                    <ui:VisualElement name="CharacterIcon" style="background-image: url(&quot;project://database/Assets/Sprites/Characters/Reimu_profile.png?fileID=2800000&amp;guid=fd2897f044a645946986fd6e1845e094&amp;type=3#Reimu_profile&quot;); flex-grow: 0; height: 100px;" />
-                    <ui:VisualElement name="Spellcards" style="flex-grow: 1; flex-direction: row;">
-                        <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 2px;" />
-                        <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 5px;" />
-                        <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 8px;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-                <ui:VisualElement name="ValueDisplay" style="flex-grow: 1; width: 55%; height: 100%;">
-                    <ui:ProgressBar value="100" title="Health" name="HealthBar" />
-                    <ui:VisualElement name="Power" style="flex-grow: 1; flex-direction: row;">
-                        <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/P_point.png?fileID=2800000&amp;guid=3ea097556b5348143a05b9b2a48a95cf&amp;type=3#P_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 0%; left: 5%; width: 10px; align-self: center;" />
-                        <ui:TextField placeholder-text="0.00/4.00" name="PowerValue" style="font-size: 40%; flex-grow: 1; width: auto; min-width: 76%; max-width: 0; max-height: 100%; left: 10%; -unity-font-style: bold; align-self: center;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="Graze" style="flex-grow: 1; flex-direction: row; width: auto; height: auto;">
-                        <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/G_point.png?fileID=2800000&amp;guid=a728c0d71edcf7f4b98fb68b2c961795&amp;type=3#G_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 10%; left: 5%; width: 10px;" />
-                        <ui:ProgressBar value="22" name="GrazeBar" style="flex-grow: 1; max-width: 75%; max-height: 100%; left: 10%; width: 0%; height: 43%; align-self: center;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-                <ui:VisualElement name="Icons" style="flex-grow: 1;">
-                    <ui:VisualElement name="CharacterIcon" style="background-image: url(&quot;project://database/Assets/Sprites/Characters/Reimu_profile.png?fileID=2800000&amp;guid=fd2897f044a645946986fd6e1845e094&amp;type=3#Reimu_profile&quot;); flex-grow: 0; height: 100px;" />
-                    <ui:VisualElement name="Spellcards" style="flex-grow: 1; flex-direction: row;">
-                        <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 2px;" />
-                        <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 5px;" />
-                        <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 8px;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-                <ui:VisualElement name="ValueDisplay" style="flex-grow: 1; width: 55%; height: 100%;">
-                    <ui:ProgressBar value="100" title="Health" name="HealthBar" />
-                    <ui:VisualElement name="Power" style="flex-grow: 1; flex-direction: row;">
-                        <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/P_point.png?fileID=2800000&amp;guid=3ea097556b5348143a05b9b2a48a95cf&amp;type=3#P_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 0%; left: 5%; width: 10px; align-self: center;" />
-                        <ui:TextField placeholder-text="0.00/4.00" name="PowerValue" style="font-size: 40%; flex-grow: 1; width: auto; min-width: 76%; max-width: 0; max-height: 100%; left: 10%; -unity-font-style: bold; align-self: center;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="Graze" style="flex-grow: 1; flex-direction: row; width: auto; height: auto;">
-                        <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/G_point.png?fileID=2800000&amp;guid=a728c0d71edcf7f4b98fb68b2c961795&amp;type=3#G_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 10%; left: 5%; width: 10px;" />
-                        <ui:ProgressBar value="22" name="GrazeBar" style="flex-grow: 1; max-width: 75%; max-height: 100%; left: 10%; width: 0%; height: 43%; align-self: center;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-                <ui:VisualElement name="Icons" style="flex-grow: 1;">
-                    <ui:VisualElement name="CharacterIcon" style="background-image: url(&quot;project://database/Assets/Sprites/Characters/Reimu_profile.png?fileID=2800000&amp;guid=fd2897f044a645946986fd6e1845e094&amp;type=3#Reimu_profile&quot;); flex-grow: 0; height: 100px;" />
-                    <ui:VisualElement name="Spellcards" style="flex-grow: 1; flex-direction: row;">
-                        <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 2px;" />
-                        <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 5px;" />
-                        <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 8px;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-                <ui:VisualElement name="ValueDisplay" style="flex-grow: 1; width: 55%; height: 100%;">
-                    <ui:ProgressBar value="100" title="Health" name="HealthBar" />
-                    <ui:VisualElement name="Power" style="flex-grow: 1; flex-direction: row;">
-                        <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/P_point.png?fileID=2800000&amp;guid=3ea097556b5348143a05b9b2a48a95cf&amp;type=3#P_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 0%; left: 5%; width: 10px; align-self: center;" />
-                        <ui:TextField placeholder-text="0.00/4.00" name="PowerValue" style="font-size: 40%; flex-grow: 1; width: auto; min-width: 76%; max-width: 0; max-height: 100%; left: 10%; -unity-font-style: bold; align-self: center;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="Graze" style="flex-grow: 1; flex-direction: row; width: auto; height: auto;">
-                        <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/G_point.png?fileID=2800000&amp;guid=a728c0d71edcf7f4b98fb68b2c961795&amp;type=3#G_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 10%; left: 5%; width: 10px;" />
-                        <ui:ProgressBar value="22" name="GrazeBar" style="flex-grow: 1; max-width: 75%; max-height: 100%; left: 10%; width: 0%; height: 43%; align-self: center;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="CharacterCard1" style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-                <ui:VisualElement name="Icons" style="flex-grow: 1;">
-                    <ui:VisualElement name="CharacterIcon" style="background-image: url(&quot;project://database/Assets/Sprites/Characters/Reimu_profile.png?fileID=2800000&amp;guid=fd2897f044a645946986fd6e1845e094&amp;type=3#Reimu_profile&quot;); flex-grow: 0; height: 100px;" />
-                    <ui:VisualElement name="Spellcards" style="flex-grow: 1; flex-direction: row;">
-                        <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 2px;" />
-                        <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 5px;" />
-                        <ui:VisualElement name="bomb" style="background-image: url(&quot;project://database/Assets/Sprites/UI/spellcard.png?fileID=2800000&amp;guid=f928d9e4cb27ee142a12bfb93f92f56c&amp;type=3#spellcard&quot;); flex-grow: 0; width: 30%; left: 8px;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-                <ui:VisualElement name="ValueDisplay" style="flex-grow: 1; width: 55%; height: 100%;">
-                    <ui:ProgressBar value="100" title="Health" name="HealthBar" />
-                    <ui:VisualElement name="Power" style="flex-grow: 1; flex-direction: row;">
-                        <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/P_point.png?fileID=2800000&amp;guid=3ea097556b5348143a05b9b2a48a95cf&amp;type=3#P_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 0%; left: 5%; width: 10px; align-self: center;" />
-                        <ui:TextField placeholder-text="0.00/4.00" name="PowerValue" style="font-size: 40%; flex-grow: 1; width: auto; min-width: 76%; max-width: 0; max-height: 100%; left: 10%; -unity-font-style: bold; align-self: center;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="Graze" style="flex-grow: 1; flex-direction: row; width: auto; height: auto;">
-                        <ui:VisualElement name="PowerIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/G_point.png?fileID=2800000&amp;guid=a728c0d71edcf7f4b98fb68b2c961795&amp;type=3#G_point&quot;); padding-right: 1%; padding-left: 10%; height: 100px; max-width: 0; max-height: 40px; min-width: auto; min-height: auto; top: 10%; left: 5%; width: 10px;" />
-                        <ui:ProgressBar value="22" name="GrazeBar" style="flex-grow: 1; max-width: 75%; max-height: 100%; left: 10%; width: 0%; height: 43%; align-self: center;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-            </ui:VisualElement>
-        </ui:VisualElement>
+        <ui:ProgressBar value="100" low-value="0" high-value="100" name="FlightRangeBar" enabled="true" picking-mode="Ignore" style="flex-direction: column; left: 50%; width: 15%; height: auto; position: absolute; top: 2%; flex-wrap: nowrap; right: auto; border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0; border-left-color: rgba(0, 0, 0, 0.49); border-right-color: rgba(0, 0, 0, 0.49); border-top-color: rgba(0, 0, 0, 0.49); border-bottom-color: rgba(0, 0, 0, 0.49);" />
     </ui:VisualElement>
 </ui:UXML>

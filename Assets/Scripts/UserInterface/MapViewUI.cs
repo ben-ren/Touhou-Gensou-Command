@@ -1,7 +1,6 @@
-using System.Collections.Generic;
-using Mono.Cecil.Cil;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
 
 public class MapViewUI : MonoBehaviour
 {
@@ -13,6 +12,7 @@ public class MapViewUI : MonoBehaviour
     private TextField orbValue;
     private IntegerField moneyValue;
     private IntegerField fuelValue;
+    private ProgressBar _flight_range;
     //Character Cards
     private List<CharacterCardUI> characterCards = new();
 
@@ -23,6 +23,7 @@ public class MapViewUI : MonoBehaviour
     {
         _document = GetComponent<UIDocument>();
         root = _document.rootVisualElement;
+        DisplayFlightRange(root);
 
         // ----- TEST DATA -----    TODO: Figure out how to store data dynamically
         _gameData = new GameData();
@@ -71,7 +72,24 @@ public class MapViewUI : MonoBehaviour
             characterCards.Add(new CharacterCardUI(cardElement));
         }
 
+        // Subscribe to all path draw generators
+        DrawPathGenerator[] generators = FindObjectsByType<DrawPathGenerator>(FindObjectsSortMode.None);
+        foreach (var gen in generators)
+        {
+            gen.OnKnotCountChanged += UpdateFlightRange;
+        }
+
         FillCharacterCardData();
+    }
+
+    void OnDisable()
+    {
+        // Unsubscribe to prevent memory leaks
+        DrawPathGenerator[] generators = FindObjectsByType<DrawPathGenerator>(FindObjectsSortMode.None);
+        foreach (var gen in generators)
+        {
+            gen.OnKnotCountChanged -= UpdateFlightRange;
+        }
     }
 
     void FillDisplayData(VisualElement root)
@@ -121,5 +139,25 @@ public class MapViewUI : MonoBehaviour
         card.root.style.visibility = visible
             ? Visibility.Visible
             : Visibility.Hidden;
+    }
+
+    void DisplayFlightRange(VisualElement root)
+    {
+        _flight_range = root.Q<ProgressBar>("FlightRangeBar");
+        _flight_range.style.visibility = Visibility.Hidden;
+        _flight_range.value = 100f;
+    }
+
+    void UpdateFlightRange(int currentKnotCount, int knotLimit)
+    {
+        // Show bar when drawing
+        _flight_range.style.visibility = Visibility.Visible;
+
+        float remaining = 1f - ((float)currentKnotCount / knotLimit);
+        _flight_range.value = Mathf.Clamp01(remaining) * 100f;
+
+        // Hide if full (optional)
+        if (currentKnotCount == 0)
+            _flight_range.style.visibility = Visibility.Hidden;
     }
 }
