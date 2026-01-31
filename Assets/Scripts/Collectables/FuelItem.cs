@@ -16,6 +16,6 @@ public class FuelItem : Item
     public override void ChangeValue()
     {
         base.ChangeValue();
-        entity.SetFuel(entity.GetFuel() + fuelItemValue);
+        resourceReceiver.SetFuel(resourceReceiver.GetFuel() + fuelItemValue);
     }
 }

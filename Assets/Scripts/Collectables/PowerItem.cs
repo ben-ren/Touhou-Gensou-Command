@@ -16,6 +16,6 @@ public class PowerItem : Item
     public override void ChangeValue()
     {
         base.ChangeValue();
-        entity.SetPower(entity.GetPower() + powerItemValue);
+        resourceReceiver.SetPower(resourceReceiver.GetPower() + powerItemValue);
     }
 }

@@ -15,7 +15,6 @@ public class HealthItem : Item
 
     public override void ChangeValue()
     {
-        base.ChangeValue();
-        entity.SetHealth(entity.GetHealth() + healthItemValue);
+        resourceReceiver.SetHealth(resourceReceiver.GetHealth() + healthItemValue);
     }
 }

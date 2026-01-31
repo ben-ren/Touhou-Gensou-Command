@@ -16,6 +16,6 @@ public class GrazeItem : Item
     public override void ChangeValue()
     {
         base.ChangeValue();
-        entity.SetGraze(entity.GetGraze() + grazeItemValue);
+        resourceReceiver.SetGraze(resourceReceiver.GetGraze() + grazeItemValue);
     }
 }

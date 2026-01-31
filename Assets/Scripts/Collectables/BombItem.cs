@@ -16,6 +16,6 @@ public class BombItem : Item
     public override void ChangeValue()
     {
         base.ChangeValue();
-        entity.SetBombs(entity.GetBombs() + bombItemValue);
+        resourceReceiver.SetBombs(resourceReceiver.GetBombs() + bombItemValue);
     }
 }

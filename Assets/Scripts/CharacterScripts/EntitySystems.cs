@@ -1,8 +1,11 @@
 using Mono.Cecil;
 using UnityEngine;
 
-public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
+public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable, IResourceReceiver
 {
+    /* =========================
+     * Entity Stats
+     * ========================= */
     [Header("Entity Stats")]
     [SerializeField] private int health = 50;
     [SerializeField] private int power = 0;
@@ -14,24 +17,36 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
     private int initialHealth;
     private int initialBombs;
 
+    /* =========================
+     * Team
+     * ========================= */
     [Header("Team Alignment")]
     [SerializeField] private Team team = Team.Neutral;
     public Team TeamAlignment => team;
 
+    /* =========================
+     * Resource Drop
+     * ========================= */
     [Header("Resources")]
     [SerializeField] private int grazePoints = 0;
     [SerializeField] private GameObject resource;
     [SerializeField] private AudioClip damageRecievedSoundClip;
     [SerializeField] private AudioClip entityDefeatedSoundClip;
 
+    /* =========================
+     * I-Frames
+     * ========================= */
     [Header("Invincibility Frames")]
     private IFrameVisuals iFrameVisuals;
     [SerializeField] private float iFrameDuration = 1f; // seconds
-    [HideInInspector] public bool isInvincible = false;
     private float iFrameTimer = 0f;
 
+    [HideInInspector] public bool isInvincible = false;
     public bool RecentlyDamaged { get; private set; } = false;
     
+    /* =========================
+     * Getters
+     * ========================= */
     public int GetHealth() => health;
     public int GetPower() => power;
     public int GetGraze() => graze;
@@ -41,6 +56,9 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
     public int GetGrazePoints() => grazePoints;
     public Team GetTeam() => team;
 
+    /* =========================
+     * Setters
+     * ========================= */
     public void SetHealth(int value) => health = value;
     public void SetPower(int value) => power = value;
     public void SetGraze(int value) => graze = value;
@@ -50,6 +68,9 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
     public void SetGrazePoints(int value) => grazePoints = value;
     public void SetTeam(Team newTeam) => team = newTeam;
 
+    /* =========================
+     * Unity Lifecycle
+     * ========================= */
     void Start()
     {
         initialHealth = health;
@@ -66,16 +87,9 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
         IFrameTimer();
     }
 
-    void IFrameTimer()
-    {
-        if (isInvincible)
-        {
-            iFrameTimer -= Time.deltaTime;
-            if (iFrameTimer <= 0f)
-                isInvincible = false;
-        }
-    }
-
+    /* =========================
+     * Damage & Death
+     * ========================= */
     public void ApplyDamage(float amount, bool ignoreIFrames = false)
     {
         if (isInvincible) return; // skip damage if in I-frames
@@ -125,6 +139,9 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
         gameObject.SetActive(false);
     }
 
+    /* =========================
+     * Resource Transfer
+     * ========================= */
     void SetResources(ResourceDeploy res)
     {
         res.health = this.health;
@@ -133,6 +150,19 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
         res.fuel = this.fuel;
         res.money = this.money;
         res.bombs = this.bombs;
+    }
+
+    /* =========================
+     * Helpers
+     * ========================= */
+    void IFrameTimer()
+    {
+        if (isInvincible)
+        {
+            iFrameTimer -= Time.deltaTime;
+            if (iFrameTimer <= 0f)
+                isInvincible = false;
+        }
     }
 
     void ResourceCap()

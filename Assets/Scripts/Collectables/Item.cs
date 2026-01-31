@@ -5,7 +5,7 @@ public class Item : MonoBehaviour
     [SerializeField] private AudioClip itemCollectSoundClip;
     public bool IsCollected;
     protected bool destroyObject = false;
-    protected EntitySystems entity;
+    protected IResourceReceiver resourceReceiver;
     protected float moveSpeed = 10f;
     protected GameObject target;
 
@@ -70,18 +70,26 @@ public class Item : MonoBehaviour
     }
 
     public virtual void ChangeValue(){}
-    
-    public virtual void OnTriggerEnter(Collider other)
+
+    public void Collect(GameObject collectorObject)
     {
-        if (other.CompareTag("Player"))
+        if (IsCollected) return;
+
+        // Only collect if the collector is the player (or whatever tag you want)
+        if (!collectorObject.CompareTag("Player")) return;
+
+        SetIsCollected(true);
+
+        // Try to get IResourceReceiver from the collector
+        if (collectorObject.TryGetComponent<IResourceReceiver>(out resourceReceiver))
         {
-            SetIsCollected(true);
-        }
-        if (IsCollected & other.TryGetComponent(out entity))
-        {
-            SFXManager.instance.PlaySFXClip(itemCollectSoundClip,transform,1f);
+            SFXManager.instance.PlaySFXClip(itemCollectSoundClip, transform, 1f);
             ChangeValue();
             Destroy(gameObject);
         }
     }
+
+    // Physics-agnostic trigger handlers
+    private void OnTriggerEnter(Collider other) => Collect(other.gameObject);       // 3D
+    private void OnTriggerEnter2D(Collider2D other) => Collect(other.gameObject);   // 2D
 }

@@ -16,6 +16,6 @@ public class MoneyItem : Item
     public override void ChangeValue()
     {
         base.ChangeValue();
-        entity.SetMoney(entity.GetMoney() + moneyItemValue);
+        resourceReceiver.SetMoney(resourceReceiver.GetMoney() + moneyItemValue);
     }
 }
