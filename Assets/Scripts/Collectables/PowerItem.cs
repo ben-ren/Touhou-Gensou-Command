@@ -13,9 +13,9 @@ public class PowerItem : Item
         base.Update();
     }
 
-    public override void ChangeValue()
+    public override void ChangeValue(CharacterData target)
     {
-        base.ChangeValue();
-        resourceReceiver.SetPower(resourceReceiver.GetPower() + powerItemValue);
+        base.ChangeValue(target);
+        ResourceService.Add(ResourceType.Power, powerItemValue, target);
     }
 }

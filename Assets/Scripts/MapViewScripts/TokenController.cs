@@ -5,7 +5,10 @@ using UnityEngine.Splines;
 public class TokenController : MonoBehaviour
 {
     [SerializeField] private Sprite characterSprite;
+    private CharacterData characterData;
+    public int characterIndex;
     [SerializeField] private float moveSpeed;
+
     private InputController IC;
     private SplineContainer currentPath;
     private SplineAnimate splineAnimateScript;
@@ -14,8 +17,19 @@ public class TokenController : MonoBehaviour
     private bool _cursor_in_trigger;
     private bool _is_clicked_on;
 
+    public CharacterData GetCharacterData() => characterData;
+
     void Awake()
     {
+        if (characterData == null)
+        {
+            // Example: assign first party member
+            characterData = GameState.Instance.Data.partyMembers[characterIndex];
+
+            // Or find by name if needed
+            // characterData = GameState.Instance.Data.partyMembers
+            //                     .First(c => c.characterName == "Alice");
+        }
         spriteRenderer = GetComponent<SpriteRenderer>();
         splineAnimateScript = GetComponent<SplineAnimate>();
 
@@ -37,6 +51,11 @@ public class TokenController : MonoBehaviour
         {
             spriteRenderer.sprite = characterSprite;
         }
+
+        if (characterData == null)
+            Debug.LogWarning(
+                $"Token {gameObject.name} has no CharacterData assigned!"
+            );
     }
 
     void Update()

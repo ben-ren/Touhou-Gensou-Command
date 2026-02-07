@@ -5,7 +5,7 @@ public class Item : MonoBehaviour
     [SerializeField] private AudioClip itemCollectSoundClip;
     public bool IsCollected;
     protected bool destroyObject = false;
-    protected IResourceReceiver resourceReceiver;
+    //protected IResourceReceiver resourceReceiver;
     protected float moveSpeed = 10f;
     protected GameObject target;
 
@@ -69,24 +69,45 @@ public class Item : MonoBehaviour
         }
     }
 
-    public virtual void ChangeValue(){}
+    public virtual void ChangeValue(CharacterData target){}
 
     public void Collect(GameObject collectorObject)
     {
         if (IsCollected) return;
-
-        // Only collect if the collector is the player (or whatever tag you want)
         if (!collectorObject.CompareTag("Player")) return;
+
+        // Try to get CharacterData from TokenController
+        CharacterData targetData = null;
+
+        // 1) Try TokenController (map view)
+        var token = collectorObject.GetComponent<TokenController>();
+        if (token != null)
+            targetData = token.GetCharacterData();
+
+        // 2) Try EntitySystems (3D game view)
+        if (targetData == null)
+        {
+            var entity = collectorObject.GetComponent<EntitySystems>();
+            if (entity != null)
+                targetData = entity.GetCharacterData();
+        }
+
+        if (targetData == null)
+        {
+            Debug.LogError($"Collector {collectorObject.name} has no CharacterData!");
+            return;
+        }
 
         SetIsCollected(true);
 
-        // Try to get IResourceReceiver from the collector
-        if (collectorObject.TryGetComponent<IResourceReceiver>(out resourceReceiver))
-        {
-            SFXManager.instance.PlaySFXClip(itemCollectSoundClip, transform, 1f);
-            ChangeValue();
-            Destroy(gameObject);
-        }
+        SFXManager.instance.PlaySFXClip(
+            itemCollectSoundClip, 
+            transform, 
+            1f
+        );
+        
+        ChangeValue(targetData);
+        Destroy(gameObject);
     }
 
     // Physics-agnostic trigger handlers

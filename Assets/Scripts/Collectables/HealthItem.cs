@@ -13,8 +13,9 @@ public class HealthItem : Item
         base.Update();
     }
 
-    public override void ChangeValue()
+    public override void ChangeValue(CharacterData target)
     {
-        resourceReceiver.SetHealth(resourceReceiver.GetHealth() + healthItemValue);
+        base.ChangeValue(target);
+        ResourceService.Add(ResourceType.Health, healthItemValue, target);
     }
 }

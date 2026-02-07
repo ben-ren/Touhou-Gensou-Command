@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameData
 {
     //--------------------------------------
-    // Party (dynamic)
+    // Party Members (dynamic)
     //--------------------------------------
     public List<CharacterData> partyMembers = new();
     //--------------------------------------
@@ -15,6 +15,7 @@ public class GameData
     public int money;
     public int fuel;
     public int orbs;
+    public int missiles;
     public int lives; // YES — include if your design wants persistence
 
     //--------------------------------------
@@ -40,4 +41,5 @@ public class GameData
     //          Character Data
     //--------------------------------------
     //Global storage of CharacterData list
+    List<CharacterData> allCharacters = new List<CharacterData>();
 }

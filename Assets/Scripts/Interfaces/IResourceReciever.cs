@@ -1,4 +1,4 @@
-public interface IResourceReceiver
+public interface IResourceReceiver_old
 {
     //Setters
     void SetHealth(int value);

@@ -13,9 +13,9 @@ public class GrazeItem : Item
         base.Update();
     }
 
-    public override void ChangeValue()
+    public override void ChangeValue(CharacterData target)
     {
-        base.ChangeValue();
-        resourceReceiver.SetGraze(resourceReceiver.GetGraze() + grazeItemValue);
+        base.ChangeValue(target);
+        ResourceService.Add(ResourceType.Graze, grazeItemValue, target);
     }
 }

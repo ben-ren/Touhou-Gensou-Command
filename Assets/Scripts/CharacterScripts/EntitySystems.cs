@@ -1,8 +1,13 @@
 using Mono.Cecil;
 using UnityEngine;
 
-public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable, IResourceReceiver
+public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
 {
+    [Header("Character Template")]
+    [SerializeField] private bool isPlayerEntity = false;
+    private CharacterData characterData;
+    public int characterIndex;
+    
     /* =========================
      * Entity Stats
      * ========================= */
@@ -69,12 +74,26 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable, IResourceRec
     public void SetTeam(Team newTeam) => team = newTeam;
 
     /* =========================
-     * Unity Lifecycle
-     * ========================= */
+    * Unity Lifecycle
+    * ========================= */
+    void Awake()
+    {
+        if (isPlayerEntity)
+        {
+            characterData = GameState.Instance.Data.partyMembers[characterIndex];
+        }
+        else
+        {
+            initialHealth = health;
+            initialBombs = bombs;
+        }
+    }
+
     void Start()
     {
         initialHealth = health;
         initialBombs = bombs;
+
         if (gameObject.TryGetComponent(out IFrameVisuals vis))
         {
             iFrameVisuals = vis;
@@ -85,6 +104,23 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable, IResourceRec
     {
         ResourceCap();
         IFrameTimer();
+
+        if (isPlayerEntity)
+            ReadCharacterData();
+    }
+
+    /* =========================
+     * PlayerData sync (read-only)
+     * ========================= */
+    private void ReadCharacterData()
+    {
+        if (characterData == null) return;
+
+        // EntitySystems reads live stats from CharacterData
+        health = characterData.healthData;
+        power = characterData.powerData;
+        graze = characterData.grazeData;
+        bombs = characterData.bombsData;
     }
 
     /* =========================
@@ -174,4 +210,6 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable, IResourceRec
 
     // Reset damaged flag.
     public void ResetRecentlyDamaged() => RecentlyDamaged = false;
+
+    public CharacterData GetCharacterData() => characterData;
 }

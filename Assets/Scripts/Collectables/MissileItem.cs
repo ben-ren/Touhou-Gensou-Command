@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class BombItem : Item
+public class MissileItem : Item
 {
-    public int bombItemValue = 1;
+    public int missileItemValue = 1;
     public override void Start()
     {
         base.Start();
@@ -16,6 +16,6 @@ public class BombItem : Item
     public override void ChangeValue(CharacterData target)
     {
         base.ChangeValue(target);
-        ResourceService.Add(ResourceType.Bombs, bombItemValue, target);
+        ResourceService.Add(ResourceType.Missiles, missileItemValue);
     }
 }

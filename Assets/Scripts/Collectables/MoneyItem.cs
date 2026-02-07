@@ -13,9 +13,9 @@ public class MoneyItem : Item
         base.Update();
     }
 
-    public override void ChangeValue()
+    public override void ChangeValue(CharacterData target)
     {
-        base.ChangeValue();
-        resourceReceiver.SetMoney(resourceReceiver.GetMoney() + moneyItemValue);
+        base.ChangeValue(target);
+        ResourceService.Add(ResourceType.Money, moneyItemValue);
     }
 }

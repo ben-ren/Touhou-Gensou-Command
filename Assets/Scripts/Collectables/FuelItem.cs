@@ -13,9 +13,9 @@ public class FuelItem : Item
         base.Update();
     }
 
-    public override void ChangeValue()
+    public override void ChangeValue(CharacterData target)
     {
-        base.ChangeValue();
-        resourceReceiver.SetFuel(resourceReceiver.GetFuel() + fuelItemValue);
+        base.ChangeValue(target);
+        ResourceService.Add(ResourceType.Fuel, fuelItemValue);
     }
 }

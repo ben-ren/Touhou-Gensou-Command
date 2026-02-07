@@ -24,37 +24,13 @@ public class MapViewUI : MonoBehaviour
         _document = GetComponent<UIDocument>();
         root = _document.rootVisualElement;
         DisplayFlightRange(root);
+        _gameData = GameState.Instance.Data;    // Grab the global data
+    }
 
-        // ----- TEST DATA -----    TODO: Figure out how to store data dynamically
-        _gameData = new GameData();
-
-        // Resources
-        _gameData.orbs = 5;
-        _gameData.money = 123;
-        _gameData.fuel = 99;
-
-        // Party members
-        _gameData.partyMembers = new List<CharacterData>
-        {
-            new CharacterData
-            {
-                characterName = "Alice",
-                characterIcon = null, // assign a sprite if you have one
-                healthData = 80,
-                powerData  = 2,
-                grazeData  = 50,
-                bombsData  = 3
-            },
-            new CharacterData
-            {
-                characterName = "Bob",
-                characterIcon = null,
-                healthData = 60,
-                powerData  = 3,
-                grazeData  = 40,
-                bombsData  = 2
-            }
-        };
+    void Update()
+    {
+        FillCharacterCardData();
+        FillDisplayData(root);
     }
 
     void OnEnable()

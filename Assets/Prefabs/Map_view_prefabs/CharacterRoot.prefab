@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6083758678616916835}
   - component: {fileID: 3665505998155061373}
   - component: {fileID: 7214105164471321559}
-  m_Layer: 10
+  m_Layer: 3
   m_Name: Token
-  m_TagString: Token
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,3 +255,4 @@ MonoBehaviour:
   splinePrefab: {fileID: 6851005660099090380, guid: 844da3e186e88af4995dd6eeafa0db1e, type: 3}
   pathMaterial: {fileID: 2100000, guid: 69fa1c28d5ad0764cb51f7a22f2cda18, type: 2}
   pathRadius: 0.2
+  knotLimit: 20
