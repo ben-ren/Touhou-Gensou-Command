@@ -38,14 +38,33 @@ public class GameViewUserInterface : MonoBehaviour
 
     void Start()
     {
-        _healthValue.highValue = player.GetHealth();
+        _healthValue.highValue = 50; // or player.GetHealth() if max health
         _healthValue.value = player.GetHealth();
+
+        _grazeValue.highValue = 100; // whatever your max graze is
+        _grazeValue.value = player.GetGraze();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
+        // Make sure bars have correct highValues
+        _healthValue.highValue = player.GetMaxHealth(); // e.g., 50
+        _grazeValue.highValue = player.GetMaxGraze();   // e.g., 100
+
+        // Refresh UI
         SetValues();
+
+        ResourceService.OnResourceChanged += HandleResourceChanged;
+    }
+
+    void OnDisable()
+    {
+        ResourceService.OnResourceChanged -= HandleResourceChanged;
+    }
+
+    private void HandleResourceChanged(ResourceType type, int amount)
+    {
+        SetValues(); // Refresh the UI immediately
     }
 
     void SetValues()

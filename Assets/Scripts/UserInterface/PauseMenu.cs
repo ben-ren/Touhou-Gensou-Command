@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     [Header("References")]
     public UIDocument _userInterface;
+    VisualElement ui_screen;
     private UIController UIC;
     private UIDocument _document;
 
@@ -28,6 +29,9 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
+        var root2 = _userInterface.GetComponent<UIDocument>().rootVisualElement;
+        ui_screen = root2.Q<VisualElement>("MainContainer");
+
         _document = GetComponent<UIDocument>();
 
         // Get root element
@@ -80,7 +84,7 @@ public class PauseMenu : MonoBehaviour
     {
         PauseGame();
         if(_userInterface != null){
-            _userInterface.enabled = !isPaused;
+            ui_screen.style.display = !isPaused ? DisplayStyle.Flex : DisplayStyle.None;
         }
     }
 

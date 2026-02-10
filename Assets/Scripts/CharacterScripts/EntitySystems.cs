@@ -19,8 +19,9 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
     [SerializeField] private int money = 0;
     [SerializeField] private int bombs = 0;
 
-    private int initialHealth;
-    private int initialBombs;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int maxGraze;
+    [SerializeField] private int maxBombs;
 
     /* =========================
      * Team
@@ -48,28 +49,58 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
 
     [HideInInspector] public bool isInvincible = false;
     public bool RecentlyDamaged { get; private set; } = false;
-    
-    /* =========================
-     * Getters
-     * ========================= */
-    public int GetHealth() => health;
-    public int GetPower() => power;
-    public int GetGraze() => graze;
-    public int GetFuel() => fuel;
-    public int GetMoney() => money;
-    public int GetBombs() => bombs;
-    public int GetGrazePoints() => grazePoints;
-    public Team GetTeam() => team;
 
     /* =========================
-     * Setters
-     * ========================= */
-    public void SetHealth(int value) => health = value;
-    public void SetPower(int value) => power = value;
-    public void SetGraze(int value) => graze = value;
-    public void SetFuel(int value) => fuel = value;
-    public void SetMoney(int value) => money = value;
-    public void SetBombs(int value) => bombs = value;
+    * Getters
+    * ========================= */
+    public int GetHealth() => isPlayerEntity && characterData != null ? characterData.healthData : health;
+    public int GetPower() => isPlayerEntity && characterData != null ? characterData.powerData : power;
+    public int GetGraze() => isPlayerEntity && characterData != null ? characterData.grazeData : graze;
+    public int GetBombs() => isPlayerEntity && characterData != null ? characterData.bombsData : bombs;
+    public int GetFuel() => GameState.Instance.Data.fuel;
+    public int GetMoney() => GameState.Instance.Data.money;
+    public int GetGrazePoints() => grazePoints;
+    public Team GetTeam() => team;
+    public int GetMaxHealth() => maxHealth;
+    public int GetMaxGraze() => maxGraze;
+    public int GetMaxBombs() => maxBombs;
+    /* =========================
+    * Setters
+    * ========================= */
+    public void SetHealth(int value)
+    {
+        if (isPlayerEntity && characterData != null)
+            characterData.healthData = value;
+        else
+            health = value;
+    }
+
+    public void SetPower(int value)
+    {
+        if (isPlayerEntity && characterData != null)
+            characterData.powerData = value;
+        else
+            power = value;
+    }
+    
+    public void SetGraze(int value)
+    {
+        if (isPlayerEntity && characterData != null)
+            characterData.grazeData = value;
+        else
+            graze = value;
+    }
+    
+    public void SetBombs(int value)
+    {
+        if (isPlayerEntity && characterData != null)
+            characterData.bombsData = value;
+        else
+            bombs = value;
+    }
+
+    public void SetFuel(int value) => GameState.Instance.Data.fuel = value;
+    public void SetMoney(int value) => GameState.Instance.Data.money = value;
     public void SetGrazePoints(int value) => grazePoints = value;
     public void SetTeam(Team newTeam) => team = newTeam;
 
@@ -82,17 +113,12 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
         {
             characterData = GameState.Instance.Data.partyMembers[characterIndex];
         }
-        else
-        {
-            initialHealth = health;
-            initialBombs = bombs;
-        }
     }
 
     void Start()
     {
-        initialHealth = health;
-        initialBombs = bombs;
+        health = maxHealth;
+        bombs = maxBombs;
 
         if (gameObject.TryGetComponent(out IFrameVisuals vis))
         {
@@ -104,15 +130,14 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
     {
         ResourceCap();
         IFrameTimer();
-
-        if (isPlayerEntity)
-            ReadCharacterData();
+        if(isPlayerEntity)
+            ReadData();
     }
 
     /* =========================
      * PlayerData sync (read-only)
      * ========================= */
-    private void ReadCharacterData()
+    private void ReadData()
     {
         if (characterData == null) return;
 
@@ -121,6 +146,8 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
         power = characterData.powerData;
         graze = characterData.grazeData;
         bombs = characterData.bombsData;
+        fuel = GameState.Instance.Data.fuel;
+        money = GameState.Instance.Data.money;
     }
 
     /* =========================
@@ -203,8 +230,9 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
 
     void ResourceCap()
     {
-        health = Mathf.Clamp(health, 0, initialHealth);
-        bombs = Mathf.Clamp(bombs, 0, initialBombs);
+        health = Mathf.Clamp(health, 0, maxHealth);
+        health = Mathf.Clamp(graze, 0, max: maxGraze);
+        bombs = Mathf.Clamp(bombs, 0, maxBombs);
         power = Mathf.Clamp(power, 0, 400);
     }
 

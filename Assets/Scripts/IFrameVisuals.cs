@@ -45,7 +45,10 @@ public class IFrameVisuals : MonoBehaviour
     public void StartIFrameVisual(float duration)
     {
         StopAllCoroutines();
-        StartCoroutine(FlashRoutine(duration));
+        if(this.gameObject != null)
+        {
+            StartCoroutine(FlashRoutine(duration));
+        }
     }
 
     private System.Collections.IEnumerator FlashRoutine(float duration)

@@ -28,8 +28,8 @@ public class GameState : MonoBehaviour
         {
             characterName = "Reimu",
             isUnlocked = true,
-            healthData = 50,
-            powerData = 200,
+            healthData = 100,
+            powerData = 100,
             grazeData = 0,
             bombsData = 3
         });

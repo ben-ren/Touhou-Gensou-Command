@@ -9,12 +9,20 @@ public class PlayerProjManager : ProjSpawnManager
     [SerializeField] private BombSpawner bombSpawner;
     [SerializeField] private float primaryFireRate = 1f;
     [SerializeField] private float secondaryFireRate = 5f;
+    private CharacterData parentSystemData;
 
     private bool bombButtonPreviouslyPressed = false;
+
+    protected override void Start()
+    {
+        base.Start();
+        parentSystemData = GetComponentInParent<EntitySystems>()?.GetCharacterData();
+    }
 
     protected override void Update()
     {
         base.Update();  // handle active spawners
+        power = parentSystemData.powerData/100; //determines active spawner count
 
         if (IC != null && primaryProjectile != null && secondaryProjectile != null)
         {
@@ -59,7 +67,12 @@ public class PlayerProjManager : ProjSpawnManager
 
     private void LaunchBomb()
     {
-        // TrySpawnBomb no longer needs to output lifespan
-        bombSpawner.TrySpawnBomb();
+        if (parentSystemData == null || parentSystemData.bombsData <= 0) 
+            return; 
+
+        if (!bombSpawner.TrySpawnBomb()) 
+            return; 
+        
+        parentSystemData.bombsData--;
     }
 }

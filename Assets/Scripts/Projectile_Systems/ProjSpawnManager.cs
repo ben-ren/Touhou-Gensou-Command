@@ -9,9 +9,9 @@ public class ProjSpawnManager : MonoBehaviour
 
     [Header("Spawner Control")]
     [Tooltip("Floating point value that determines how many spawners are active.")]
-    public float power = 0; // 0 = first spawner active, 3 = all 4 active, etc.
+    public float power = 0; // 0 = first spawner active, 4 = all 5 active, etc.
 
-    private void Start()
+    protected virtual void Start()
     {
         // Automatically find and register all ProjectileSpawner components in children
         spawners.Clear();
@@ -34,9 +34,7 @@ public class ProjSpawnManager : MonoBehaviour
         }
     }
 
-    /// <summary>
     /// Manually set a specific number of spawners active
-    /// </summary>
     public void SetActiveSpawners(int count)
     {
         count = Mathf.Clamp(count, 1, spawners.Count);
@@ -52,9 +50,7 @@ public class ProjSpawnManager : MonoBehaviour
         }
     }
 
-    /// <summary>
     /// Add a new spawner at runtime (optional)
-    /// </summary>
     public void RegisterSpawner(ProjectileSpawner spawner)
     {
         if (spawner != null && !spawners.Contains(spawner))
@@ -72,8 +68,5 @@ public class ProjSpawnManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Returns the list of currently registered spawners
-    /// </summary>
     public List<ProjectileSpawner> GetSpawners() => spawners;
 }
