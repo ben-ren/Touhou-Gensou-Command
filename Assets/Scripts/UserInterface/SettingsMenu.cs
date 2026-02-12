@@ -10,6 +10,7 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private AudioMixer _audioMixer;
     [Header("Optional")]
     private PlayerController player; // ⚡ optional
+    private CursorFollowPoint cursor; // ⚡ optional
 
     private UIDocument _document;
     private SettingsData _settings;
@@ -51,6 +52,12 @@ public class SettingsMenu : MonoBehaviour
         if (player == null){
             player = FindFirstObjectByType<PlayerController>();
         }
+
+        if (cursor == null)
+        {
+            cursor = FindFirstObjectByType<CursorFollowPoint>();
+        }
+
         _document = GetComponent<UIDocument>();
 
         var root = _document.rootVisualElement;
@@ -222,7 +229,8 @@ public class SettingsMenu : MonoBehaviour
         ApplyAll();
         SettingsStorage.Save(_settings);
 
-        player?.RefreshSettings();  //Safe player refresh
+        player?.RefreshSettings();  //Save player refresh
+        cursor?.RefreshSettings();  //Save cursor refresh
 
         // Return to parent menu if set
         if (_returnMenu != null)
@@ -276,6 +284,8 @@ public class SettingsMenu : MonoBehaviour
 
         //Refresh player settings if PlayerController exists
         player?.RefreshSettings();
+        //Refresh cursor settings if CursorFollowPoint exists
+        cursor?.RefreshSettings();
 
         if (_returnMenu != null)
         {
