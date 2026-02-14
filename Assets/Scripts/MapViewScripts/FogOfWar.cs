@@ -28,7 +28,7 @@ public class FogOfWar : MonoBehaviour
             Vector3 worldPos = m_fogOfWarPlane.transform.TransformPoint(m_vertices[i]);
             float dist = Vector3.SqrMagnitude(worldPos - center);
 
-            ApplyHardEdge(i, dist);
+            ApplyHardEdge(i, dist, true);
         }
 
         UpdateColours();
@@ -52,22 +52,29 @@ public class FogOfWar : MonoBehaviour
        m_mesh.colors = m_colours;
     }
 
-    void ApplyGradient(int index, float distance)
+    void ApplyGradient(int index, float distance, bool persistant)
     {
-        if (distance < m_radiusSqr)
-            {
-                float alpha = Mathf.Min(m_colours[index].a, distance / m_radiusSqr);
-                m_colours[index].a = alpha;
-            }
+        float alpha = Mathf.Clamp01(distance / m_radiusSqr);
+
+        if (persistant)
+        {
+            // Only reduce alpha
+            m_colours[index].a = Mathf.Min(m_colours[index].a, alpha);
+        }
+        else
+        {
+            // Dynamic: reset each frame
+            m_colours[index].a = alpha;
+        }
     }
 
-    void ApplyHardEdge(int index, float distance)
+    void ApplyHardEdge(int index, float distance, bool persistant)
     {
         if (distance < m_radiusSqr)
         {
             m_colours[index].a = 0f;   // fully transparent (revealed)
         }
-        else
+        else if (!persistant)
         {
             m_colours[index].a = 1f;   // fully opaque (fog)
         }

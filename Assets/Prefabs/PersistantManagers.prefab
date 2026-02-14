@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4817623688779262867}
+  - component: {fileID: 3875279162286222742}
   - component: {fileID: 548902158513112428}
   - component: {fileID: 1111882027107882582}
   - component: {fileID: 4738701483983644988}
   - component: {fileID: 2392515473303481753}
   - component: {fileID: 3367559976042391231}
-  - component: {fileID: 3875279162286222742}
   m_Layer: 0
   m_Name: PersistantManagers
   m_TagString: Untagged
@@ -37,6 +37,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3875279162286222742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5850239579180972878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed3a7337724a534cbd6ae6f53824663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameState
 --- !u!114 &548902158513112428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,15 +113,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1553f60c8837fe04baac6cdbe19dd589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIHelper
---- !u!114 &3875279162286222742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5850239579180972878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bed3a7337724a534cbd6ae6f53824663, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameState
