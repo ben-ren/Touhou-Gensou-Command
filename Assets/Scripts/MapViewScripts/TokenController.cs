@@ -21,15 +21,6 @@ public class TokenController : MonoBehaviour
 
     void Awake()
     {
-        if (characterData == null)
-        {
-            // Example: assign first party member
-            characterData = GameState.Instance.Data.partyMembers[characterIndex];
-
-            // Or find by name if needed
-            // characterData = GameState.Instance.Data.partyMembers
-            //                     .First(c => c.characterName == "Alice");
-        }
         spriteRenderer = GetComponent<SpriteRenderer>();
         splineAnimateScript = GetComponent<SplineAnimate>();
 
@@ -47,15 +38,16 @@ public class TokenController : MonoBehaviour
     {
         IC = InputController.instance;
 
+        // Example: assign first party member
+        characterData ??= GameState.Instance.Data.partyMembers[characterIndex];
+
         if (characterSprite != null)
         {
             spriteRenderer.sprite = characterSprite;
         }
 
         if (characterData == null)
-            Debug.LogWarning(
-                $"Token {gameObject.name} has no CharacterData assigned!"
-            );
+            Debug.LogWarning($"Token {gameObject.name} has no CharacterData assigned!");
     }
 
     void Update()

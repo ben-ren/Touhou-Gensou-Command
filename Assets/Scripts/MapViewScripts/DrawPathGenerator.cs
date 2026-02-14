@@ -92,7 +92,7 @@ public class DrawPathGenerator : MonoBehaviour
         // Instantiate prefab
         currentPath = Instantiate(splinePrefab, transform);
         currentPath.name = "RuntimeSplinePath";
-        currentPath.transform.position = new Vector3(0, 0, -1f);
+        currentPath.transform.position = new Vector3(0, 0, -2f);
 
         // Assign material
         var renderer = currentPath.GetComponent<MeshRenderer>();
