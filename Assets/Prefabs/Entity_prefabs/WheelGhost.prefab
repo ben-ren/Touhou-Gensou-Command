@@ -192,18 +192,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21bb71b77e818646a59b7d60ca6fcb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntitySystems
+  isPlayerEntity: 0
+  characterIndex: 0
   health: 50
   power: 5
   graze: 0
   fuel: 0
   money: 5
   bombs: 0
+  maxHealth: 0
+  maxGraze: 0
+  maxBombs: 0
   team: 2
   grazePoints: 4
   resource: {fileID: 1677856363315197446, guid: da341ea2b16dfbc4d9fd4ee12a1374c0, type: 3}
   damageRecievedSoundClip: {fileID: 8300000, guid: f5b357c0495a8f248aca44b454f68717, type: 3}
   entityDefeatedSoundClip: {fileID: 8300000, guid: fe8927c690576cb4e874c5f849728c53, type: 3}
   iFrameDuration: 0.5
+  isInvincible: 0
 --- !u!114 &7828589196604562280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b72dfc9709d5274bad522ff5f706a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IFrameVisuals
-  visualsRoot: {fileID: 0}
+  visualsRoot: {fileID: 7707289021565748548}
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   flashInterval: 0.1
   useEmission: 1

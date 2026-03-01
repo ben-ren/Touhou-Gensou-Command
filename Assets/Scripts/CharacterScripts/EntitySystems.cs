@@ -164,6 +164,13 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
 
         Debug.Log($"{gameObject.name} took {amount} damage! Remaining health: {health}");
 
+        if (health <= 0)
+        {
+            SFXManager.instance.PlaySFXClip(entityDefeatedSoundClip,transform,1f);
+            Kill();
+            return;
+        }
+
         if(ignoreIFrames){
             // Trigger I-frames
             isInvincible = true;
@@ -178,12 +185,6 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
         if (TeamAlignment == Team.Player)   //shake camera if entity is player
         {
             VFXManager.Instance.ShakeCamera(.2f, .1f);
-        }
-
-        if (health <= 0)
-        {
-            SFXManager.instance.PlaySFXClip(entityDefeatedSoundClip,transform,1f);
-            Kill();
         }
     }
 
