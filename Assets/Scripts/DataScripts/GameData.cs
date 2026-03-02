@@ -27,7 +27,7 @@ public class GameData
     public List<LevelUnlockData> unlockedLevels = new();
 
     // Entity positions on the map scene saved by ID
-    public List<EntityPositionData> entityPositions = new();
+    public Dictionary<string, Vector3> entityPositions = new();
 
     // Pickups / items state
     public List<ItemStateData> itemStates = new();
@@ -41,5 +41,5 @@ public class GameData
     //          Character Data
     //--------------------------------------
     //Global storage of CharacterData list
-    List<CharacterData> allCharacters = new List<CharacterData>();
+    Dictionary<CharacterData, bool> allCharacters = new ();
 }

@@ -4,10 +4,9 @@ using System;
 [Serializable]
 public class CharacterData
 {
+    public int characterID;
     public string characterName;
     public Sprite characterIcon;
-
-    public bool isUnlocked;
 
     public int healthData;
     public int powerData;

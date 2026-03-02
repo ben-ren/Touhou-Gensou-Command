@@ -26,8 +26,8 @@ public class GameState : MonoBehaviour
     {
         Data.partyMembers.Add(new CharacterData
         {
+            characterID = 0,
             characterName = "Reimu",
-            isUnlocked = true,
             healthData = 100,
             powerData = 100,
             grazeData = 0,
@@ -36,8 +36,8 @@ public class GameState : MonoBehaviour
 
         Data.partyMembers.Add(new CharacterData
         {
+            characterID = 1,
             characterName = "Marisa",
-            isUnlocked = true,
             healthData = 50,
             powerData = 2,
             grazeData = 10,
