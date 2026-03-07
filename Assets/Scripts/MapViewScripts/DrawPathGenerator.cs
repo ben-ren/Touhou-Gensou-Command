@@ -24,6 +24,7 @@ public class DrawPathGenerator : MonoBehaviour
     private Vector3 lastPoint;
     private bool wasClicking;
     private bool isDrawing;
+    private bool movementStarted;
     private int currentKnotCount;
 
     public bool GetIsDrawing() => isDrawing;
@@ -39,9 +40,10 @@ public class DrawPathGenerator : MonoBehaviour
     {
         DrawSplinePath();
 
-        if (currentSplineContainer != null && token.GetIsTravellingAlongPath())
+        if (!movementStarted && currentSplineContainer != null && token.GetIsTravellingAlongPath())
         {
             token.AttachToPath(currentSplineContainer);
+            movementStarted = true;
         }
 
         token.ResetClicked();
@@ -86,6 +88,7 @@ public class DrawPathGenerator : MonoBehaviour
 
     private void CreateNewSpline(Material material)
     {
+        movementStarted = false;
         // Clear old path
         if (currentPath != null) Destroy(currentPath);
 
@@ -139,5 +142,14 @@ public class DrawPathGenerator : MonoBehaviour
 
         currentKnotCount = spline.Count;
         OnKnotCountChanged?.Invoke(currentKnotCount, knotLimit);
+    }
+
+    //Used to start token movement from another script.
+    public void StartTokenMovement()
+    {
+        if (currentSplineContainer == null) return;
+
+        token.SetIsTravellingAlongPath(true);
+        token.AttachToPath(currentSplineContainer);
     }
 }

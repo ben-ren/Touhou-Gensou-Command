@@ -40,5 +40,24 @@ public class UIController : MonoBehaviour
         pause.Disable();
     }
 
+    public void ExecuteTurn()
+    {
+        // Start player token movement
+        DrawPathGenerator[] paths = FindObjectsByType<DrawPathGenerator>(FindObjectsSortMode.None);
+
+        foreach (var p in paths)
+        {
+            p.StartTokenMovement();
+        }
+
+        // Start enemy tokens
+        AI_EnemyToken[] enemies = FindObjectsByType<AI_EnemyToken>(FindObjectsSortMode.None);
+
+        foreach (var enemy in enemies)
+        {
+            enemy.startMovement = true;
+        }
+    }
+
     public float GetPause() => pause.ReadValue<float>();
 }

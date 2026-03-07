@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class MapViewUI : MonoBehaviour
 {
     [Header("References")]
+    public Sprite shipSprite;
     private UIDocument _document;
     private GameData _gameData;
     //Display Data
@@ -15,16 +16,27 @@ public class MapViewUI : MonoBehaviour
     private ProgressBar _flight_range;
     //Character Cards
     private List<CharacterCardUI> characterCards = new();
+    /*************************************************************************/
+    //--------------ConfirmTurnMenu--------------------
+    /*************************************************************************/
+    private VisualElement confirmTurnMenu;
+    private Button confirmTurnButton;
+    private Dictionary<string, System.Action> _buttonActions;
+    private List<Button> _buttons;
 
     VisualElement root = null;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Awake()
     {
         _document = GetComponent<UIDocument>();
         root = _document.rootVisualElement;
         DisplayFlightRange(root);
         _gameData = GameState.Instance.Data;    // Grab the global data
+        _ship_image = root.Q<VisualElement>("ShipImage");
+        if(shipSprite!= null)
+        {
+            _ship_image.style.backgroundImage = new StyleBackground(shipSprite);
+        }
     }
 
     void Update()
@@ -56,6 +68,21 @@ public class MapViewUI : MonoBehaviour
         }
 
         FillCharacterCardData();
+
+        //ConfirmTurnMenu
+        confirmTurnMenu = root.Q<VisualElement>("ConfirmTurnMenu");
+        confirmTurnButton = root.Q<Button>("ConfirmTurnButton");
+        _buttons = root.Query<Button>().ToList();
+        _buttonActions = new()
+        {
+            { "ConfirmTurnButton", OnConfirmTurnClicked },
+            { "YesButton", OnYesButtonClicked },
+            { "NoButton", OnNoButtonClicked }
+        };
+        confirmTurnMenu.style.visibility = Visibility.Hidden;
+
+        foreach (var button in _buttons)
+            button.RegisterCallback<ClickEvent>(OnAllButtonsClick);
     }
 
     void OnDisable()
@@ -66,6 +93,11 @@ public class MapViewUI : MonoBehaviour
         {
             gen.OnKnotCountChanged -= UpdateFlightRange;
         }
+
+        //ConfirmTurnMenu
+        if (_buttons == null) return;
+        foreach (var button in _buttons)
+            button.UnregisterCallback<ClickEvent>(OnAllButtonsClick);
     }
 
     void FillDisplayData(VisualElement root)
@@ -135,5 +167,35 @@ public class MapViewUI : MonoBehaviour
         // Hide if full (optional)
         if (currentKnotCount == 0)
             _flight_range.style.visibility = Visibility.Hidden;
+    }
+
+    // Central button click handler
+    private void OnAllButtonsClick(ClickEvent e)
+    {
+        if (e.currentTarget is Button button && _buttonActions.TryGetValue(button.name, out var action))
+        {
+            action.Invoke();
+        }
+    }
+
+    private void OnConfirmTurnClicked()
+    {
+        confirmTurnMenu.style.visibility = Visibility.Visible;
+        confirmTurnButton.style.visibility = Visibility.Hidden;
+    }
+
+    private void OnYesButtonClicked()
+    {
+        UIController.instance.ExecuteTurn();
+        confirmTurnMenu.style.visibility = Visibility.Hidden;
+        confirmTurnButton.style.visibility = Visibility.Visible;
+        
+        Debug.Log("Run token movement and iterate turncounter by 1");
+    }
+
+    private void OnNoButtonClicked()
+    {
+        confirmTurnMenu.style.visibility = Visibility.Hidden;
+        confirmTurnButton.style.visibility = Visibility.Visible;
     }
 }
