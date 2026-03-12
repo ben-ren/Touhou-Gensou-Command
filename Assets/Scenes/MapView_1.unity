@@ -6907,8 +6907,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTokenSpawner
   m_enemyPrefab: {fileID: 697182455928046750, guid: a8ee38acfcde50c4583d42b56ce9d643, type: 3}
+  defaultTarget: {fileID: 938952670}
   spawnRadius: 2
-  m_spawnEnemy: 0
+  turnsBetweenSpawns: 1
 --- !u!1 &1146980129
 GameObject:
   m_ObjectHideFlags: 0
@@ -7546,7 +7547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6714189877352592018, guid: 1b5535f129e8d6b48b39dba12a550c75, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7810759946317441975, guid: 1b5535f129e8d6b48b39dba12a550c75, type: 3}
       propertyPath: m_LocalPosition.x

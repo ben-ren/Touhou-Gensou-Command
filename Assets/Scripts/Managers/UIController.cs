@@ -57,6 +57,9 @@ public class UIController : MonoBehaviour
         {
             enemy.startMovement = true;
         }
+
+        // Advance turn
+        GameState.Instance.AdvanceTurn();
     }
 
     public float GetPause() => pause.ReadValue<float>();

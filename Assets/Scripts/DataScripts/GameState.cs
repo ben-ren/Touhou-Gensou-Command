@@ -22,6 +22,12 @@ public class GameState : MonoBehaviour
         BootstrapParty();
     }
 
+    public void AdvanceTurn()
+    {
+        Data.turnNumber++;
+        Debug.Log("Turn: " + Data.turnNumber);
+    }
+
     private void BootstrapParty()
     {
         Data.partyMembers.Add(new CharacterData

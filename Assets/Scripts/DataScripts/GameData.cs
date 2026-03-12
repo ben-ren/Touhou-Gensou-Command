@@ -22,6 +22,7 @@ public class GameData
     // World / map state
     //--------------------------------------
     public int currentLevelIndex;
+    public int turnNumber = 0;      //turn counter. Starts at turn 0.
 
     // Which levels are unlocked
     public List<LevelUnlockData> unlockedLevels = new();

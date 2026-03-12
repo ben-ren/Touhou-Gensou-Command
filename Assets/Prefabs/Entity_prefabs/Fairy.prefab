@@ -202,8 +202,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057685721219649499}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -211,7 +211,7 @@ Transform:
   - {fileID: 168547123380846313}
   - {fileID: 1707284996959471932}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5226799318814003860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,18 +247,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21bb71b77e818646a59b7d60ca6fcb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntitySystems
+  isPlayerEntity: 0
+  characterIndex: 0
   health: 50
   power: 5
   graze: 0
   fuel: 0
   money: 6
   bombs: 1
+  maxHealth: 0
+  maxGraze: 0
+  maxBombs: 0
   team: 2
   grazePoints: 5
   resource: {fileID: 1677856363315197446, guid: da341ea2b16dfbc4d9fd4ee12a1374c0, type: 3}
   damageRecievedSoundClip: {fileID: 8300000, guid: fe8927c690576cb4e874c5f849728c53, type: 3}
   entityDefeatedSoundClip: {fileID: 8300000, guid: ebd5138ba23ecfb45886b4145437e445, type: 3}
   iFrameDuration: 0.1
+  isInvincible: 0
 --- !u!114 &5910282270514749327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,7 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1118e03f218c9f44860e78a0082084a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Graze
-  grazeDelay: 0
+  accumulationRate: 0
   resource: {fileID: 1677856363315197446, guid: da341ea2b16dfbc4d9fd4ee12a1374c0, type: 3}
   team: 2
   VFXPrefab: {fileID: 0}
