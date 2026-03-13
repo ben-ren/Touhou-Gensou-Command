@@ -4,12 +4,17 @@ using UnityEngine;
 public class AI_EnemyToken : MonoBehaviour
 {
     public GameObject defaultTarget;
+
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float moveDistancePerTurn = 10f;
+    [HideInInspector] public float distanceMovedThisTurn = 0f;
+
     GameObject target;
+
     public bool resetTargeting;
     public bool startMovement;
-    AStarPathway pathfinder;    //Pathfinder code
 
+    AStarPathway pathfinder;    //Pathfinder code
     List<Vector3> path;         //Pathfinder code
     int pathIndex;              //Pathfinder code
 
@@ -63,22 +68,39 @@ public class AI_EnemyToken : MonoBehaviour
     //MoveTowards target
     void MoveEnemyToken()
     {
+        bool chasingPlayer = target != defaultTarget;
+
+        if (!chasingPlayer && distanceMovedThisTurn >= moveDistancePerTurn)
+        {
+            startMovement = false;
+            distanceMovedThisTurn = 0f;
+            return;
+        }
+
         // Fallback if no pathfinder exists
         if (pathfinder == null)
         {
+            Vector3 previousPosition = transform.position;
+
             transform.position = Vector2.MoveTowards(
                 transform.position,
                 defaultTarget.transform.position,
                 moveSpeed * Time.deltaTime
             );
+            
+            if (!chasingPlayer)
+                distanceMovedThisTurn += Vector3.Distance(previousPosition, transform.position);
+            
             return;
         }
+
         if (path == null || pathIndex >= path.Count)//Pathfinder code
         {
             return;
         }
 
         Vector3 nextPoint = path[pathIndex];//Pathfinder code
+        Vector3 prevPosition = transform.position;
 
         transform.position = Vector2.MoveTowards(
             transform.position,
@@ -91,6 +113,8 @@ public class AI_EnemyToken : MonoBehaviour
         {
             pathIndex++;//Pathfinder code
         }
+        if (!chasingPlayer)
+            distanceMovedThisTurn += Vector3.Distance(prevPosition, transform.position);
     }
     
     //Set player as target when token has moved into range. 

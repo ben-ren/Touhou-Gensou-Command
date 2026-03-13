@@ -89,6 +89,10 @@ public class DrawPathGenerator : MonoBehaviour
     private void CreateNewSpline(Material material)
     {
         movementStarted = false;
+
+        // Stop token movement when a new path is created
+        token.SetIsTravellingAlongPath(false);
+        
         // Clear old path
         if (currentPath != null) Destroy(currentPath);
 
