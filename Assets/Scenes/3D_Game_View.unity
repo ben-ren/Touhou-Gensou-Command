@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234400ec1769af94da00f832bfc7bcbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TerrainEditor
+  terrainPrefabs: []
 --- !u!1 &929479332
 GameObject:
   m_ObjectHideFlags: 0

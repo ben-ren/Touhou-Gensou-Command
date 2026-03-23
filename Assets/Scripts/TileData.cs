@@ -1,12 +1,12 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 [System.Serializable]
 public class TileData
 {
     public e_TileType type;
     public float height;
     public float noise;
-    //attached prefabs
-    //terrain colour
-    //terrain texture
 
     public static TileData Mountain() => new TileData 
     { 

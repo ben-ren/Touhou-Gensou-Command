@@ -1,41 +1,42 @@
-using System.CodeDom.Compiler;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TerrainEditor : MonoBehaviour
 {
+    
+    public PrefabStruct[] terrainPrefabs;
     Terrain terrain;
-    TileData[,] tileGrid = new TileData[3, 3];
-    float noiseScale = 0.02f;
+    public TileData[,] tileGrid = new TileData[3, 3];
     int res;
+
     void Start()
     {
         terrain = GetComponent<Terrain>();
         res = terrain.terrainData.heightmapResolution;
 
         ResetTerrainHeight();
-        CreateDummyData();
+        PopulateData();
         ApplyHeightmap();
+        SpawnPrefabs();
     }
-    /**
-    1. Create dummy data for 3x3 tile grid for testing
-    [hl][mt][mt]
-    [pl][hl][mt]
-    [wt][pl][hl]
-    tile: height, colour, prefabs
-    */
-    void CreateDummyData()
+    
+    // -------------------
+    // Populate Dataset
+    // -------------------
+    public void PopulateData()
     {
         tileGrid = new TileData[3, 3]
         {
-            {TileData.Mountain(), TileData.Plains(), TileData.Mountain()},
-            {TileData.Mountain(), TileData.Plains(), TileData.Mountain()},
-            {TileData.Mountain(), TileData.Plains(), TileData.Mountain()}
+            {TileData.Water(), TileData.Hills(), TileData.Mountain()},
+            {TileData.Hills(), TileData.Plains(), TileData.Hills()},
+            {TileData.Plains(), TileData.Hills(), TileData.Water()}
         };
     }
 
-    /*
-    *   Generates a Heightmap using the generated dummy data.
-    */
+    // ----------------------------------------
+    // GENERATE & APPLY HEIGHTMAP FROM DATASET
+    // ----------------------------------------
     void ApplyHeightmap()
     {
         float[,] mesh = new float[res, res];
@@ -93,24 +94,74 @@ public class TerrainEditor : MonoBehaviour
                 mesh[y, x] = Mathf.Clamp01(baseHeight);
             }
         }
-
         terrain.terrainData.SetHeights(0, 0, mesh);
     }
 
+    // -------------------
+    // RESET
+    // -------------------
     void ResetTerrainHeight()
     {
         var mesh = new float[res, res];
-        for (int x = 0; x < res; x++)
-        {
-            for (int y = 0; y < res; y++)
-            {
-                mesh[y, x] = 0f;
-            }
-        }
-
         terrain.terrainData.SetHeights(0, 0, mesh);
     }
-    /*
-    5. spawn test prefabs to specified sections
-    */
+    
+    // -------------------
+    // SPAWNING (CLEAN)
+    // -------------------
+    void SpawnPrefabs()
+    {
+        int gridX = tileGrid.GetLength(0);
+        int gridY = tileGrid.GetLength(1);
+        Vector3 terrainSize = terrain.terrainData.size;
+
+        foreach (var prefabStruct in terrainPrefabs)
+        {
+            if (prefabStruct.prefab == null || prefabStruct.tileIndex < 1 || prefabStruct.tileIndex > gridX * gridY)
+                continue;
+
+            // Convert 1-9 index to x, y coordinates
+            int index = prefabStruct.tileIndex - 1;
+            int x = index % gridX;
+            int y = index / gridX;
+            TileData tile = tileGrid[x, y];
+
+            for (int i = 0; i < prefabStruct.spawnCount; i++)
+            {
+                float px = x;
+                float pz = y;
+                float rotY = 0f;
+
+                if (prefabStruct.applyRandomTransform)
+                {
+                    px += UnityEngine.Random.value;
+                    pz += UnityEngine.Random.value;
+                    rotY = UnityEngine.Random.Range(0f, 360f);
+                }
+
+                px = px / gridX * terrainSize.x;
+                pz = pz / gridY * terrainSize.z;
+                float py = terrain.SampleHeight(new Vector3(px, 0, pz));
+
+                Vector3 pos = new Vector3(px, py, pz);
+                Quaternion rot = Quaternion.Euler(0, rotY, 0);
+
+                Instantiate(prefabStruct.prefab, pos, rot);
+            }
+        }
+    }
+}
+
+// -------------------
+// Prefab struct
+// -------------------
+[System.Serializable]
+public class PrefabStruct
+{
+    public GameObject prefab;
+    [Tooltip("Tile index (1-9) where this prefab should spawn")]
+    public int tileIndex;
+    [Tooltip("The number of prefabs spawned on the tile")]
+    public int spawnCount;
+    public bool applyRandomTransform = true;
 }
