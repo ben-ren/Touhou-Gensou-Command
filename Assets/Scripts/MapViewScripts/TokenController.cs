@@ -66,6 +66,7 @@ public class TokenController : MonoBehaviour
     public bool GetIsTravellingAlongPath() => _is_travelling_along_path;
     public void SetIsTravellingAlongPath(bool state) => _is_travelling_along_path = state;
 
+    public bool IsCursorOverToken() => _cursor_in_trigger;
     public bool GetIsClicked() => _is_clicked_on;
     public void ResetClicked() => _is_clicked_on = false;
 

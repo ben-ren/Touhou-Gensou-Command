@@ -24,6 +24,11 @@ public class MapViewUI : MonoBehaviour
     private Dictionary<string, System.Action> _buttonActions;
     private List<Button> _buttons;
 
+    /*************************************************************************/
+    //--------------StartEncounter--------------------
+    /*************************************************************************/
+    public bool startEncounter;
+
     VisualElement root = null;
     
     void Awake()
@@ -43,6 +48,12 @@ public class MapViewUI : MonoBehaviour
     {
         FillCharacterCardData();
         FillDisplayData(root);
+
+        //temporary test replace with button later
+        if (startEncounter)
+        {
+            OnStartEncounter();
+        }
     }
 
     void OnEnable()
@@ -197,5 +208,11 @@ public class MapViewUI : MonoBehaviour
     {
         confirmTurnMenu.style.visibility = Visibility.Hidden;
         confirmTurnButton.style.visibility = Visibility.Visible;
+    }
+
+    private void OnStartEncounter()
+    {
+        EncounterManager manager = FindFirstObjectByType<EncounterManager>();
+        manager.StartEncounter();
     }
 }

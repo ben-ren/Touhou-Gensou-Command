@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TerrainEditor : MonoBehaviour
-{
-    
+{   
     public PrefabStruct[] terrainPrefabs;
     Terrain terrain;
     public TileData[,] tileGrid = new TileData[3, 3];
@@ -26,11 +25,29 @@ public class TerrainEditor : MonoBehaviour
     // -------------------
     public void PopulateData()
     {
-        tileGrid = new TileData[3, 3]
+        int[,] grid = GameState.Instance.Data.currentTileGrid;
+
+        tileGrid = new TileData[3, 3];
+
+        for (int x = 0; x < 3; x++)
         {
-            {TileData.Water(), TileData.Hills(), TileData.Mountain()},
-            {TileData.Hills(), TileData.Plains(), TileData.Hills()},
-            {TileData.Plains(), TileData.Hills(), TileData.Water()}
+            for (int y = 0; y < 3; y++)
+            {
+                tileGrid[x, y] = ConvertIndexToTileData(grid[x, y]);
+            }
+        }
+    }
+
+    //converts tile index to corresponding TileData
+    private TileData ConvertIndexToTileData(int index)
+    {
+        return index switch
+        {
+            0 => TileData.Plains(),
+            1 => TileData.Hills(),
+            2 => TileData.Mountain(),
+            3 => TileData.Water(),
+            _ => TileData.Plains(),// fallback
         };
     }
 

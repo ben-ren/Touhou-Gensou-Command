@@ -81,15 +81,4 @@ public class CursorFollowPoint : MonoBehaviour
         settings = SettingsStorage.Load();
         joystickSensitivity = settings.joystickSensitivity * 20f;
     }
-
-    // --- Hover detection ---
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        Debug.Log("Hovered over: " + other.gameObject.name);
-    }
-
-    void OnCollisionExit2D(Collision2D other)
-    {
-        Debug.Log("Stopped hovering: " + other.gameObject.name);
-    }
 }

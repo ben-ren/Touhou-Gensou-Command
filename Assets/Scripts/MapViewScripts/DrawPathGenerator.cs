@@ -53,7 +53,7 @@ public class DrawPathGenerator : MonoBehaviour
     {
         bool clicking = IC.GetClickState() > 0f;
 
-        if (clicking && !wasClicking && token.GetIsClicked())
+        if (clicking && !wasClicking && token.IsCursorOverToken())
         {
             CreateNewSpline(pathMaterial); // pass material here
             AddPoint(cursor.transform.position);
