@@ -22,6 +22,7 @@ public class GameData
     // World / map state
     //--------------------------------------
     public int[,] currentTileGrid;
+    public List<PrefabStruct> prefabStructs;
     public int currentLevelIndex;
     public int turnNumber = 0;      //turn counter. Starts at turn 0.
 

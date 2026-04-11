@@ -9,16 +9,20 @@ public class EncounterManager : MonoBehaviour
     public Tilemap tilemap;
     public TokenController token;
 
-    [Header("Tile Lookup")]
+    [Header("Tile Assignment")]
     public List<TileBase> tileLookup;   //Manually assign tile index values
+    [Tooltip("Assign Prefabs to relavant tiles via their index. For Example; A prefab with 'Tile Index' of 1 will spawn on ALL terrain segments associated with Tile Lookup's Element 1")]
+    public List<PrefabStruct> tilesAssignedToPrefabs;
 
-    /*Fills the tile grid data in GameState when called.
+    /*
+    * Fills the tile grid data in GameState when called.
     * Then loads 3D scene. 
     */
     public void StartEncounter()
     {
         int [,] grid = BuildTileGrid();
         GameState.Instance.Data.currentTileGrid = grid;
+        GameState.Instance.Data.prefabStructs = tilesAssignedToPrefabs;
         SceneManager.LoadScene("3D_Game_View");
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TerrainEditor : MonoBehaviour
 {   
-    public PrefabStruct[] terrainPrefabs;
+    public List<PrefabStruct> terrainPrefabs;
     Terrain terrain;
     public TileData[,] tileGrid = new TileData[3, 3];
     int res;
@@ -23,6 +23,9 @@ public class TerrainEditor : MonoBehaviour
     // -------------------
     // Populate Dataset
     // -------------------
+    // TODO - Populate terrainPrefabs with data obtained by EncounterManager, including tileIndex.
+    // TODO - Cross reference index of grid array with PrefabStruct's tileIndex.
+    // TODO - Randomly spread enemy units around scene. 
     public void PopulateData()
     {
         int[,] grid = GameState.Instance.Data.currentTileGrid;
@@ -36,12 +39,15 @@ public class TerrainEditor : MonoBehaviour
                 tileGrid[x, y] = ConvertIndexToTileData(grid[x, y]);
             }
         }
+
+        terrainPrefabs = GameState.Instance.Data.prefabStructs;
     }
 
     //converts tile index to corresponding TileData
     private TileData ConvertIndexToTileData(int index)
     {
-        return index switch
+        int baseIndex = index % 4;  //loop through heightmaps for eahc tile type.
+        return baseIndex switch
         {
             0 => TileData.Plains(),
             1 => TileData.Hills(),
@@ -132,41 +138,86 @@ public class TerrainEditor : MonoBehaviour
         int gridY = tileGrid.GetLength(1);
         Vector3 terrainSize = terrain.terrainData.size;
 
-        foreach (var prefabStruct in terrainPrefabs)
+        for (int x = 0; x < gridX; x++)
         {
-            if (prefabStruct.prefab == null || prefabStruct.tileIndex < 1 || prefabStruct.tileIndex > gridX * gridY)
-                continue;
-
-            // Convert 1-9 index to x, y coordinates
-            int index = prefabStruct.tileIndex - 1;
-            int x = index % gridX;
-            int y = index / gridX;
-            TileData tile = tileGrid[x, y];
-
-            for (int i = 0; i < prefabStruct.spawnCount; i++)
+            for (int y = 0; y < gridY; y++)
             {
-                float px = x;
-                float pz = y;
-                float rotY = 0f;
+                int tileTypeIndex = GameState.Instance.Data.currentTileGrid[x, y]; // ✅ ADDED
 
-                if (prefabStruct.applyRandomTransform)
+                foreach (var prefabStruct in terrainPrefabs)
                 {
-                    px += UnityEngine.Random.value;
-                    pz += UnityEngine.Random.value;
-                    rotY = UnityEngine.Random.Range(0f, 360f);
+                    if (prefabStruct.prefab == null) continue;
+
+                    // ✅ MATCH TILE TYPE INSTEAD OF POSITION
+                    if (prefabStruct.tileTypeIndex != tileTypeIndex) continue;
+
+                    for (int i = 0; i < prefabStruct.spawnCount; i++)
+                    {
+                        float px = x;
+                        float pz = y;
+                        float rotY = 0f;
+
+                        if (prefabStruct.applyRandomTransform)
+                        {
+                            px += UnityEngine.Random.value;
+                            pz += UnityEngine.Random.value;
+                            rotY = UnityEngine.Random.Range(0f, 360f);
+                        }
+
+                        px = px / gridX * terrainSize.x;
+                        pz = pz / gridY * terrainSize.z;
+                        float py = terrain.SampleHeight(new Vector3(px, 0, pz));
+
+                        Vector3 pos = new Vector3(px, py, pz);
+                        Quaternion rot = Quaternion.Euler(0, rotY, 0);
+
+                        Instantiate(prefabStruct.prefab, pos, rot);
+                    }
                 }
-
-                px = px / gridX * terrainSize.x;
-                pz = pz / gridY * terrainSize.z;
-                float py = terrain.SampleHeight(new Vector3(px, 0, pz));
-
-                Vector3 pos = new Vector3(px, py, pz);
-                Quaternion rot = Quaternion.Euler(0, rotY, 0);
-
-                Instantiate(prefabStruct.prefab, pos, rot);
             }
         }
     }
+    // void SpawnPrefabs()
+    // {
+    //     int gridX = tileGrid.GetLength(0);
+    //     int gridY = tileGrid.GetLength(1);
+    //     Vector3 terrainSize = terrain.terrainData.size;
+
+    //     foreach (var prefabStruct in terrainPrefabs)
+    //     {
+    //         if (prefabStruct.prefab == null || prefabStruct.tileIndex < 1 || prefabStruct.tileIndex > gridX * gridY)
+    //             continue;
+
+    //         // Convert 1-9 index to x, y coordinates
+    //         int index = prefabStruct.tileIndex - 1;
+    //         int x = index % gridX;
+    //         int y = index / gridX;
+    //         TileData tile = tileGrid[x, y];
+
+    //         for (int i = 0; i < prefabStruct.spawnCount; i++)
+    //         {
+    //             float px = x;
+    //             float pz = y;
+    //             float rotY = 0f;
+
+    //             if (prefabStruct.applyRandomTransform)
+    //             {
+    //                 px += UnityEngine.Random.value;
+    //                 pz += UnityEngine.Random.value;
+    //                 rotY = UnityEngine.Random.Range(0f, 360f);
+    //             }
+
+    //             px = px / gridX * terrainSize.x;
+    //             pz = pz / gridY * terrainSize.z;
+    //             float py = terrain.SampleHeight(new Vector3(px, 0, pz));
+
+    //             Vector3 pos = new Vector3(px, py, pz);
+    //             Quaternion rot = Quaternion.Euler(0, rotY, 0);
+
+    //             Instantiate(prefabStruct.prefab, pos, rot);
+    //         }
+    //     }
+    // }
 }
 
 // -------------------
@@ -177,7 +228,7 @@ public class PrefabStruct
 {
     public GameObject prefab;
     [Tooltip("Tile index (1-9) where this prefab should spawn")]
-    public int tileIndex;
+    public int tileTypeIndex;
     [Tooltip("The number of prefabs spawned on the tile")]
     public int spawnCount;
     public bool applyRandomTransform = true;
