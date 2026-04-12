@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Mono.Cecil.Cil;
 using UnityEngine;
 
 public class TerrainEditor : MonoBehaviour
@@ -18,6 +19,7 @@ public class TerrainEditor : MonoBehaviour
         PopulateData();
         ApplyHeightmap();
         SpawnPrefabs();
+        SpawnKeyEnemies();
     }
     
     // -------------------
@@ -129,9 +131,9 @@ public class TerrainEditor : MonoBehaviour
         terrain.terrainData.SetHeights(0, 0, mesh);
     }
     
-    // -------------------
-    // SPAWNING (CLEAN)
-    // -------------------
+    // ------------------------
+    // OBJECT/ENEMY SPAWNING
+    // ------------------------
     void SpawnPrefabs()
     {
         int gridX = tileGrid.GetLength(0);
@@ -177,47 +179,25 @@ public class TerrainEditor : MonoBehaviour
             }
         }
     }
-    // void SpawnPrefabs()
-    // {
-    //     int gridX = tileGrid.GetLength(0);
-    //     int gridY = tileGrid.GetLength(1);
-    //     Vector3 terrainSize = terrain.terrainData.size;
 
-    //     foreach (var prefabStruct in terrainPrefabs)
-    //     {
-    //         if (prefabStruct.prefab == null || prefabStruct.tileIndex < 1 || prefabStruct.tileIndex > gridX * gridY)
-    //             continue;
+    void SpawnKeyEnemies()
+    {
+        var enemies = GameState.Instance.Data.enemiesList;
+        if (enemies == null || enemies.Count == 0) return;
 
-    //         // Convert 1-9 index to x, y coordinates
-    //         int index = prefabStruct.tileIndex - 1;
-    //         int x = index % gridX;
-    //         int y = index / gridX;
-    //         TileData tile = tileGrid[x, y];
+        Vector3 terrainPos = terrain.transform.position;
+        Vector3 terrainSize = terrain.terrainData.size;
 
-    //         for (int i = 0; i < prefabStruct.spawnCount; i++)
-    //         {
-    //             float px = x;
-    //             float pz = y;
-    //             float rotY = 0f;
-
-    //             if (prefabStruct.applyRandomTransform)
-    //             {
-    //                 px += UnityEngine.Random.value;
-    //                 pz += UnityEngine.Random.value;
-    //                 rotY = UnityEngine.Random.Range(0f, 360f);
-    //             }
-
-    //             px = px / gridX * terrainSize.x;
-    //             pz = pz / gridY * terrainSize.z;
-    //             float py = terrain.SampleHeight(new Vector3(px, 0, pz));
-
-    //             Vector3 pos = new Vector3(px, py, pz);
-    //             Quaternion rot = Quaternion.Euler(0, rotY, 0);
-
-    //             Instantiate(prefabStruct.prefab, pos, rot);
-    //         }
-    //     }
-    // }
+        foreach( var enemy in enemies)
+        {
+            float randomX = UnityEngine.Random.Range(terrainPos.x, terrainPos.x + terrainSize.x);
+            float randomZ = UnityEngine.Random.Range(terrainPos.z, terrainPos.z + terrainSize.z);
+            float y = terrain.SampleHeight(new Vector3(randomX, 0, randomZ)) + terrainPos.y;
+            float randomY = UnityEngine.Random.Range(y + 10, terrainSize.y);
+            Vector3 randomPos = new Vector3(randomX, randomY, randomZ);
+            Instantiate(enemy, randomPos, Quaternion.identity);
+        }
+    }
 }
 
 // -------------------

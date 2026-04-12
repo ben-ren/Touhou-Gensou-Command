@@ -7567,6 +7567,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyTokenSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 6314215771810554323, guid: e4b2463e7f9ab6c40bdd437d504f34e2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7775,6 +7779,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyToken
       objectReference: {fileID: 0}
+    - target: {fileID: 697182455928046750, guid: a8ee38acfcde50c4583d42b56ce9d643, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2290920634239049453, guid: a8ee38acfcde50c4583d42b56ce9d643, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -7816,9 +7824,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4193395253657976872, guid: a8ee38acfcde50c4583d42b56ce9d643, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 2057685721219649499, guid: 69cb4178c3f68b2429ac6b6753feee91, type: 3}
+    - target: {fileID: 4193395253657976872, guid: a8ee38acfcde50c4583d42b56ce9d643, type: 3}
       propertyPath: defaultTarget
       value: 
       objectReference: {fileID: 938952670}
+    - target: {fileID: 6501312909854949450, guid: a8ee38acfcde50c4583d42b56ce9d643, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

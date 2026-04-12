@@ -8,6 +8,7 @@ public class EncounterManager : MonoBehaviour
     [Header("References")]
     public Tilemap tilemap;
     public TokenController token;
+    //get Enemies list from token to determine enemy spawns
 
     [Header("Tile Assignment")]
     public List<TileBase> tileLookup;   //Manually assign tile index values
@@ -23,6 +24,7 @@ public class EncounterManager : MonoBehaviour
         int [,] grid = BuildTileGrid();
         GameState.Instance.Data.currentTileGrid = grid;
         GameState.Instance.Data.prefabStructs = tilesAssignedToPrefabs;
+        GameState.Instance.Data.enemiesList = token.enemiesList;
         SceneManager.LoadScene("3D_Game_View");
     }
 

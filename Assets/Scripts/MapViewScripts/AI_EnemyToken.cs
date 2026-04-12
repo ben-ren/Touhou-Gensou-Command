@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AI_EnemyToken : MonoBehaviour
 {
+    public GameObject enemyPrefab;
     public GameObject defaultTarget;
 
     [SerializeField] float moveSpeed = 5f;

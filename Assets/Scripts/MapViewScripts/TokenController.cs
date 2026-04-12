@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -19,6 +20,8 @@ public class TokenController : MonoBehaviour
 
     public CharacterData GetCharacterData() => characterData;
 
+    [HideInInspector] public List<GameObject> enemiesList;
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -37,6 +40,7 @@ public class TokenController : MonoBehaviour
     void Start()
     {
         IC = InputController.instance;
+        enemiesList = new List<GameObject>();
 
         // Example: assign first party member
         characterData ??= GameState.Instance.Data.partyMembers[characterIndex];
@@ -87,6 +91,12 @@ public class TokenController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Cursor")_cursor_in_trigger = true;
+        if (other.tag == "Enemy")
+        {
+            Debug.Log(other.GetComponentInParent<AI_EnemyToken>().enemyPrefab);
+            //if other is enemy, store it's parent in Enemies list
+            enemiesList.Add(other.GetComponentInParent<AI_EnemyToken>().enemyPrefab);
+        } 
     }
 
     void OnTriggerExit2D(Collider2D other)

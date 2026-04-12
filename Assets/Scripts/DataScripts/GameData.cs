@@ -23,6 +23,7 @@ public class GameData
     //--------------------------------------
     public int[,] currentTileGrid;
     public List<PrefabStruct> prefabStructs;
+    public List<GameObject> enemiesList;
     public int currentLevelIndex;
     public int turnNumber = 0;      //turn counter. Starts at turn 0.
 
