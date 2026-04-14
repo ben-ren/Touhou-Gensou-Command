@@ -120,5 +120,11 @@
             <ui:Button text="Yes" name="YesButton" style="position: absolute; top: auto; left: 10%; bottom: 5%;" />
             <ui:Button text="No" name="NoButton" style="position: absolute; top: auto; left: auto; right: 10%; bottom: 5%;" />
         </ui:VisualElement>
+        <ui:VisualElement picking-mode="Ignore" name="EncounterMenu" style="flex-grow: 1; position: absolute; height: 75%; width: 75%; top: 10%; left: 21%; background-color: rgb(115, 115, 115);">
+            <ui:Button name="EncounterButton1" style="position: absolute; height: 45%; width: 48%; left: 1%; top: 2%; bottom: 52%; right: 51%; background-image: none; background-color: rgb(255, 255, 255); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-left-color: rgb(28, 30, 48); border-right-color: rgb(28, 30, 48); border-top-color: rgb(28, 30, 48); border-bottom-color: rgb(28, 30, 48);" />
+            <ui:Button name="EncounterButton2" style="position: absolute; height: 45%; width: 48%; left: 50%; top: 2%; bottom: 50%; right: 1%;" />
+            <ui:Button name="EncounterButton3" style="position: absolute; height: 45%; width: 48%; left: 1%; top: 50%; bottom: 28%; right: 50%;" />
+            <ui:Button name="EncounterButton4" style="position: absolute; height: 45%; width: 48%; left: 50%; top: 50%; bottom: 28%; right: 1%;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

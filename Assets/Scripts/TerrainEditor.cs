@@ -18,7 +18,7 @@ public class TerrainEditor : MonoBehaviour
         ResetTerrainHeight();
         PopulateData();
         ApplyHeightmap();
-        SpawnPrefabs();
+        if(terrainPrefabs!= null) SpawnPrefabs();
         SpawnKeyEnemies();
     }
     
@@ -31,6 +31,8 @@ public class TerrainEditor : MonoBehaviour
     public void PopulateData()
     {
         int[,] grid = GameState.Instance.Data.currentTileGrid;
+        
+        if(grid == null) grid = DefaultGrid(); //create grid default override
 
         tileGrid = new TileData[3, 3];
 
@@ -43,6 +45,16 @@ public class TerrainEditor : MonoBehaviour
         }
 
         terrainPrefabs = GameState.Instance.Data.prefabStructs;
+    }
+
+    private int[,] DefaultGrid()
+    {
+        return new int[3, 3]
+        {
+            { 0, 0, 1},
+            { 1, 1, 2},
+            { 1, 2, 3}
+        };
     }
 
     //converts tile index to corresponding TileData

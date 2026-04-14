@@ -7287,7 +7287,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1822957423664118381, guid: db8e574e4505e9f42bdae283846d2807, type: 3}
   m_PrefabInstance: {fileID: 1581549837171782273}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1581549837171782274}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
@@ -7356,10 +7356,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5115506590142716710, guid: db8e574e4505e9f42bdae283846d2807, type: 3}
-      propertyPath: shipSprite
-      value: 
-      objectReference: {fileID: 330648124, guid: 3a139cf11ef673e428788780ed91e115, type: 3}
     - target: {fileID: 6705836316330871696, guid: db8e574e4505e9f42bdae283846d2807, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -7368,12 +7364,32 @@ PrefabInstance:
       propertyPath: shipSprite
       value: 
       objectReference: {fileID: 330648124, guid: 3a139cf11ef673e428788780ed91e115, type: 3}
-    m_RemovedComponents:
-    - {fileID: 6705836316330871696, guid: db8e574e4505e9f42bdae283846d2807, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 474157574107656627, guid: db8e574e4505e9f42bdae283846d2807, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1581549837171782275}
   m_SourcePrefab: {fileID: 100100000, guid: db8e574e4505e9f42bdae283846d2807, type: 3}
+--- !u!1 &1581549837171782274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 474157574107656627, guid: db8e574e4505e9f42bdae283846d2807, type: 3}
+  m_PrefabInstance: {fileID: 1581549837171782273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1581549837171782275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581549837171782274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e822185e497c13c44ac8d4814e89ac58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapViewUI
+  shipSprite: {fileID: 0}
 --- !u!1001 &2623925421715937193
 PrefabInstance:
   m_ObjectHideFlags: 0

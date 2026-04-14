@@ -19,17 +19,18 @@ public class EncounterManager : MonoBehaviour
     * Fills the tile grid data in GameState when called.
     * Then loads 3D scene. 
     */
-    public void StartEncounter()
+    public void StartEncounter(TokenController selectedToken)
     {
-        int [,] grid = BuildTileGrid();
+        int [,] grid = BuildTileGrid(selectedToken);
         GameState.Instance.Data.currentTileGrid = grid;
         GameState.Instance.Data.prefabStructs = tilesAssignedToPrefabs;
         GameState.Instance.Data.enemiesList = token.enemiesList;
+        GameState.Instance.Data.selectedCharacter = selectedToken.GetCharacterData();
         SceneManager.LoadScene("3D_Game_View");
     }
 
 
-    public int[,] BuildTileGrid()
+    public int[,] BuildTileGrid(TokenController token)
     {
         int[,] tileIndices = new int[3, 3];
 

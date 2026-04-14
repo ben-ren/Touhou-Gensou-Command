@@ -96,6 +96,10 @@ public class TokenController : MonoBehaviour
             Debug.Log(other.GetComponentInParent<AI_EnemyToken>().enemyPrefab);
             //if other is enemy, store it's parent in Enemies list
             enemiesList.Add(other.GetComponentInParent<AI_EnemyToken>().enemyPrefab);
+            
+            //TODO - Set Encounters VisualElement in MapViewUI to visible. 
+            //TODO - Assign each button to associated character token scene data. 
+            //TODO - Replace MapViewUI button Images with enemy Image from AI_EnemyToken. 
         } 
     }
 
