@@ -38,28 +38,25 @@ public class GameViewUserInterface : MonoBehaviour
 
     void Start()
     {
-        _healthValue.highValue = 50; // or player.GetHealth() if max health
-        _healthValue.value = player.GetHealth();
-
-        _grazeValue.highValue = 100; // whatever your max graze is
-        _grazeValue.value = player.GetGraze();
+        
     }
 
     void OnEnable()
     {
-        // Make sure bars have correct highValues
-        _healthValue.highValue = player.GetMaxHealth(); // e.g., 50
-        _grazeValue.highValue = player.GetMaxGraze();   // e.g., 100
+        // Player might not exist yet → wait safely
+        if (player == null)
+        {
+            InvokeRepeating(nameof(WaitForPlayer), 0f, 0.05f);
+            return;
+        }
 
-        // Refresh UI
-        SetValues();
-
-        ResourceService.OnResourceChanged += HandleResourceChanged;
+        InitializeUI();
     }
 
     void OnDisable()
     {
         ResourceService.OnResourceChanged -= HandleResourceChanged;
+        CancelInvoke(nameof(WaitForPlayer));
     }
 
     private void HandleResourceChanged(ResourceType type, int amount)
@@ -80,5 +77,36 @@ public class GameViewUserInterface : MonoBehaviour
         {
             _spellcards[i].SetEnabled(i < bombs);
         }
+    }
+
+    void InitializeUI()
+    {
+        _healthValue.highValue = player.GetMaxHealth();
+        _grazeValue.highValue = player.GetMaxGraze();
+        _healthValue.value = player.GetHealth();
+        _grazeValue.value = player.GetGraze();
+
+        SetValues();
+
+        ResourceService.OnResourceChanged += HandleResourceChanged;
+    }
+
+    void WaitForPlayer()
+    {
+        if (player == null)
+            return;
+
+        CancelInvoke(nameof(WaitForPlayer));
+        InitializeUI();
+    }
+
+    public EntitySystems GetPlayer()
+    {
+        return player;
+    }
+
+    public void SetPlayer(EntitySystems player)
+    {
+        this.player = player;
     }
 }
