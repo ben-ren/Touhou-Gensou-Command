@@ -9,6 +9,7 @@ public class ResourceDeploy : MonoBehaviour
     [HideInInspector] public int fuel = 0;
     [HideInInspector] public int money = 0;
     [HideInInspector] public int bombs = 0;
+    [HideInInspector] public int orbs = 0;
 
     [SerializeField] private GameObject healthItem;
     [SerializeField] private GameObject powerItem;
@@ -16,6 +17,7 @@ public class ResourceDeploy : MonoBehaviour
     [SerializeField] private GameObject fuelItem;
     [SerializeField] private GameObject moneyItem;
     [SerializeField] private GameObject bombItem;
+    [SerializeField] private GameObject orbItem;
 
     void Update()
     {
@@ -41,6 +43,9 @@ public class ResourceDeploy : MonoBehaviour
 
         if (bombs > 0)
             ItemDeployLoop(bombItem, bombs);
+        
+        if (orbs > 0)
+            ItemDeployLoop(orbItem, orbs);
     }
 
     void ItemDeployLoop(GameObject currentItem, int currentItemVal)

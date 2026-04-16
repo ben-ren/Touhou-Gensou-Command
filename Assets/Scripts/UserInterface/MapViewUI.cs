@@ -194,7 +194,7 @@ public class MapViewUI : MonoBehaviour
         moneyValue = root.Q<IntegerField>("MoneyValue");
         fuelValue = root.Q<IntegerField>("FuelValue");
 
-        orbValue.value = $"x {_gameData.orbs}";
+        orbValue.value = $"x {_gameData.totalRequiredOrbs}";
         moneyValue.value = _gameData.money;
         fuelValue.value = _gameData.fuel;
     }

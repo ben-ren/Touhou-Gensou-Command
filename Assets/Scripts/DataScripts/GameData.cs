@@ -18,9 +18,13 @@ public class GameData
     public int missiles;
     public int lives; // YES — include if your design wants persistence
 
+
+
     //--------------------------------------
     // World / map state
     //--------------------------------------
+    public int requiredEncounterOrbs;   //The orb count needed to end an encounter
+    public int totalRequiredOrbs;   //The orbs needed to finish a level map
     public int[,] currentTileGrid;
     public List<PrefabStruct> prefabStructs;
     public List<GameObject> enemiesList;

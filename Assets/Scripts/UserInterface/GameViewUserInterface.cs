@@ -14,6 +14,7 @@ public class GameViewUserInterface : MonoBehaviour
     private VisualElement _spellcardThree;
     private Label _powerValue;
     private Label _fuelValue;
+    private Label _orbValue;
     private ProgressBar _healthValue;
     private ProgressBar _grazeValue;
     
@@ -24,6 +25,7 @@ public class GameViewUserInterface : MonoBehaviour
 
         _powerValue = _document.rootVisualElement.Q("PowerValue") as Label;
         _fuelValue = _document.rootVisualElement.Q("FuelValue") as Label;
+        _orbValue = _document.rootVisualElement.Q("OrbValue") as Label;
 
         _healthValue = _document.rootVisualElement.Q("HealthBar") as ProgressBar;
         _grazeValue = _document.rootVisualElement.Q("GrazeBar") as ProgressBar;
@@ -70,6 +72,7 @@ public class GameViewUserInterface : MonoBehaviour
         _grazeValue.value = player.GetGraze();
         _fuelValue.text = $": {player.GetFuel()}";
         _powerValue.text = $"{(float)player.GetPower() / 100:F2} / 4.00";
+        _orbValue.text = $"x {player.GetOrbs()} / {GameState.Instance.Data.requiredEncounterOrbs}";
 
         int bombs = player.GetBombs();
 

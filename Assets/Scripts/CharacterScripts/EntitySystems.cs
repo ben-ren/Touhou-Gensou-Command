@@ -18,6 +18,7 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
     [SerializeField] private int fuel = 0;
     [SerializeField] private int money = 0;
     [SerializeField] private int bombs = 0;
+    [SerializeField] private int orbs = 0;
 
     [SerializeField] private int maxHealth;
     [SerializeField] private int maxGraze;
@@ -59,6 +60,7 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
     public int GetBombs() => isPlayerEntity && characterData != null ? characterData.bombsData : bombs;
     public int GetFuel() => GameState.Instance.Data.fuel;
     public int GetMoney() => GameState.Instance.Data.money;
+    public int GetOrbs() => GameState.Instance.Data.orbs;
     public int GetGrazePoints() => grazePoints;
     public Team GetTeam() => team;
     public int GetMaxHealth() => maxHealth;
@@ -101,6 +103,7 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
 
     public void SetFuel(int value) => GameState.Instance.Data.fuel = value;
     public void SetMoney(int value) => GameState.Instance.Data.money = value;
+    public void SetOrbs(int value) => GameState.Instance.Data.orbs = value;
     public void SetGrazePoints(int value) => grazePoints = value;
     public void SetTeam(Team newTeam) => team = newTeam;
 
@@ -131,6 +134,7 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
         ResourceCap();
         IFrameTimer();
         if(isPlayerEntity)
+            orbs = 0;
             ReadData();
     }
 
@@ -214,6 +218,7 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
         res.fuel = this.fuel;
         res.money = this.money;
         res.bombs = this.bombs;
+        res.orbs = this.orbs;
     }
 
     /* =========================

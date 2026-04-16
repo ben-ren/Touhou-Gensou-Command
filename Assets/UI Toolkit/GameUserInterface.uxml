@@ -11,5 +11,7 @@
         <ui:Label name="FuelValue" style="position: absolute; top: 9px; left: 840px; height: 56px; width: 113px; font-size: 50px; -unity-text-align: middle-center; -unity-font-style: normal; -unity-font-definition: resource(&apos;FlatSkin/Font/Roboto-Black&apos;);" />
         <ui:Label name="PowerValue" style="white-space: pre; -unity-text-align: middle-center; height: 33px; width: 134px; color: rgb(0, 0, 0); background-color: rgba(255, 255, 255, 0); text-overflow: clip; position: absolute; top: 2px; left: 1631px; font-size: 30px; -unity-font-definition: resource(&apos;FlatSkin/Font/Roboto-Bold&apos;);" />
         <ui:VisualElement name="PowerIcon" style="flex-grow: 1; position: absolute; height: 40px; width: 40px; top: 5px; left: 1587px; background-image: url(&quot;project://database/Assets/Sprites/UI/P_point.png?fileID=2800000&amp;guid=3ea097556b5348143a05b9b2a48a95cf&amp;type=3#P_point&quot;);" />
+        <ui:VisualElement name="OrbIcon" style="flex-grow: 1; position: absolute; height: 67px; width: 70px; top: 1%; left: 16%; background-image: url(&quot;project://database/Assets/Sprites/UI/YinYang_black.png?fileID=2800000&amp;guid=6a1344390483e7149ba3490c7f9433b3&amp;type=3#YinYang_black&quot;);" />
+        <ui:Label name="OrbValue" style="position: absolute; top: 1%; left: 20%; height: 56px; width: 113px; font-size: 50px; -unity-text-align: middle-center; -unity-font-style: normal; -unity-font-definition: resource(&apos;FlatSkin/Font/Roboto-Black&apos;);" />
     </ui:VisualElement>
 </ui:UXML>
