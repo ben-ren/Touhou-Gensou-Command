@@ -205,7 +205,7 @@ public class TerrainEditor : MonoBehaviour
             float randomX = UnityEngine.Random.Range(terrainPos.x, terrainPos.x + terrainSize.x);
             float randomZ = UnityEngine.Random.Range(terrainPos.z, terrainPos.z + terrainSize.z);
             float y = terrain.SampleHeight(new Vector3(randomX, 0, randomZ)) + terrainPos.y;
-            float randomY = UnityEngine.Random.Range(y + 10, terrainSize.y);
+            float randomY = UnityEngine.Random.Range(y + 10, terrainSize.y/3);
             Vector3 randomPos = new Vector3(randomX, randomY, randomZ);
             Instantiate(enemy, randomPos, Quaternion.identity);
         }

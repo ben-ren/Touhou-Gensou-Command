@@ -25,6 +25,7 @@ public class GameData
     //--------------------------------------
     public int requiredEncounterOrbs;   //The orb count needed to end an encounter
     public int totalRequiredOrbs;   //The orbs needed to finish a level map
+    public bool encounterCompletedSuccessfully;
     public int[,] currentTileGrid;
     public List<PrefabStruct> prefabStructs;
     public List<GameObject> enemiesList;
@@ -36,7 +37,7 @@ public class GameData
     public List<LevelUnlockData> unlockedLevels = new();
 
     // Entity positions on the map scene saved by ID
-    public Dictionary<string, Vector3> entityPositions = new();
+    public List<EntityStateData> entityStates = new();
 
     // Pickups / items state
     public List<ItemStateData> itemStates = new();

@@ -20,7 +20,7 @@ public class TokenController : MonoBehaviour
 
     public CharacterData GetCharacterData() => characterData;
 
-    [HideInInspector] public List<GameObject> enemiesList;
+    [HideInInspector] public List<Enemy2D> enemiesList;
 
     void Awake()
     {
@@ -40,7 +40,7 @@ public class TokenController : MonoBehaviour
     void Start()
     {
         IC = InputController.instance;
-        enemiesList = new List<GameObject>();
+        enemiesList = new List<Enemy2D>();
 
         // Example: assign first party member
         characterData ??= GameState.Instance.Data.partyMembers[characterIndex];
@@ -93,9 +93,9 @@ public class TokenController : MonoBehaviour
         if (other.tag == "Cursor")_cursor_in_trigger = true;
         if (other.tag == "Enemy")
         {
-            Debug.Log(other.GetComponentInParent<AI_EnemyToken>().enemyPrefab);
+            Debug.Log(other.GetComponentInParent<Enemy2D>());
             //if other is enemy, store it's parent in Enemies list
-            enemiesList.Add(other.GetComponentInParent<AI_EnemyToken>().enemyPrefab);
+            enemiesList.Add(other.GetComponentInParent<Enemy2D>());
             
             //TODO - Set Encounters VisualElement in MapViewUI to visible. 
             //TODO - Assign each button to associated character token scene data. 

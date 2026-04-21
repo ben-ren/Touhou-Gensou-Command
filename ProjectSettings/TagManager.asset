@@ -12,6 +12,8 @@ TagManager:
   - boundary
   - Token
   - Cursor
+  - visual_tilemap
+  - collision_tilemap
   layers:
   - Default
   - TransparentFX

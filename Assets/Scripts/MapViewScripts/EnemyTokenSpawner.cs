@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyTokenSpawner : MonoBehaviour
+public class EnemyTokenSpawner : Enemy2D
 {
     public GameObject m_enemyPrefab;
     public GameObject defaultTarget;

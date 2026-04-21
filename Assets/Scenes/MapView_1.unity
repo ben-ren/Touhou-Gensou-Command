@@ -134,8 +134,8 @@ GameObject:
   - component: {fileID: 11396260}
   - component: {fileID: 11396259}
   m_Layer: 7
-  m_Name: CollisionTilemap
-  m_TagString: Untagged
+  m_Name: Tilemap_Collision
+  m_TagString: collision_tilemap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1116,8 +1116,8 @@ GameObject:
   - component: {fileID: 28211760}
   - component: {fileID: 28211759}
   m_Layer: 0
-  m_Name: Tilemap
-  m_TagString: Untagged
+  m_Name: Tilemap_Visual
+  m_TagString: visual_tilemap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7564,6 +7564,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2897949434416239349, guid: e4b2463e7f9ab6c40bdd437d504f34e2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3497338620636206153, guid: e4b2463e7f9ab6c40bdd437d504f34e2, type: 3}
+      propertyPath: orbCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3497338620636206153, guid: e4b2463e7f9ab6c40bdd437d504f34e2, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 8682634286815970793, guid: da46155778ae997408aa7ffbde86b5f3, type: 3}
     - target: {fileID: 3497338620636206153, guid: e4b2463e7f9ab6c40bdd437d504f34e2, type: 3}
       propertyPath: defaultTarget
       value: 
@@ -7831,6 +7843,14 @@ PrefabInstance:
     - target: {fileID: 2290920634239049453, guid: a8ee38acfcde50c4583d42b56ce9d643, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193395253657976872, guid: a8ee38acfcde50c4583d42b56ce9d643, type: 3}
+      propertyPath: obrCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193395253657976872, guid: a8ee38acfcde50c4583d42b56ce9d643, type: 3}
+      propertyPath: orbCount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4193395253657976872, guid: a8ee38acfcde50c4583d42b56ce9d643, type: 3}
       propertyPath: enemyPrefab

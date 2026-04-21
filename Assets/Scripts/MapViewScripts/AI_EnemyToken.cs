@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_EnemyToken : MonoBehaviour
+public class AI_EnemyToken : Enemy2D
 {
-    public GameObject enemyPrefab;
     public GameObject defaultTarget;
-
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float moveDistancePerTurn = 10f;
     [HideInInspector] public float distanceMovedThisTurn = 0f;

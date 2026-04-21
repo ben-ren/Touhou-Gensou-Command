@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1477798216213726559}
   - component: {fileID: 2360721333372676537}
   - component: {fileID: 889300596677576710}
+  - component: {fileID: 8776769674725896169}
   m_Layer: 11
   m_Name: HealthItem2D
   m_TagString: Item
@@ -95,6 +96,18 @@ MonoBehaviour:
   itemCollectSoundClip: {fileID: 8300000, guid: c783287c4ffcb79419d4345e141c540e, type: 3}
   IsCollected: 0
   healthItemValue: 20
+--- !u!114 &8776769674725896169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2430770363212405894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef142fcf5818c84fa5fe11798611d91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveableEntity
 --- !u!1 &7262990435830329043
 GameObject:
   m_ObjectHideFlags: 0

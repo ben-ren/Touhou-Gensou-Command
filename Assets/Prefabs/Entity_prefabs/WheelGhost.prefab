@@ -200,6 +200,7 @@ MonoBehaviour:
   fuel: 0
   money: 5
   bombs: 0
+  orbs: 0
   maxHealth: 0
   maxGraze: 0
   maxBombs: 0
