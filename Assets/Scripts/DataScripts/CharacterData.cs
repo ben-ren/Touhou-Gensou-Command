@@ -12,4 +12,18 @@ public class CharacterData
     public int powerData;
     public int grazeData;
     public int bombsData;
+
+    //Primary Constructor
+    public CharacterData(CharacterData other)
+    {
+        characterID = other.characterID;
+        characterName = other.characterName;
+        healthData = other.healthData;
+        powerData = other.powerData;
+        grazeData = other.grazeData;
+        bombsData = other.bombsData;
+    }
+
+    //Constructor Override backup
+    public CharacterData() { }
 }
