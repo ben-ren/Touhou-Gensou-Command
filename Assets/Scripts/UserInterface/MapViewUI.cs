@@ -287,6 +287,12 @@ public class MapViewUI : MonoBehaviour
 
     private void OnYesButtonClicked()
     {
+        // STEP 1 — Create save data from runtime state
+        SaveGameData save = GameState.Instance.CreateSaveData();
+
+        // STEP 2 — Save to slot. Example uses slot 0 for autosave
+        SaveSystem.SaveGame(save, 0);
+        
         UIController.instance.ExecuteTurn();
 
         confirmTurnMenu.style.visibility =

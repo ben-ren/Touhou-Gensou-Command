@@ -3,6 +3,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System;
+using System.Collections;
 
 public class EncounterManager : MonoBehaviour
 {
@@ -13,8 +14,7 @@ public class EncounterManager : MonoBehaviour
     public List<TileBase> tileLookup;   //Manually assign tile index values
     [Tooltip("Assign Prefabs to relavant tiles via their index. For Example; A prefab with 'Tile Index' of 1 will spawn on ALL terrain segments associated with Tile Lookup's Element 1")]
     public List<PrefabStruct> tilesAssignedToPrefabs;
-
-    String currentLevelMap;
+    private bool is3DScene = false;
 
     void OnEnable()
     {
@@ -26,23 +26,35 @@ public class EncounterManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    void Start()
-    {
-        currentLevelMap = SceneManager.GetActiveScene().name;
-    }
-
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Only restore when returning to map
-        if (scene.name == currentLevelMap)
+        is3DScene = scene.name == "3D_Game_View";
+        StartCoroutine(DelayedRebindAndCheck());
+
+        if (!is3DScene)
         {
-            RebindMapReferences();
-            RestoreMapState();
+            StartCoroutine(RestoreAfterMapLoads());
         }
+    }
+
+    private IEnumerator DelayedRebindAndCheck()
+    {
+        yield return null;
+
+        GameObject go = GameObject.FindGameObjectWithTag("visual_tilemap");
+
+        if (go == null)
+        {
+            tilemap = null;
+            yield break;
+        }
+
+        tilemap = go.GetComponent<Tilemap>();
     }
 
     void Update()
     {
+        if (!is3DScene) return;
         EndEncounterCheck();
     }
 
@@ -70,6 +82,8 @@ public class EncounterManager : MonoBehaviour
     */
     public void StartEncounter(TokenController selectedToken)
     {
+        GameState.Instance.Data.returnSceneName = SceneManager.GetActiveScene().name;
+
         SaveMapState();
 
         int [,] grid = BuildTileGrid(selectedToken);
@@ -99,13 +113,13 @@ public class EncounterManager : MonoBehaviour
 
     public void EndEncounterCheck()
     {
-        if (GameState.Instance.Data.orbs == GameState.Instance.Data.requiredEncounterOrbs 
-        && SceneManager.GetActiveScene().name != currentLevelMap)
+        if (GameState.Instance.Data.orbs ==
+        GameState.Instance.Data.requiredEncounterOrbs)
         {
             GameState.Instance.Data.encounterCompletedSuccessfully = true;
             GameState.Instance.Data.totalRequiredOrbs -= GameState.Instance.Data.orbs;
 
-            SceneManager.LoadScene(currentLevelMap);
+            SceneManager.LoadScene(GameState.Instance.Data.returnSceneName);
         }
     }
 
@@ -160,6 +174,13 @@ public class EncounterManager : MonoBehaviour
                 isActive = t.gameObject.activeSelf
             });
         }
+    }
+
+    private IEnumerator RestoreAfterMapLoads()
+    {
+        yield return null; // wait 1 frame for scene objects to exist
+
+        RestoreMapState();
     }
 
     public void RestoreMapState()

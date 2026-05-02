@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
     private VisualElement _galleryMenu;
     private VisualElement _confirmQuitMenu;
     private Button _backButton;
+    private Button _continueButton;
 
     //------------Menu Scripts-----------------
     LoadMenu loadMenuUI;
@@ -49,13 +50,18 @@ public class MainMenu : MonoBehaviour
         _settingsMenu    = root.Q<VisualElement>("SettingsMenu");
         _galleryMenu     = root.Q<VisualElement>("Gallery");
         _confirmQuitMenu = root.Q<VisualElement>("ConfirmQuit");
+        _continueButton = root.Q<Button>("ContinueButton");
         _backButton      = root.Q<Button>("BackButton");
 
         _buttons = root.Query<Button>().ToList();
 
+        //Disables continue button if no autosave exists. 
+        _continueButton.SetEnabled(SaveSystem.SaveExists(0));
+
         _buttonActions = new()
         {
-            { "PlayButton", OnPlayClicked },
+            { "ContinueButton", OnContinueClicked },
+            { "NewGameButton", OnNewGameClicked },
             { "LoadButton", OnLoadClicked },
             { "SettingsButton", OnSettingsClicked },
             { "GalleryButton", OnGalleryClicked },
@@ -118,10 +124,28 @@ public class MainMenu : MonoBehaviour
 
     //---------- Button Actions -------------
 
-    private void OnPlayClicked()
+    private void OnContinueClicked()
     {
-        // Example: load next scene (replace with your scene index or name)
-        SceneManager.LoadScene("TestRoom");
+        SaveGameData loadedSave =
+            SaveSystem.LoadGame(0);
+
+        if (loadedSave == null)
+        {
+            Debug.Log("No autosave found.");
+            return;
+        }
+
+        GameState.Instance.LoadFromSave(loadedSave);
+
+        SceneManager.LoadScene("MapView_1");
+    }
+
+    private void OnNewGameClicked()
+    {
+        GameState.Instance.ResetForNewGame();
+        SaveGameData save = GameState.Instance.CreateSaveData();
+        SaveSystem.SaveGame(save, 0);
+        SceneManager.LoadScene("MapView_1");
     }
 
     private void OnLoadClicked()

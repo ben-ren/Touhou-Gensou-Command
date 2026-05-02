@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EntityManager : MonoBehaviour
 {
@@ -6,7 +7,17 @@ public class EntityManager : MonoBehaviour
     public Enemy2D[] enemy2DTokens;
     public Item[] items;
 
-    private void Awake()
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         playerTokens = FindObjectsByType<TokenController>(FindObjectsSortMode.None);
         enemy2DTokens = FindObjectsByType<Enemy2D>(FindObjectsSortMode.None);

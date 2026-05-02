@@ -2,13 +2,17 @@
     <Style src="project://database/Assets/UI%20Toolkit/UnityStyleSheets/MainMenu.uss?fileID=7433441132597879392&amp;guid=8f2ebd14ca869574180522f69ccfccf5&amp;type=3#MainMenu" />
     <ui:VisualElement name="MainMenu" enabled="true" style="position: absolute; top: 0%; left: 0%; right: 0%; bottom: 0%;">
         <ui:VisualElement name="Background" enabled="true" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/greybox_sprites/square.png?fileID=2800000&amp;guid=02ed11967dd71204cbb1ed59a26173ca&amp;type=3#square&quot;); -unity-background-image-tint-color: rgb(114, 53, 39);" />
-        <ui:Button text="Start Game" name="PlayButton" style="position: absolute; top: 45%; left: 45%; align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto; -unity-text-align: middle-center; width: 10%; height: 5%;" />
+        <ui:Button text="Continue" name="ContinueButton" style="position: absolute; top: 40%; left: 45%; align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto; -unity-text-align: middle-center; width: 10%; height: 5%;" />
+        <ui:Button text="New Game" name="NewGameButton" style="position: absolute; top: 45%; left: 45%; align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto; -unity-text-align: middle-center; width: 10%; height: 5%;" />
         <ui:Button text="Load Saves" name="LoadButton" style="position: absolute; top: 50%; left: 45%; align-items: auto; align-content: auto; width: 10%; height: 5%;" />
         <ui:Button text="Settings" name="SettingsButton" style="position: absolute; top: 55%; left: 45%; align-content: auto; align-items: auto; width: 10%; height: 5%;" />
         <ui:Button text="Gallery" name="GalleryButton" style="position: absolute; top: 60%; left: 45%; align-items: auto; align-content: auto; width: 10%; height: 5%;" />
         <ui:Button text="Quit Game" name="QuitButton" style="position: absolute; top: 65%; left: 45%; align-items: auto; align-content: auto; width: 10%; height: 5%;" />
     </ui:VisualElement>
-    <ui:VisualElement name="LoadMenu" class="hidden" style="flex-grow: 1; position: absolute; top: 0%; left: 0%; right: 0%; bottom: 0%; background-color: rgb(255, 5, 0);" />
+    <ui:VisualElement name="LoadMenu" class="hidden" style="flex-grow: 1; background-color: rgb(255, 0, 0);">
+        <ui:Label text="Save Slots" style="font-size: 49px; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-outline-color: rgb(10, 0, 255); -unity-text-outline-width: 3px;" />
+        <ui:ListView name="SaveList" style="position: relative; top: 0%; left: 0%; height: auto; width: auto; min-height: auto; max-height: none; flex-grow: 1; right: 0%; bottom: 0%;" />
+    </ui:VisualElement>
     <ui:VisualElement name="SettingsMenu" class="hidden" style="flex-grow: 1; position: absolute; top: 0%; left: 0%; right: 0%; bottom: 0%; background-color: rgb(255, 0, 249);">
         <ui:Button text="Graphics" name="GraphicsSettingsButton" enable-rich-text="true" style="position: absolute; left: 2%; right: auto; height: 50px; width: 30%; align-self: flex-start; top: 2%;" />
         <ui:Button text="Audio" name="AudioSettingsButton" style="left: 34%; width: 30%; height: 50px; -unity-text-align: middle-center; white-space: pre; justify-content: flex-start; align-self: center; position: absolute; align-items: stretch; top: 2%;" />
