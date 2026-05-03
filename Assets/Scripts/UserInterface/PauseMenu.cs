@@ -17,11 +17,14 @@ public class PauseMenu : MonoBehaviour
     //-------------- Menu elements --------------------
     private VisualElement _pauseScreen;
     private VisualElement _pauseMenu;
+    private VisualElement _saveGameMenu;
     private VisualElement _settingsMenu;
     private VisualElement _confirmQuit;
+    private Button _backButton;
 
     //-------------- Menu Scripts --------------------
     SettingsMenu settingsMenuUI;
+    SaveGameMenu saveGameMenuUI;
 
     //--------------Pause Controls---------------------
     private bool isPaused;
@@ -39,14 +42,18 @@ public class PauseMenu : MonoBehaviour
 
         //Get UI control reference
         settingsMenuUI = GetComponent<SettingsMenu>();
+        saveGameMenuUI = GetComponent<SaveGameMenu>();
 
         //get UI visual elements reference
         _pauseScreen    = root.Q<VisualElement>("PauseContainer");
         _pauseMenu      = root.Q<VisualElement>("PauseMenu");
+        _saveGameMenu   = root.Q<VisualElement>("SaveGameMenu");
         _settingsMenu   = root.Q<VisualElement>("SettingsMenu");
         _confirmQuit    = root.Q<VisualElement>("ConfirmQuit");
+        _backButton      = root.Q<Button>("BackButton");
 
         settingsMenuUI.enabled = false;
+        saveGameMenuUI.enabled = false;
 
         // Cache all buttons
         _buttons = root.Query<Button>().ToList();
@@ -55,6 +62,7 @@ public class PauseMenu : MonoBehaviour
         _buttonActions = new Dictionary<string, System.Action>()
         {
             { "ResumeButton", OnResumeClicked },
+            { "SaveGameButton", () => OnSaveGameClicked() },
             { "SettingsButton", () => OnSettingsClicked() },
             { "QuitButton", () => OnQuitClicked() },
             { "YesButton", () => OnYesClicked() },
@@ -114,6 +122,7 @@ public class PauseMenu : MonoBehaviour
     private void HideAllMenus()
     {
         _pauseMenu.AddToClassList("hidden");
+        _saveGameMenu.AddToClassList("hidden");
         _settingsMenu.AddToClassList("hidden");
         _confirmQuit.AddToClassList("hidden");
     }
@@ -123,6 +132,14 @@ public class PauseMenu : MonoBehaviour
     {
         HideAllMenus();
         menu.RemoveFromClassList("hidden");
+        if(menu == _pauseMenu)
+        {
+            _backButton.AddToClassList("hidden");
+        }
+        else
+        {
+            _backButton.RemoveFromClassList("hidden");
+        }
     }
 
     // ==========================================================
@@ -166,6 +183,13 @@ public class PauseMenu : MonoBehaviour
     void OnResumeClicked()
     {
         TogglePause();
+    }
+
+    void OnSaveGameClicked()
+    {
+        saveGameMenuUI.enabled = true;
+        ShowMenu(_saveGameMenu);
+        saveGameMenuUI.SetReturnMenu(_pauseMenu);
     }
     
     void OnSettingsClicked()

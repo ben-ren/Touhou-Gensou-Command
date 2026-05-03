@@ -19,6 +19,8 @@ using System.Collections.Generic;
 [Serializable]
 public class SaveGameData
 {
+    public string saveDateTime;
+    
     //--------------------------------------
     // Persistent Resources
     //--------------------------------------

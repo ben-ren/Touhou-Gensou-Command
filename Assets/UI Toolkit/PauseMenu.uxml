@@ -2,9 +2,14 @@
     <Style src="project://database/Assets/UI%20Toolkit/UnityStyleSheets/PauseMenuStyle.uss?fileID=7433441132597879392&amp;guid=2f966daec80439e43b413ec8556250e8&amp;type=3#PauseMenuStyle" />
     <ui:VisualElement name="PauseContainer" focusable="true" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/greybox_sprites/square.png?fileID=2800000&amp;guid=02ed11967dd71204cbb1ed59a26173ca&amp;type=3#square&quot;); -unity-background-image-tint-color: rgba(75, 75, 75, 0.43);">
         <ui:VisualElement name="PauseMenu" style="flex-grow: 1; position: absolute; right: auto; bottom: auto; top: auto; left: auto; width: 100%; height: 100%;">
-            <ui:Button text="Resume" name="ResumeButton" enabled="true" style="position: absolute; top: 45%; left: 45%; align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto; -unity-text-align: middle-center; width: 10%; height: 5%;" />
+            <ui:Button text="Resume" name="ResumeButton" enabled="true" style="position: absolute; top: 35%; left: 45%; align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto; -unity-text-align: middle-center; width: 10%; height: 5%;" />
+            <ui:Button text="Save Game" name="SaveGameButton" enabled="true" style="position: absolute; top: 45%; left: 45%; align-items: auto; justify-content: flex-start; align-self: auto; align-content: auto; -unity-text-align: middle-center; width: 10%; height: 5%;" />
             <ui:Button text="Settings" name="SettingsButton" style="position: absolute; top: 55%; left: 45%; align-content: auto; align-items: auto; width: 10%; height: 5%;" />
             <ui:Button text="Quit To Title" name="QuitButton" style="position: absolute; top: 65%; left: 45%; align-items: auto; align-content: auto; width: 10%; height: 5%;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="SaveGameMenu" class="hidden" style="flex-grow: 1; background-color: rgb(255, 0, 0);">
+            <ui:Label text="Save Slots" style="font-size: 49px; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-outline-color: rgb(10, 0, 255); -unity-text-outline-width: 3px;" />
+            <ui:ListView name="SaveList" style="position: relative; top: 0%; left: 0%; height: auto; width: auto; min-height: auto; max-height: none; flex-grow: 1; right: 0%; bottom: 0%;" />
         </ui:VisualElement>
         <ui:VisualElement name="SettingsMenu" class="hidden" style="flex-grow: 1; position: absolute; top: 0%; left: 0%; right: 0%; bottom: 0%; background-color: rgb(255, 0, 249);">
             <ui:Button text="Graphics" name="GraphicsSettingsButton" enable-rich-text="true" style="position: absolute; left: 2%; right: auto; height: 50px; width: 30%; align-self: flex-start; top: 2%;" />
@@ -31,11 +36,11 @@
                 <ui:DropdownField label="Display Mode" name="DisplayMode" choices="Full Screen,Windowed" style="max-width: 90%;" />
             </ui:VisualElement>
             <ui:Button text="Reset To Default Settings" name="ResetButton" style="position: absolute; right: 79%; bottom: 1%; width: 10%; height: 5%;" />
-            <ui:Button text="Back" name="BackButton" style="position: absolute; top: 94%; left: 90%; width: 10%; height: 5%; color: rgb(255, 235, 4); background-color: rgba(188, 188, 188, 0); -unity-text-outline-width: 2px; font-size: 30%; -unity-text-outline-color: rgb(125, 86, 34); -unity-font-style: bold; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; right: auto; bottom: auto;" />
         </ui:VisualElement>
         <ui:VisualElement name="ConfirmQuit" class="hidden" style="flex-grow: 1; position: absolute; top: 45%; left: 30%; right: 30%; bottom: 40%; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgb(0, 24, 255);">
             <ui:Button text="Yes" name="YesButton" style="position: absolute; top: 30%; left: 10%; height: 65px; width: 148px;" />
             <ui:Button text="No" name="NoButton" style="position: absolute; top: 30%; left: 70%; height: 65px; width: 148px; right: auto;" />
         </ui:VisualElement>
+        <ui:Button text="Back" name="BackButton" style="position: absolute; top: 94%; left: 90%; width: 10%; height: 5%; color: rgb(255, 235, 4); background-color: rgba(188, 188, 188, 0); -unity-text-outline-width: 2px; font-size: 30%; -unity-text-outline-color: rgb(125, 86, 34); -unity-font-style: bold; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; right: auto; bottom: auto;" />
     </ui:VisualElement>
 </ui:UXML>

@@ -46,6 +46,7 @@ public class GameState : MonoBehaviour
     {
         return new SaveGameData
         {
+            saveDateTime = System.DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
             money = Data.money,
             fuel = Data.fuel,
             orbs = Data.orbs,

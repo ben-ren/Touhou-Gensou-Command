@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6101942577259424143}
   - component: {fileID: 6956920198434047253}
   - component: {fileID: 129514037743803571}
+  - component: {fileID: 5853894450667921195}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -83,3 +84,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingsMenu
   _audioMixer: {fileID: 24100000, guid: 127f1fe84c18aa54e9090185d6bf778c, type: 2}
+--- !u!114 &5853894450667921195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044087162921107962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c6964bf3d81c44ca3f2ccefa579716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveGameMenu

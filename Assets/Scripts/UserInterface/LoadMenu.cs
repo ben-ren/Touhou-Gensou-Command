@@ -10,6 +10,12 @@ public class LoadMenu : MonoBehaviour
 
     private List<SaveSlotData> saveSlots = new List<SaveSlotData>();
 
+    private void OnEnable()
+    {
+        BuildSaveSlotList();
+        SetupListView();
+    }
+
     private void Awake()
     {
         _document = GetComponent<UIDocument>();
@@ -18,9 +24,6 @@ public class LoadMenu : MonoBehaviour
         VisualElement loadMenuRoot = root.Q<VisualElement>("LoadMenu");
 
         _listView = loadMenuRoot.Q<ListView>("SaveList");
-
-        BuildSaveSlotList();
-        SetupListView();
     }
 
     // --------------------------------------------------
@@ -35,11 +38,20 @@ public class LoadMenu : MonoBehaviour
         {
             bool exists = SaveSystem.SaveExists(i);
 
+             SaveGameData loadedSave = null;
+
+            if (exists)
+                loadedSave = SaveSystem.LoadGame(i);
+
             saveSlots.Add(new SaveSlotData
             {
                 slotIndex = i,
-                saveName = exists ? $"Save Slot {i}" : "Empty Slot",
-                lastPlayed = exists ? "Has Save Data" : "No Save Found",
+                saveName = exists 
+                    ? $"Save Slot {i}" : "Empty Slot",
+
+                lastPlayed = loadedSave != null 
+                    ? loadedSave.saveDateTime : "No Save Found",
+
                 hasSave = exists
             });
         }
@@ -56,23 +68,40 @@ public class LoadMenu : MonoBehaviour
         // Creates each row
         _listView.makeItem = () =>
         {
-            Button button = new Button();
-            button.style.height = 60;
-            return button;
+            VisualElement row = new VisualElement();
+            row.style.flexDirection = FlexDirection.Row;
+            row.style.height = 60;
+
+            Button loadButton = new Button();
+            loadButton.name = "LoadButton";
+            loadButton.style.flexGrow = 1;
+
+            Button deleteButton = new Button();
+            deleteButton.name = "DeleteButton";
+            deleteButton.text = "X";
+            deleteButton.style.width = 40;
+
+            row.Add(loadButton);
+            row.Add(deleteButton);
+
+            return row;
         };
 
         // Fills each row
         _listView.bindItem = (element, index) =>
         {
-            Button button = element as Button;
             SaveSlotData slot = saveSlots[index];
 
-            button.text = $"{slot.saveName}\n{slot.lastPlayed}";
+            Button loadButton = element.Q<Button>("LoadButton");
+            Button deleteButton = element.Q<Button>("DeleteButton");
 
-            button.userData = slot.slotIndex;
+            loadButton.text = $"{slot.saveName}\n{slot.lastPlayed}";
 
-            button.clicked -= OnSlotClicked;
-            button.clicked += OnSlotClicked;
+            int slotIndex = slot.slotIndex;
+
+            loadButton.clicked += () => LoadSlot(slotIndex);
+
+            deleteButton.clicked += () => OnDeleteClicked(slotIndex);
         };
 
         _listView.fixedItemHeight = 60;
@@ -93,20 +122,38 @@ public class LoadMenu : MonoBehaviour
         LoadSlot(slot);
     }
 
+    private void OnDeleteClicked(int slot)
+    {
+        SaveSystem.DeleteSave(slot);
+
+        BuildSaveSlotList();
+        _listView.itemsSource = saveSlots;
+        _listView.Rebuild();
+
+        Debug.Log($"Data deleted from slot {slot}");
+    }
+
     // --------------------------------------------------
     // Load Save
     // --------------------------------------------------
 
     private void LoadSlot(int slot)
     {
-        SaveGameData loadedSave =
-            SaveSystem.LoadGame(slot);
+        SaveGameData loadedSave = SaveSystem.LoadGame(slot);
 
         if (loadedSave == null)
             return;
 
         GameState.Instance.LoadFromSave(loadedSave);
 
-        SceneManager.LoadScene("MapScene");
+        LoadSceneFromSave(loadedSave);
+    }
+
+    private void LoadSceneFromSave(SaveGameData save)
+    {
+        int index = save.currentLevelIndex;
+
+        string sceneName = LevelDatabase.GetSceneName(index);
+        SceneManager.LoadScene(sceneName);
     }
 }
