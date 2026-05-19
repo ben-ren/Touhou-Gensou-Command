@@ -9,3 +9,25 @@
     display: none;
     visibility: hidden;
 }
+
+#CharacterGallery
+{
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
+#LevelGallery
+{
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    gap: 10px;
+}

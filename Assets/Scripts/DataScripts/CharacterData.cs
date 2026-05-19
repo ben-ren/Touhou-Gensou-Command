@@ -18,6 +18,7 @@ public class CharacterData
     {
         characterID = other.characterID;
         characterName = other.characterName;
+        characterIcon = other.characterIcon;
         healthData = other.healthData;
         powerData = other.powerData;
         grazeData = other.grazeData;

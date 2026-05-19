@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3367559976042391231}
   - component: {fileID: 2611864835827198323}
   - component: {fileID: 6974643645852646805}
+  - component: {fileID: 1522790787083672693}
   m_Layer: 0
   m_Name: PersistantManagers
   m_TagString: Untagged
@@ -128,7 +129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EncounterManager
   tilemap: {fileID: 0}
-  token: {fileID: 0}
   tileLookup: []
   tilesAssignedToPrefabs: []
 --- !u!114 &6974643645852646805
@@ -144,6 +144,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityManager
   playerTokens: []
-  enemyTokens: []
-  enemySpawners: []
+  enemy2DTokens: []
   items: []
+--- !u!114 &1522790787083672693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5850239579180972878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9338981852ff24f4a8a26e20af7fcf0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DatabaseLoader
+  characterSprites:
+  - {fileID: 21300000, guid: fd2897f044a645946986fd6e1845e094, type: 3}
+  - {fileID: 21300000, guid: 915905b990171b548996afd48d6b7f9f, type: 3}

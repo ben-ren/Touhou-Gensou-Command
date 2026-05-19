@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -18,15 +19,16 @@ public class CharacterCardUI
 
     public CharacterCardUI(VisualElement root)
     {
-        this.root = root;
+        this.root = root;   // the CharacterCard VisualElement
         CacheElements();
     }
 
     private void CacheElements()
     {
-        // Icons
+        // CharacterIcon
         characterIcon = root.Q<VisualElement>("CharacterIcon");
 
+        //the Spellcards -> Bombs [][][]
         var spellcards = root.Q<VisualElement>("Spellcards");
         bombIcons.AddRange(spellcards.Children());
 
@@ -67,5 +69,24 @@ public class CharacterCardUI
         {
             bombIcons[i].style.opacity = i < bombsRemaining ? 1f : 0.25f;
         }
+    }
+
+    public void Bind(CharacterData data)
+    {
+        
+        SetHealth(data.healthData, 100);
+        SetGraze(data.grazeData, 100);
+        SetPower(data.powerData, 4);
+        SetBombs(data.bombsData);
+
+        Debug.Log($"Sprite: {data.characterIcon}");
+        Debug.Log($"Texture: {data.characterIcon?.texture}");
+
+        characterIcon.style.backgroundImage 
+            = new StyleBackground(data.characterIcon);
+
+        characterIcon.style.width = 64;
+        characterIcon.style.height = 64;
+        Debug.Log($"Icon null? {data.characterIcon == null}");     
     }
 }

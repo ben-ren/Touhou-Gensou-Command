@@ -14,4 +14,9 @@ public static class LevelDatabase
 
         return scenes[index];
     }
+
+    public static int GetLevelCount()
+    {
+        return scenes.Length;
+    }
 }

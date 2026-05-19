@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff4b96f97b110243b435daed2307ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GalleryUI
+  _characterCardTemplate: {fileID: 9197481963319205126, guid: 0b4ec565cba323e4a806fc244c9899b7, type: 3}
 --- !u!114 &1032721496
 MonoBehaviour:
   m_ObjectHideFlags: 0

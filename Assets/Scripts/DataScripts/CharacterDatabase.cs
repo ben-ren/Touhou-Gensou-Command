@@ -30,7 +30,7 @@ public static class CharacterDatabase
     public static CharacterData GetCharacter(int id)
     {
         if (characters.TryGetValue(id, out var character))
-            return new CharacterData(character);
+            return characters[id];
 
         Debug.LogWarning($"Character {id} not found");
         return null;
@@ -39,5 +39,18 @@ public static class CharacterDatabase
     public static IReadOnlyDictionary<int, CharacterData> GetAllCharacters()
     {
         return characters;
+    }
+
+    public static int GetDatabaseSize()
+    {
+        return characters.Count;
+    }
+
+    public static void SetIcons(Sprite[] sprites)
+    {
+        for(int i = 0; i < sprites.Length; i++)
+        {
+            characters[i].characterIcon = sprites[i];
+        }
     }
 }
