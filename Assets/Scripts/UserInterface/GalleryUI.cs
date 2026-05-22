@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,11 +7,12 @@ public class GalleryUI : MonoBehaviour
 {
     private UIDocument _document;
     [SerializeField] private VisualTreeAsset _characterCardTemplate;
+    [SerializeField] private VisualTreeAsset _levelCard;
     //---------------------------------------------------
     //***************Display*Data************************
     //---------------------------------------------------    
     List<CharacterCardUI> charactersList = new List<CharacterCardUI>();
-    List<string> levelsList = new List<string>();
+    List<LevelCard> levelsList = new List<LevelCard>();
 
     //---------------------------------------------------
     //******************Buttons************************
@@ -117,10 +119,30 @@ public class GalleryUI : MonoBehaviour
     */
     private void BuildLevelGallery()
     {
-        for (int i = 0; i < LevelDatabase.GetLevelCount(); i++)
+        _levelsGallery.Clear();
+        levelsList.Clear();
+
+        foreach(var level in LevelDatabase.GetLevels())
         {
-            levelsList.Add(LevelDatabase.GetSceneName(i));
-        }
-        Debug.Log("Levels" + levelsList);
+            //Create Level Card
+            TemplateContainer card = _levelCard.Instantiate();
+            VisualElement root = card;
+            Button levelButton = root.Q<Button>("LevelButton");
+
+            //Set Level text
+            levelButton.text = level.levelName;
+
+            //Set Level Image
+            levelButton.style.backgroundImage = level.levelSprite.texture;
+
+            levelButton.clicked += () 
+            => UnityEngine.SceneManagement.SceneManager.LoadScene(level.levelName);
+
+            //Store reference
+            levelsList.Add(level);
+
+            //Add to Gallery
+            _levelsGallery.Add(card);
+        }  
     }
 }

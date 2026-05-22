@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GalleryUI
   _characterCardTemplate: {fileID: 9197481963319205126, guid: 0b4ec565cba323e4a806fc244c9899b7, type: 3}
+  _levelCard: {fileID: 9197481963319205126, guid: 42ac11ac8181a7d40a85c55ba8c9fb6d, type: 3}
 --- !u!114 &1032721496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,6 +601,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1522790787083672693, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: levelSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1522790787083672693, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: 'levelSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1522790787083672693, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: 'levelSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1522790787083672693, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: 'levelSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 561b9d0e963a7fd41b2dad31bf4bb4f3, type: 3}
     - target: {fileID: 4817623688779262867, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.1533

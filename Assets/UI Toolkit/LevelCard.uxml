@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="LevelCard" style="flex-grow: 1;">
+        <ui:Button text="Button" name="LevelButton" style="height: 100%; -unity-text-align: lower-center; background-size: 100% 90%; background-position-y: top 0; background-color: rgba(188, 188, 188, 0);" />
+    </ui:VisualElement>
+</ui:UXML>

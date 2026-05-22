@@ -79,14 +79,10 @@ public class CharacterCardUI
         SetPower(data.powerData, 4);
         SetBombs(data.bombsData);
 
-        Debug.Log($"Sprite: {data.characterIcon}");
-        Debug.Log($"Texture: {data.characterIcon?.texture}");
-
         characterIcon.style.backgroundImage 
             = new StyleBackground(data.characterIcon);
 
         characterIcon.style.width = 64;
-        characterIcon.style.height = 64;
-        Debug.Log($"Icon null? {data.characterIcon == null}");     
+        characterIcon.style.height = 64; 
     }
 }

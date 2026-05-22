@@ -153,7 +153,7 @@ public class LoadMenu : MonoBehaviour
     {
         int index = save.currentLevelIndex;
 
-        string sceneName = LevelDatabase.GetSceneName(index);
+        string sceneName = LevelDatabase.GetLevelName(index);
         SceneManager.LoadScene(sceneName);
     }
 }
