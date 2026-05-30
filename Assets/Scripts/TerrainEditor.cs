@@ -10,6 +10,8 @@ public class TerrainEditor : MonoBehaviour
     public TileData[,] tileGrid = new TileData[3, 3];
     int res;
 
+    float blendStart;
+
     void Start()
     {
         terrain = GetComponent<Terrain>();
@@ -51,9 +53,9 @@ public class TerrainEditor : MonoBehaviour
     {
         return new int[3, 3]
         {
-            { 0, 0, 1},
-            { 1, 1, 2},
-            { 1, 2, 3}
+            { 0, 1, 3},
+            { 1, 2, 2},
+            { 2, 3, 2}
         };
     }
 
@@ -63,11 +65,11 @@ public class TerrainEditor : MonoBehaviour
         int baseIndex = index % 4;  //loop through heightmaps for eahc tile type.
         return baseIndex switch
         {
-            0 => TileData.Plains(),
-            1 => TileData.Hills(),
-            2 => TileData.Mountain(),
-            3 => TileData.Water(),
-            _ => TileData.Plains(),// fallback
+            0 => TileData.Water(),
+            1 => TileData.Plains(),
+            2 => TileData.Hills(),
+            3 => TileData.Mountain(),
+            _ => TileData.Plains(),// fallback default
         };
     }
 
@@ -97,6 +99,11 @@ public class TerrainEditor : MonoBehaviour
                 float tx = gx - x0;
                 float ty = gy - y0;
 
+                // Compress blending to edge regions
+                // ===================================
+                float blendTx = EdgeBlend(tx);
+                float blendTy = EdgeBlend(ty);
+
                 // Sample heights
                 float h00 = tileGrid[x0, y0].height;
                 float h10 = tileGrid[x1, y0].height;
@@ -106,9 +113,9 @@ public class TerrainEditor : MonoBehaviour
                 // Bilinear interpolation for height
                 float baseHeight =
                     Mathf.Lerp(
-                        Mathf.Lerp(h00, h10, tx),
-                        Mathf.Lerp(h01, h11, tx),
-                        ty
+                        Mathf.Lerp(h00, h10, blendTx),
+                        Mathf.Lerp(h01, h11, blendTx),
+                        blendTy
                     );
 
                 // Sample noise values
@@ -120,9 +127,9 @@ public class TerrainEditor : MonoBehaviour
                 // Bilinear interpolation for noise
                 float blendedNoise =
                     Mathf.Lerp(
-                        Mathf.Lerp(n00, n10, tx),
-                        Mathf.Lerp(n01, n11, tx),
-                        ty
+                        Mathf.Lerp(n00, n10, blendTx),
+                        Mathf.Lerp(n01, n11, blendTx),
+                        blendTy
                     );
 
                 // Apply blended noise
@@ -132,6 +139,33 @@ public class TerrainEditor : MonoBehaviour
             }
         }
         terrain.terrainData.SetHeights(0, 0, mesh);
+    }
+
+    // -------------------
+    // Blend Compression
+    // -------------------
+    private float EdgeBlend(float t)
+    {
+        blendStart = 0.35f; // The percentage of tile edge's that are blended by type
+
+        if (t < blendStart)
+            return 0f;
+
+        return Mathf.SmoothStep(
+            0f,
+            1f,
+            (t - blendStart) / (1f - blendStart)
+        );
+    }
+
+    public void SetTerrainBlend(float blendVal)
+    {
+        blendStart = blendVal;
+    }
+
+    public float GetTerrainBlend()
+    {
+        return blendStart;
     }
 
     // -------------------

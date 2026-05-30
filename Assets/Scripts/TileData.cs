@@ -17,8 +17,8 @@ public class TileData
     public static TileData Hills() => new TileData 
     { 
         type = e_TileType.Hills, 
-        height = 0.04f, 
-        noise = 0.03f
+        height = 0.1f, 
+        noise = 0.04f
     };
     public static TileData Plains() => new TileData 
     { 

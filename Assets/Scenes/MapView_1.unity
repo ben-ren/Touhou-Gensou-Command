@@ -6802,14 +6802,14 @@ PrefabInstance:
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tilesAssignedToPrefabs.Array.data[0].prefab
       value: 
-      objectReference: {fileID: 2650817808719754208, guid: 4b4d934588e547a41b81da9ff7a2097d, type: 3}
+      objectReference: {fileID: 7900475683670150940, guid: 3bfdae0bb732ad84faf6c54ca5721b76, type: 3}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tilesAssignedToPrefabs.Array.data[0].tileIndex
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tilesAssignedToPrefabs.Array.data[0].spawnCount
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: prefabStructs.Array.data[0].applyRandomTransform
