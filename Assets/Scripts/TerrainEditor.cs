@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Mono.Cecil.Cil;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class TerrainEditor : MonoBehaviour
     public List<PrefabStruct> terrainPrefabs;
     Terrain terrain;
     public TileData[,] tileGrid = new TileData[3, 3];
+    public List<TerrainTextureRules> textureRules;
+    private Dictionary<int, int> tileToLayer = new();
     int res;
 
     float blendStart;
@@ -16,10 +19,15 @@ public class TerrainEditor : MonoBehaviour
     {
         terrain = GetComponent<Terrain>();
         res = terrain.terrainData.heightmapResolution;
-
+        
         ResetTerrainHeight();
         PopulateData();
+        BuildTileToLayerLookup();
+
         ApplyHeightmap();
+
+        ApplyTexturesToGrid();
+
         if(terrainPrefabs!= null) SpawnPrefabs();
         SpawnKeyEnemies();
     }
@@ -27,9 +35,6 @@ public class TerrainEditor : MonoBehaviour
     // -------------------
     // Populate Dataset
     // -------------------
-    // TODO - Populate terrainPrefabs with data obtained by EncounterManager, including tileIndex.
-    // TODO - Cross reference index of grid array with PrefabStruct's tileIndex.
-    // TODO - Randomly spread enemy units around scene. 
     public void PopulateData()
     {
         int[,] grid = GameState.Instance.Data.currentTileGrid;
@@ -47,6 +52,7 @@ public class TerrainEditor : MonoBehaviour
         }
 
         terrainPrefabs = GameState.Instance.Data.prefabStructs;
+        textureRules = GameState.Instance.Data.textureRules;
     }
 
     private int[,] DefaultGrid()
@@ -57,6 +63,27 @@ public class TerrainEditor : MonoBehaviour
             { 1, 2, 2},
             { 2, 3, 2}
         };
+    }
+
+    void BuildTileToLayerLookup()
+    {
+        tileToLayer.Clear();
+
+        var layers = terrain.terrainData.terrainLayers;
+
+        foreach (var rule in textureRules)
+        {
+            if (rule.terrainLayer == null) continue;
+
+            int layerIndex = Array.IndexOf(layers, rule.terrainLayer);
+
+            if (layerIndex >= 0)
+            {
+                tileToLayer[rule.tileTypeIndex] = layerIndex;
+            }
+        }
+
+        
     }
 
     //converts tile index to corresponding TileData
@@ -139,6 +166,73 @@ public class TerrainEditor : MonoBehaviour
             }
         }
         terrain.terrainData.SetHeights(0, 0, mesh);
+    }
+
+    // --------------------------
+    // Apply textures to terrain
+    // --------------------------
+    void ApplyTexturesToGrid()
+    {
+        var grid = GameState.Instance.Data.currentTileGrid;
+
+        if (grid == null || terrain == null)
+            return;
+
+        int gridX = grid.GetLength(0);
+        int gridY = grid.GetLength(1);
+
+        for (int x = 0; x < gridX; x++)
+        {
+            for (int y = 0; y < gridY; y++)
+            {
+                int tileIndex = grid[x, y];
+
+                if (!tileToLayer.TryGetValue(tileIndex, out int layerIndex))
+                    layerIndex = 0;
+
+                ApplyTextures(x, y, layerIndex);
+            }
+        }
+    }
+
+    void ApplyTextures(int _x_coord, int _y_coord, int layerIndex)
+    {
+        if (textureRules == null || terrain == null) return;
+
+        TerrainData data = terrain.terrainData;
+
+        int alphamapWidth = data.alphamapWidth;
+        int alphamapHeight = data.alphamapHeight;
+        int layers = data.terrainLayers.Length;
+
+        // size of one tile in alphamap space
+        int tileWidth = alphamapWidth / 3;
+        int tileHeight = alphamapHeight / 3;
+
+        int xStart = tileWidth * _x_coord;
+        int yStart = tileHeight * _y_coord;
+
+        // get FULL alphamap (this is the key fix)
+        float[,,] map = data.GetAlphamaps(0, 0, alphamapWidth, alphamapHeight);
+
+        for (int y = yStart; y < yStart + tileHeight; y++)
+        {
+            for (int x = xStart; x < xStart + tileWidth; x++)
+            {
+                // safety (prevents edge overflow if grid sizes ever change)
+                if (x >= alphamapWidth || y >= alphamapHeight)
+                    continue;
+
+                // clear existing layers at this pixel
+                for (int l = 0; l < layers; l++)
+                    map[y, x, l] = 0f;
+
+                // apply chosen texture
+                map[y, x, layerIndex] = 1f;
+            }
+        }
+
+        data.SetAlphamaps(0, 0, map);
     }
 
     // -------------------
@@ -258,4 +352,17 @@ public class PrefabStruct
     [Tooltip("The number of prefabs spawned on the tile")]
     public int spawnCount;
     public bool applyRandomTransform = true;
+}
+
+// -------------------
+// Texture struct
+// -------------------
+[System.Serializable]
+public class TerrainTextureRules
+{
+    [Tooltip("Tile index from EncounterManager tileLookup")]
+    public int tileTypeIndex;
+
+    [Tooltip("Terrain Layer used for this tile")]
+    public TerrainLayer terrainLayer;
 }

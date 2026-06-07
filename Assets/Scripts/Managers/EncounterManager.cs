@@ -14,6 +14,7 @@ public class EncounterManager : MonoBehaviour
     public List<TileBase> tileLookup;   //Manually assign tile index values
     [Tooltip("Assign Prefabs to relavant tiles via their index. For Example; A prefab with 'Tile Index' of 1 will spawn on ALL terrain segments associated with Tile Lookup's Element 1")]
     public List<PrefabStruct> tilesAssignedToPrefabs;
+    public List<TerrainTextureRules> terrainTextureAssignedToTiles;
     private bool is3DScene = false;
 
     void OnEnable()
@@ -90,6 +91,7 @@ public class EncounterManager : MonoBehaviour
 
         GameState.Instance.Data.currentTileGrid = grid;
         GameState.Instance.Data.prefabStructs = tilesAssignedToPrefabs;
+        GameState.Instance.Data.textureRules = terrainTextureAssignedToTiles;
 
         // ✅ Build prefab list + orb total
         int totalOrbs = 0;

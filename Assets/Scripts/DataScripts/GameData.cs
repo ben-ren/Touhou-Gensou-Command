@@ -28,6 +28,7 @@ public class GameData
     public bool encounterCompletedSuccessfully;
     public int[,] currentTileGrid;
     public List<PrefabStruct> prefabStructs;
+    public List<TerrainTextureRules> textureRules;
     public List<GameObject> enemiesList;
     public CharacterData selectedCharacter;
     public string returnSceneName;

@@ -6757,7 +6757,7 @@ PrefabInstance:
       objectReference: {fileID: 28211760}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tileLookup.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: prefabStructs.Array.size
@@ -6766,23 +6766,31 @@ PrefabInstance:
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: 'tileLookup.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 10d28b8eee730374c88310915483e966, type: 2}
+      objectReference: {fileID: 11400000, guid: 4bdddb571253a0f46bd0b77fff9de29e, type: 2}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: 'tileLookup.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 2b46f00fd21279d478b6b4afe97e5cbe, type: 2}
+      objectReference: {fileID: 11400000, guid: 10d28b8eee730374c88310915483e966, type: 2}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: 'tileLookup.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: dc6627c9940eefe4cb349b411b6bdbb5, type: 2}
+      objectReference: {fileID: 11400000, guid: 2b46f00fd21279d478b6b4afe97e5cbe, type: 2}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: 'tileLookup.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: 4bdddb571253a0f46bd0b77fff9de29e, type: 2}
+      objectReference: {fileID: 11400000, guid: dc6627c9940eefe4cb349b411b6bdbb5, type: 2}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: 'tileLookup.Array.data[4]'
       value: 
+      objectReference: {fileID: 11400000, guid: 1ba159fc45f40ac4f89d7c1abbde0c4c, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: 'tileLookup.Array.data[5]'
+      value: 
       objectReference: {fileID: 11400000, guid: 1678dda51d99ba2468bbcef4364f6133, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainAssignedToTiles.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tilesAssignedToPrefabs.Array.size
       value: 1
@@ -6798,6 +6806,10 @@ PrefabInstance:
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: prefabStructs.Array.data[0].spawnCount
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainTextureAssignedToTiles.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tilesAssignedToPrefabs.Array.data[0].prefab
@@ -6816,8 +6828,92 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
-      propertyPath: tilesAssignedToPrefabs.Array.data[0].tileTypeIndex
+      propertyPath: terrainAssignedToTiles.Array.data[0].terrainLayer
+      value: 
+      objectReference: {fileID: 8574412962073106934, guid: 9d3c14d093c5efa488e582f9a1b2f663, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainAssignedToTiles.Array.data[1].terrainLayer
+      value: 
+      objectReference: {fileID: 8574412962073106934, guid: bd09f0681f28b484fb0610ef52f7254c, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainAssignedToTiles.Array.data[2].terrainLayer
+      value: 
+      objectReference: {fileID: 8574412962073106934, guid: 421ead4c2a1387945a283cc08d0ad7ae, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainAssignedToTiles.Array.data[3].terrainLayer
+      value: 
+      objectReference: {fileID: 8574412962073106934, guid: 1144b24d6a50b464ea2e952561a6f7e1, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainAssignedToTiles.Array.data[4].terrainLayer
+      value: 
+      objectReference: {fileID: 8574412962073106934, guid: d05b6b35cf7b1484bb2f64c0a74476dd, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainAssignedToTiles.Array.data[5].terrainLayer
+      value: 
+      objectReference: {fileID: 8574412962073106934, guid: 81ae3aa24351ac3468c21be8f174a9ea, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainAssignedToTiles.Array.data[1].tileTypeIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainAssignedToTiles.Array.data[2].tileTypeIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainAssignedToTiles.Array.data[3].tileTypeIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainAssignedToTiles.Array.data[4].tileTypeIndex
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainAssignedToTiles.Array.data[5].tileTypeIndex
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: tilesAssignedToPrefabs.Array.data[0].tileTypeIndex
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainTextureAssignedToTiles.Array.data[0].terrainLayer
+      value: 
+      objectReference: {fileID: 8574412962073106934, guid: 9d3c14d093c5efa488e582f9a1b2f663, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainTextureAssignedToTiles.Array.data[1].terrainLayer
+      value: 
+      objectReference: {fileID: 8574412962073106934, guid: 8f32cc9883b377b4ebc3538ba838bff4, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainTextureAssignedToTiles.Array.data[2].terrainLayer
+      value: 
+      objectReference: {fileID: 8574412962073106934, guid: 8f32cc9883b377b4ebc3538ba838bff4, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainTextureAssignedToTiles.Array.data[3].terrainLayer
+      value: 
+      objectReference: {fileID: 8574412962073106934, guid: 3d4206861a951f648b37ee22d964bf26, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainTextureAssignedToTiles.Array.data[4].terrainLayer
+      value: 
+      objectReference: {fileID: 8574412962073106934, guid: af09d6fd4ebc81e448c4a90956dfb789, type: 2}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainTextureAssignedToTiles.Array.data[0].tileTypeIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainTextureAssignedToTiles.Array.data[1].tileTypeIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainTextureAssignedToTiles.Array.data[2].tileTypeIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainTextureAssignedToTiles.Array.data[3].tileTypeIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: terrainTextureAssignedToTiles.Array.data[4].tileTypeIndex
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tilesAssignedToPrefabs.Array.data[0].applyRandomTransform
