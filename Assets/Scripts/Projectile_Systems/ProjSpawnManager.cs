@@ -5,7 +5,7 @@ public class ProjSpawnManager : MonoBehaviour
 {
     [Header("Spawner Settings")]
     [Tooltip("All ProjectileSpawner children are automatically registered.")]
-    [SerializeField] protected List<ProjectileSpawner> spawners = new List<ProjectileSpawner>();
+    [SerializeField] protected List<ProjectileSpawner_old> spawners = new List<ProjectileSpawner_old>();
 
     [Header("Spawner Control")]
     [Tooltip("Floating point value that determines how many spawners are active.")]
@@ -15,7 +15,7 @@ public class ProjSpawnManager : MonoBehaviour
     {
         // Automatically find and register all ProjectileSpawner components in children
         spawners.Clear();
-        spawners.AddRange(GetComponentsInChildren<ProjectileSpawner>(true));
+        spawners.AddRange(GetComponentsInChildren<ProjectileSpawner_old>(true));
     }
 
     protected virtual void Update()
@@ -51,7 +51,7 @@ public class ProjSpawnManager : MonoBehaviour
     }
 
     /// Add a new spawner at runtime (optional)
-    public void RegisterSpawner(ProjectileSpawner spawner)
+    public void RegisterSpawner(ProjectileSpawner_old spawner)
     {
         if (spawner != null && !spawners.Contains(spawner))
         {
@@ -68,5 +68,5 @@ public class ProjSpawnManager : MonoBehaviour
         }
     }
 
-    public List<ProjectileSpawner> GetSpawners() => spawners;
+    public List<ProjectileSpawner_old> GetSpawners() => spawners;
 }

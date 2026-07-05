@@ -1304,6 +1304,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6037569022546857473, guid: b728058a4c517ac42b8f8a12cbaaac0f, type: 3}
+      propertyPath: bombTimer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037569022546857473, guid: b728058a4c517ac42b8f8a12cbaaac0f, type: 3}
+      propertyPath: focusfireRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037569022546857473, guid: b728058a4c517ac42b8f8a12cbaaac0f, type: 3}
+      propertyPath: primaryfireRate
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

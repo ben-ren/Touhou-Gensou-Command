@@ -1,102 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &301023761556025623
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8685440257055875695}
-  - component: {fileID: 1760782448428151645}
-  m_Layer: 0
-  m_Name: ProjectileSpawner (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8685440257055875695
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301023761556025623}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2352544742289806164}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1760782448428151645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301023761556025623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04e6ea7079b7934eaab5b4cd12e821f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileSpawner
-  projectilePrefab: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
-  fireRate: 1
-  team: 1
-  IsFiring: 0
-  IsLaser: 0
-  enableTargeting: 0
-  target: {fileID: 0}
---- !u!1 &452787511059323284
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2596008395656746960}
-  - component: {fileID: 8320910492279130051}
-  m_Layer: 0
-  m_Name: BombSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2596008395656746960
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452787511059323284}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2352544742289806164}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8320910492279130051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452787511059323284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba782075cb121f742b025308162d155b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BombSpawner
-  bombPrefab: {fileID: 823931027175125231, guid: ded6e7297048d6344971bc5556e8a7c3, type: 3}
-  team: 1
 --- !u!1 &809547513429819667
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +122,7 @@ Transform:
   - {fileID: 6772515802129991166}
   m_Father: {fileID: 4230511745110605260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2261903679707818722
+--- !u!1 &1394340674080239091
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,8 +130,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5603890068751618350}
-  - component: {fileID: 3174863336337193787}
+  - component: {fileID: 5853213695044967477}
+  m_Layer: 0
+  m_Name: ProjectileSpawner (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5853213695044967477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394340674080239091}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2479177903496800167}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1767525337433104325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3689936185553197021}
   m_Layer: 0
   m_Name: ProjectileSpawner
   m_TagString: Untagged
@@ -236,40 +169,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5603890068751618350
+--- !u!4 &3689936185553197021
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2261903679707818722}
+  m_GameObject: {fileID: 1767525337433104325}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2352544742289806164}
+  m_Father: {fileID: 2479177903496800167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3174863336337193787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2261903679707818722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04e6ea7079b7934eaab5b4cd12e821f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileSpawner
-  projectilePrefab: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
-  fireRate: 1
-  team: 1
-  IsFiring: 0
-  IsLaser: 0
-  enableTargeting: 0
-  target: {fileID: 0}
 --- !u!1 &2771261294745821119
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +216,7 @@ Transform:
   - {fileID: 1663882179939534192}
   m_Father: {fileID: 4230511745110605260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4389362295152863398
+--- !u!1 &4255921211151718505
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -310,49 +224,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2452540648566161309}
-  - component: {fileID: 2833897931450292787}
+  - component: {fileID: 265960435531400754}
   m_Layer: 0
-  m_Name: ProjectileSpawner (4)
+  m_Name: ProjectileSpawner (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2452540648566161309
+--- !u!4 &265960435531400754
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4389362295152863398}
+  m_GameObject: {fileID: 4255921211151718505}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2352544742289806164}
+  m_Father: {fileID: 2479177903496800167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2833897931450292787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4389362295152863398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04e6ea7079b7934eaab5b4cd12e821f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileSpawner
-  projectilePrefab: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
-  fireRate: 1
-  team: 1
-  IsFiring: 0
-  IsLaser: 0
-  enableTargeting: 0
-  target: {fileID: 0}
 --- !u!1 &4483450970567686574
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +260,7 @@ GameObject:
   - component: {fileID: 4444321559805357453}
   - component: {fileID: 5847768892177481713}
   - component: {fileID: 5520789088234895095}
+  - component: {fileID: 6037569022546857473}
   - component: {fileID: 1030393357420161411}
   - component: {fileID: 4399749353547560353}
   m_Layer: 3
@@ -388,8 +283,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2479177903496800167}
   - {fileID: 5498225516891943727}
-  - {fileID: 2352544742289806164}
   - {fileID: 4636774421451724370}
   - {fileID: 1901913099505213555}
   m_Father: {fileID: 0}
@@ -433,6 +328,7 @@ MonoBehaviour:
   fuel: 0
   money: 0
   bombs: 0
+  orbs: 0
   maxHealth: 100
   maxGraze: 50
   maxBombs: 3
@@ -474,6 +370,32 @@ MonoBehaviour:
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   flashInterval: 0.1
   useEmission: 1
+--- !u!114 &6037569022546857473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4483450970567686574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af4c831763701d342819039c9e3ef24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileSpawner
+  primaryProjectilePrefab: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
+  focusProjectilePrefab: {fileID: 6756610444652708229, guid: 1ab0c562dc736fc4b8b54ee8818e43dd, type: 3}
+  bombProjectilePrefab: {fileID: 823931027175125231, guid: ded6e7297048d6344971bc5556e8a7c3, type: 3}
+  spawnPoints:
+  - {fileID: 1767525337433104325}
+  - {fileID: 4701519476247280648}
+  - {fileID: 1394340674080239091}
+  - {fileID: 4255921211151718505}
+  - {fileID: 5286027951994075301}
+  team: 1
+  primaryfireRate: 1
+  focusfireRate: 1
+  bombTimer: 1
+  shootingEnabled: 0
 --- !u!54 &1030393357420161411
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -522,6 +444,68 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2, y: 0.4, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4701519476247280648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5099021036194247704}
+  m_Layer: 0
+  m_Name: ProjectileSpawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5099021036194247704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701519476247280648}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2479177903496800167}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5286027951994075301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6661848593866411496}
+  m_Layer: 0
+  m_Name: ProjectileSpawner (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6661848593866411496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5286027951994075301}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2479177903496800167}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5744748736044494140
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,7 +754,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &7935507063165849051
+--- !u!1 &7828054806370197546
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -778,154 +762,31 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2352544742289806164}
-  - component: {fileID: 8647633820727525290}
+  - component: {fileID: 2479177903496800167}
   m_Layer: 0
-  m_Name: SpawnManager
+  m_Name: Projectiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2352544742289806164
+--- !u!4 &2479177903496800167
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7935507063165849051}
+  m_GameObject: {fileID: 7828054806370197546}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5603890068751618350}
-  - {fileID: 4487005501315083434}
-  - {fileID: 8685440257055875695}
-  - {fileID: 7661292114749370650}
-  - {fileID: 2452540648566161309}
-  - {fileID: 2596008395656746960}
+  - {fileID: 3689936185553197021}
+  - {fileID: 5099021036194247704}
+  - {fileID: 5853213695044967477}
+  - {fileID: 265960435531400754}
+  - {fileID: 6661848593866411496}
   m_Father: {fileID: 4230511745110605260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8647633820727525290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7935507063165849051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bc6d907e6cf3d14883194013226a80d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerProjManager
-  spawners: []
-  power: 0
-  primaryProjectile: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
-  secondaryProjectile: {fileID: 6756610444652708229, guid: 1ab0c562dc736fc4b8b54ee8818e43dd, type: 3}
-  bombSpawner: {fileID: 8320910492279130051}
-  primaryFireRate: 5
-  secondaryFireRate: 2
---- !u!1 &8247538805115687651
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7661292114749370650}
-  - component: {fileID: 1705614811007920958}
-  m_Layer: 0
-  m_Name: ProjectileSpawner (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7661292114749370650
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8247538805115687651}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2352544742289806164}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1705614811007920958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8247538805115687651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04e6ea7079b7934eaab5b4cd12e821f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileSpawner
-  projectilePrefab: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
-  fireRate: 1
-  team: 1
-  IsFiring: 0
-  IsLaser: 0
-  enableTargeting: 0
-  target: {fileID: 0}
---- !u!1 &8775338011133375387
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4487005501315083434}
-  - component: {fileID: 5220528004809335473}
-  m_Layer: 0
-  m_Name: ProjectileSpawner (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4487005501315083434
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8775338011133375387}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2352544742289806164}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5220528004809335473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8775338011133375387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04e6ea7079b7934eaab5b4cd12e821f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileSpawner
-  projectilePrefab: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
-  fireRate: 1
-  team: 1
-  IsFiring: 0
-  IsLaser: 0
-  enableTargeting: 0
-  target: {fileID: 0}

@@ -1,103 +1,138 @@
+using System;
 using UnityEngine;
+using System.Collections;
 
 public class ProjectileSpawner : MonoBehaviour
 {
-    [Header("Projectile Settings")]
-    public GameObject projectilePrefab;
-    [SerializeField] private float fireRate = 1f; // shots per second
+    [Header("References")]
+    private InputController IC;
+    //Projectiles
+    public GameObject primaryProjectilePrefab;
+    public GameObject focusProjectilePrefab;
+    public GameObject bombProjectilePrefab;
+
+    //Projectile Spawnpoints
+    public GameObject[] spawnPoints = new GameObject[5];
+
+    //Allignment
     [SerializeField] private Team team = Team.Enemy;
 
-    [Header("Firing Settings")]
-    public bool IsFiring = false; // true for continuous shooting
-    [HideInInspector] public bool IsLaser = false;
-    private GameObject activeLaser;
+    //variables
+    [SerializeField] private float primaryfireRate = 1f; // shots per second
+    [SerializeField] private float focusfireRate = 1f; // shots per second
+    [SerializeField] private float bombTimer = 1f; // timer for shootingEnabled
+    [HideInInspector] public bool shootingEnabled = true;
+    EntitySystems entitySystems;
+    private bool bombActive = false;
+    private float fireCooldown = 0f;
+    private int lastPowerValue = -1;
 
-    [Header("Targeting Settings")]
-    [SerializeField] private bool enableTargeting = false; // toggle on/off
-    [SerializeField] private Transform target;            // optional target
-    private float nextFireTime = 0f;
-
+    void Start()
+    {
+        //Reference InputController for device input
+        IC = InputController.instance;
+        entitySystems = this.GetComponent<EntitySystems>();
+        shootingEnabled = true;
+    }
+    
     void Update()
     {
-        if (!IsFiring) return;
+        fireCooldown -= Time.deltaTime;
         
-        Targeting();
+        int power = entitySystems.GetPower();
 
-        if (IsLaser)
-        {
-            FireLaser();
+        //Enable a number of spawnpoints equal to entitySystems.GetPower()
+        if(power != lastPowerValue){
+            ReCheckActiveSpawners();
+            lastPowerValue = power;
         }
-        else if (!IsLaser && Time.time >= nextFireTime)
+
+        if (IC.GetBomb() > 0f && !bombActive)
         {
-            nextFireTime = Time.time + (1f / fireRate);
-            FireProjectile();
+            StartCoroutine(FireBomb());
+        }
+
+        if (shootingEnabled) SpawnProjectiles();
+    }
+
+    void SpawnProjectiles()
+    {
+        if (fireCooldown > 0f) return;
+
+        foreach(var spawner in spawnPoints)
+        {
+            if (spawner.activeInHierarchy && IC.GetFire() > 0f)
+            {
+                FireProjectile(spawner);
+            }
+        }
+
+        float currentFireRate = (IC.GetBrake() > 0)
+        ? focusfireRate
+        : primaryfireRate;
+
+        fireCooldown = 1f / currentFireRate;
+    }
+
+    void ReCheckActiveSpawners()
+    {
+        foreach(var spawner in spawnPoints)
+        {
+            spawner.SetActive(false);
+        }
+
+        int activeSpawners = entitySystems.GetPower()/100;
+        activeSpawners = Mathf.Clamp(activeSpawners, 0, patterns.Length - 1);
+
+        //Use entitySystem.GetPower() to loop through spawnPoints
+        foreach (int index in patterns[activeSpawners])
+        {
+            spawnPoints[index].SetActive(true);
         }
     }
 
-    public void LaserCheck(bool shoot)
+    void FireProjectile(GameObject spawner)
     {
-        IsLaser = projectilePrefab.TryGetComponent(out Laser _);
-        // Handle laser instantiation/destruction 
-        if (IsLaser && shoot) return;
-
-        if (!shoot && activeLaser != null){
-            Destroy(activeLaser);
-            IsLaser = false;
-        }
-    }
-
-    void FireLaser()
-    {
-        if (activeLaser == null)
-        {
-            activeLaser = Instantiate(projectilePrefab, transform.position, transform.rotation, this.transform);
-            activeLaser.GetComponent<IWeaponTeam>()?.SetTeam(team);
-        }
-    }
-
-    void FireProjectile()
-    {
-        if (projectilePrefab == null) return;
-
-        // Read spawn mode from the projectile prefab
-        ProjectileSpawnMode mode = ProjectileSpawnMode.Global; // fallback
-        if (projectilePrefab.TryGetComponent<ISpawnMode>(out var spawnSource))
-            mode = spawnSource.SpawnMode;
-
         GameObject proj;
-
-        // Instantiate based on mode
-        if (mode == ProjectileSpawnMode.Attached)
-            proj = Instantiate(projectilePrefab, transform.position, transform.rotation, this.transform);
+        if (IC.GetBrake() > 0f)
+            proj = focusProjectilePrefab;   //fire secondary/focus shot
         else
-            proj = Instantiate(projectilePrefab, transform.position, transform.rotation);
+            proj = primaryProjectilePrefab; //fire primary shot
 
-        // Assign team to projectile
-        proj.GetComponent<IWeaponTeam>()?.SetTeam(team);
+        GameObject projectile = Instantiate(
+                proj, 
+                spawner.transform.position, 
+                this.transform.rotation);
+        
+        projectile.GetComponent<IWeaponTeam>()?.SetTeam(team);  //Set Team
     }
 
-    void Targeting()
+    //Instantiate bombProjectile & set shootingEnabled to false when bomb
+    IEnumerator FireBomb()
     {
-        // Rotate firePoint toward target only if targeting is enabled
-        if (enableTargeting && target != null)
-        {
-            transform.rotation = Quaternion.LookRotation(target.position - transform.position);
-        }
+        bombActive = true;
+        shootingEnabled = false;
+
+        GameObject bomb = Instantiate(
+            bombProjectilePrefab, 
+            spawnPoints[0].transform.position,
+            this.transform.rotation
+            );
+
+        bomb.GetComponent<IWeaponTeam>()?.SetTeam(team);    //Set team
+
+        yield return new WaitForSeconds(bombTimer);
+
+        shootingEnabled = true;
+        bombActive = false;;
     }
 
-    public void SetProjectile(GameObject newProjectile)
+    private readonly int[][] patterns =
     {
-        if (newProjectile != null)
-            projectilePrefab = newProjectile;
-    }
-
-    public void SetFireRate(float newFireRate)
-    {
-        if (newFireRate > 0f)
-            fireRate = newFireRate;
-    }
-
-    public float GetFireRate() => fireRate;
-
-    public GameObject GetProjectile() => projectilePrefab;
+        new[] { 0 },            // power 0
+        new[] { 1, 2 },         // power 1
+        new[] { 0, 1, 2 },      // power 2
+        new[] { 0, 1, 2, 3 },   // power 3
+        new[] { 0, 1, 2, 3, 4 } // power 4
+    };
 }

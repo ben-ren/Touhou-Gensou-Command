@@ -6,7 +6,7 @@ public class BasicAI : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] protected Transform target;
-    [SerializeField] protected List<ProjectileSpawner> spawners = new();
+    [SerializeField] protected List<ProjectileSpawner_old> spawners = new();
     protected Rigidbody rb;
     protected AIManager manager;
 
@@ -32,7 +32,7 @@ public class BasicAI : MonoBehaviour
     {
         manager = AIManager.instance;
         rb = GetComponent<Rigidbody>();
-        spawners.AddRange(GetComponentsInChildren<ProjectileSpawner>());
+        spawners.AddRange(GetComponentsInChildren<ProjectileSpawner_old>());
     }
 
     public virtual void FixedUpdate()

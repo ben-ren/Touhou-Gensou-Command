@@ -83,9 +83,9 @@ public class AIManager : MonoBehaviour
     //  FIRING / PROJECTILES
     // -----------------------------
 
-    public void SetFiringState(IEnumerable<ProjectileSpawner> spawners, bool state)
+    public void SetFiringState(IEnumerable<ProjectileSpawner_old> spawners, bool state)
     {
-        foreach (ProjectileSpawner spawner in spawners)
+        foreach (ProjectileSpawner_old spawner in spawners)
             spawner.IsFiring = state;
     }
 }
