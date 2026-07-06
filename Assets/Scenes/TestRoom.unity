@@ -1113,6 +1113,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4200410828978019437, guid: 69cb4178c3f68b2429ac6b6753feee91, type: 3}
+      propertyPath: focusProjectilePrefab
+      value: 
+      objectReference: {fileID: 828233287742913070, guid: f924eaadeb45e6648ab15802ca36a2c8, type: 3}
     - target: {fileID: 4998669957305164288, guid: 69cb4178c3f68b2429ac6b6753feee91, type: 3}
       propertyPath: IsFiring
       value: 0

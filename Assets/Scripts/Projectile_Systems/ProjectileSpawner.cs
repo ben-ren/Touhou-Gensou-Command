@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ProjectileSpawner : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class ProjectileSpawner : MonoBehaviour
     public GameObject bombProjectilePrefab;
 
     //Projectile Spawnpoints
-    public GameObject[] spawnPoints = new GameObject[5];
+    public List<GameObject> spawnPoints = new List<GameObject>();
 
     //Allignment
     [SerializeField] private Team team = Team.Enemy;
@@ -22,21 +23,27 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField] private float focusfireRate = 1f; // shots per second
     [SerializeField] private float bombTimer = 1f; // timer for shootingEnabled
     [HideInInspector] public bool shootingEnabled = true;
+    [HideInInspector] public bool IsFiring = false;
     EntitySystems entitySystems;
     private bool bombActive = false;
     private float fireCooldown = 0f;
     private int lastPowerValue = -1;
+    private bool isPlayer;
 
     void Start()
     {
         //Reference InputController for device input
         IC = InputController.instance;
         entitySystems = this.GetComponent<EntitySystems>();
+        isPlayer = GetComponent<PlayerController>() != null;
         shootingEnabled = true;
     }
     
     void Update()
     {
+        if (isPlayer) 
+            IsFiring = IC.GetFire() > 0f;
+
         fireCooldown -= Time.deltaTime;
         
         int power = entitySystems.GetPower();
@@ -47,7 +54,7 @@ public class ProjectileSpawner : MonoBehaviour
             lastPowerValue = power;
         }
 
-        if (IC.GetBomb() > 0f && !bombActive)
+        if (isPlayer && IC.GetBomb() > 0f && !bombActive)
         {
             StartCoroutine(FireBomb());
         }
@@ -61,7 +68,7 @@ public class ProjectileSpawner : MonoBehaviour
 
         foreach(var spawner in spawnPoints)
         {
-            if (spawner.activeInHierarchy && IC.GetFire() > 0f)
+            if (spawner.activeInHierarchy && IsFiring)
             {
                 FireProjectile(spawner);
             }

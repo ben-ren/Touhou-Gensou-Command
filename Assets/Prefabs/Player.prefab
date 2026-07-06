@@ -396,6 +396,7 @@ MonoBehaviour:
   focusfireRate: 1
   bombTimer: 1
   shootingEnabled: 0
+  IsFiring: 0
 --- !u!54 &1030393357420161411
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -764,7 +765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2479177903496800167}
   m_Layer: 0
-  m_Name: Projectiles
+  m_Name: Spawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

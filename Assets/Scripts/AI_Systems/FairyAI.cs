@@ -15,7 +15,7 @@ public class FairyAI : BasicAI
     private void RunFairyLogic()
     {
         // FIRE if target is within firing range
-        manager.SetFiringState(spawners, isTargetInRange);
+        manager.SetFiringState(spawner, isTargetInRange);
 
         // STOP and SHOOT (no movement)
         if (StopMovingToFire && isTargetInRange)
