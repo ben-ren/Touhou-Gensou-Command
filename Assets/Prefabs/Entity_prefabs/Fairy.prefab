@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 5226799318814003860}
   - component: {fileID: 3305219640499405097}
   - component: {fileID: 5910282270514749327}
+  - component: {fileID: 8926204728900359701}
   - component: {fileID: 4200410828978019437}
   - component: {fileID: 7398366603681531663}
   - component: {fileID: 3181117989422581145}
@@ -231,6 +232,19 @@ MonoBehaviour:
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   flashInterval: 0.1
   useEmission: 1
+--- !u!114 &8926204728900359701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057685721219649499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254b02e716cc3db4097dc7f3ae68ee3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
+  damage: 10
 --- !u!114 &4200410828978019437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +283,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

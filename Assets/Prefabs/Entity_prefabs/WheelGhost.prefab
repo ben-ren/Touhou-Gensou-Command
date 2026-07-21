@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 4288635360992589303}
   - component: {fileID: 7828589196604562280}
   - component: {fileID: 1537913964707479562}
+  - component: {fileID: 9171186165554723501}
   - component: {fileID: 4040480129063353}
   - component: {fileID: 4398025540670700438}
   m_Layer: 8
@@ -224,7 +225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WheelGhostAI
   target: {fileID: 0}
-  spawners: []
   terrainMask:
     serializedVersion: 2
     m_Bits: 128
@@ -250,6 +250,19 @@ MonoBehaviour:
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   flashInterval: 0.1
   useEmission: 1
+--- !u!114 &9171186165554723501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8682634286815970793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254b02e716cc3db4097dc7f3ae68ee3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
+  damage: 10
 --- !u!65 &4040480129063353
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -265,7 +278,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

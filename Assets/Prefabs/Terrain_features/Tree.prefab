@@ -94,6 +94,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7421033346236238759, guid: b02badf973779d0459b9eee4b61a4320, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7462092921910682997}
+    - targetCorrespondingSourceObject: {fileID: -7421033346236238759, guid: b02badf973779d0459b9eee4b61a4320, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8775654795688761294}
   m_SourcePrefab: {fileID: 100100000, guid: b02badf973779d0459b9eee4b61a4320, type: 3}
 --- !u!1 &975114917378299639 stripped
 GameObject:
@@ -122,6 +125,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5668788170693331272, guid: b02badf973779d0459b9eee4b61a4320, type: 3}
+--- !u!114 &8775654795688761294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975114917378299639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254b02e716cc3db4097dc7f3ae68ee3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
+  damage: 10
 --- !u!4 &1369593300926547269 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b02badf973779d0459b9eee4b61a4320, type: 3}

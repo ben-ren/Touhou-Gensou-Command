@@ -133,9 +133,10 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
     {
         ResourceCap();
         IFrameTimer();
-        if(isPlayerEntity)
+        if(isPlayerEntity){
             orbs = 0;
             ReadData();
+        }
     }
 
     /* =========================
@@ -241,6 +242,8 @@ public class EntitySystems : MonoBehaviour, ITeamMember, IGrazable
         bombs = Mathf.Clamp(bombs, 0, maxBombs);
         power = Mathf.Clamp(power, 0, 400);
     }
+
+
 
     // Reset damaged flag.
     public void ResetRecentlyDamaged() => RecentlyDamaged = false;
