@@ -121,7 +121,10 @@ public class EncounterManager : MonoBehaviour
             GameState.Instance.Data.encounterCompletedSuccessfully = true;
             GameState.Instance.Data.totalRequiredOrbs -= GameState.Instance.Data.orbs;
 
-            SceneManager.LoadScene(GameState.Instance.Data.returnSceneName);
+            if (GameState.Instance.Data.returnSceneName != null)
+            {
+                SceneManager.LoadScene(GameState.Instance.Data.returnSceneName);
+            }
         }
     }
 

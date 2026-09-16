@@ -400,6 +400,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 826360234}
   characterPrefabs:
   - {fileID: 4483450970567686574, guid: b728058a4c517ac42b8f8a12cbaaac0f, type: 3}
+  - {fileID: 3324678240735676875, guid: c691b28596ac21d489d9d62c2058f9fb, type: 3}
   cameraRigPrefab: {fileID: 1757200874151082692, guid: 65e61363e537f234f860a840b72b0f66, type: 3}
   UI: {fileID: 1764805042}
   useDebugCharacter: 1
@@ -413,7 +414,7 @@ Transform:
   m_GameObject: {fileID: 826360232}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 250, y: 150, z: 250}
+  m_LocalPosition: {x: 100, y: 100, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -652,8 +653,8 @@ Transform:
   m_GameObject: {fileID: 1467312011}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 250, y: 6, z: 250}
-  m_LocalScale: {x: 500, y: 500, z: 1}
+  m_LocalPosition: {x: 100, y: 4, z: 100}
+  m_LocalScale: {x: 200, y: 200, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

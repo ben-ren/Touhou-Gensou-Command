@@ -22,7 +22,9 @@ public class TerrainEditor : MonoBehaviour
         
         ResetTerrainHeight();
         PopulateData();
-        BuildTileToLayerLookup();
+
+        if(textureRules != null) 
+            BuildTileToLayerLookup();
 
         ApplyHeightmap();
 
@@ -320,6 +322,9 @@ public class TerrainEditor : MonoBehaviour
         }
     }
 
+    //******************************************************************************
+    //                Enemy Spawn logic
+    //******************************************************************************
     void SpawnKeyEnemies()
     {
         var enemies = GameState.Instance.Data.enemiesList;
