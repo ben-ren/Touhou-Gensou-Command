@@ -27,6 +27,7 @@ public class GameData
     public int totalRequiredOrbs;   //The orbs needed to finish a level map
     public bool encounterCompletedSuccessfully;
     public int[,] currentTileGrid;
+    public List<TileLookupEntry> tileLookup;
     public List<PrefabStruct> prefabStructs;
     public List<TerrainTextureRules> textureRules;
     public List<GameObject> enemiesList;

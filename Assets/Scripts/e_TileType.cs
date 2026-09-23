@@ -1,7 +1,7 @@
 public enum e_TileType
 {
-    Mountain,
-    Hills,
-    Plains,
-    Water
+    Water = 0,
+    Plains = 1,
+    Hills = 2,
+    Mountain = 3
 }

@@ -11,7 +11,7 @@ public class EncounterManager : MonoBehaviour
     public Tilemap tilemap;
 
     [Header("Tile Assignment")]
-    public List<TileBase> tileLookup;   //Manually assign tile index values
+    [SerializeField] List<TileLookupEntry> tileLookup;
     [Tooltip("Assign Prefabs to relavant tiles via their index. For Example; A prefab with 'Tile Index' of 1 will spawn on ALL terrain segments associated with Tile Lookup's Element 1")]
     public List<PrefabStruct> tilesAssignedToPrefabs;
     public List<TerrainTextureRules> terrainTextureAssignedToTiles;
@@ -90,6 +90,7 @@ public class EncounterManager : MonoBehaviour
         int [,] grid = BuildTileGrid(selectedToken);
 
         GameState.Instance.Data.currentTileGrid = grid;
+        GameState.Instance.Data.tileLookup = tileLookup;
         GameState.Instance.Data.prefabStructs = tilesAssignedToPrefabs;
         GameState.Instance.Data.textureRules = terrainTextureAssignedToTiles;
 
@@ -146,7 +147,7 @@ public class EncounterManager : MonoBehaviour
 
                 TileBase tile = tilemap.GetTile(tilePos);
 
-                int index = ConvertTileToIndex(tile); // convert tile → index
+                int index = GetTileLookupIndex(tile); // convert tile → index
 
                 tileIndices[x + 1, y + 1] = index; // store in 3x3 grid
             }
@@ -155,9 +156,16 @@ public class EncounterManager : MonoBehaviour
         return tileIndices;
     }
 
-    private int ConvertTileToIndex(TileBase tile)
+    private int GetTileLookupIndex(TileBase tile)
     {
-        return tileLookup.IndexOf(tile);
+        for (int i = 0; i < tileLookup.Count; i++)
+        {
+            if (tileLookup[i].tile == tile)
+                return i;
+        }
+
+        Debug.LogWarning($"Tile '{tile}' was not found in tileLookup.");
+        return 0;
     }
 
     private void SaveMapState()
@@ -231,4 +239,11 @@ public class EncounterManager : MonoBehaviour
         // reset flag after applying
         data.encounterCompletedSuccessfully = false;
     }
+}
+
+[System.Serializable]
+public class TileLookupEntry
+{
+    public TileBase tile;
+    public e_TileType tileType;
 }

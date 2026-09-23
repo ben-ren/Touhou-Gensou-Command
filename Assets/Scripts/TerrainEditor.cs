@@ -75,30 +75,91 @@ public class TerrainEditor : MonoBehaviour
 
         foreach (var rule in textureRules)
         {
-            if (rule.terrainLayer == null) continue;
+            if (rule == null || rule.terrainLayer == null)
+                continue;
 
             int layerIndex = Array.IndexOf(layers, rule.terrainLayer);
 
-            if (layerIndex >= 0)
+            if (layerIndex < 0)
+                continue;
+
+            foreach (int terrainIndex in ParseIndices(rule.terrainIndices))
             {
-                tileToLayer[rule.tileTypeIndex] = layerIndex;
+                tileToLayer[terrainIndex] = layerIndex;
             }
         }
-
-        
     }
 
-    //converts tile index to corresponding TileData
+    private IEnumerable<int> ParseIndices(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            yield break;
+
+        string[] parts = input.Split(',');
+
+        foreach (string part in parts)
+        {
+            string value = part.Trim();
+
+            if (value.Contains("-"))
+            {
+                string[] range = value.Split('-');
+
+                if (range.Length != 2)
+                    continue;
+
+                if (!int.TryParse(range[0].Trim(), out int start))
+                    continue;
+
+                if (!int.TryParse(range[1].Trim(), out int end))
+                    continue;
+
+                if (start > end)
+                    (start, end) = (end, start);
+
+                for (int i = start; i <= end; i++)
+                    yield return i;
+            }
+            else
+            {
+                if (int.TryParse(value, out int index))
+                    yield return index;
+            }
+        }
+    }
+
+    //Converts TileType enum reference to heightmap tile data.
+    /** NOTE: If additional enum entries are added expand this switch statement */
     private TileData ConvertIndexToTileData(int index)
     {
-        int baseIndex = index % 4;  //loop through heightmaps for eahc tile type.
-        return baseIndex switch
+        var lookup = GameState.Instance.Data.tileLookup;
+
+        if (lookup == null)
         {
-            0 => TileData.Water(),
-            1 => TileData.Plains(),
-            2 => TileData.Hills(),
-            3 => TileData.Mountain(),
-            _ => TileData.Plains(),// fallback default
+            Debug.LogWarning("TileLookup is missing from GameState. Defaulting to Plains.");
+            return TileData.Plains();
+        }
+
+        if (index < 0 || index >= lookup.Count)
+        {
+            Debug.LogWarning(
+                $"TileLookup index {index} is outside the TileLookup range (0-{lookup.Count - 1}). " +
+                "Defaulting to Plains."
+            );
+
+            return TileData.Plains();
+        }
+
+        e_TileType tileType = lookup[index].tileType;
+
+        return tileType switch
+        {
+            e_TileType.Mountain => TileData.Mountain(),
+            e_TileType.Hills => TileData.Hills(),
+            e_TileType.Plains => TileData.Plains(),
+            e_TileType.Water => TileData.Water(),
+
+            _ => TileData.Plains()
         };
     }
 
@@ -290,10 +351,11 @@ public class TerrainEditor : MonoBehaviour
 
                 foreach (var prefabStruct in terrainPrefabs)
                 {
-                    if (prefabStruct.prefab == null) continue;
+                    if (prefabStruct == null || prefabStruct.prefab == null)
+                        continue;
 
-                    // ✅ MATCH TILE TYPE INSTEAD OF POSITION
-                    if (prefabStruct.tileTypeIndex != tileTypeIndex) continue;
+                    if (!ParseIndices(prefabStruct.tileIndices).Contains(tileTypeIndex))
+                        continue;
 
                     for (int i = 0; i < prefabStruct.spawnCount; i++)
                     {
@@ -352,10 +414,12 @@ public class TerrainEditor : MonoBehaviour
 public class PrefabStruct
 {
     public GameObject prefab;
-    [Tooltip("Tile index (1-9) where this prefab should spawn")]
-    public int tileTypeIndex;
+    [Tooltip("Tile indices. Supports individual values and ranges. Example: 0, 2, 4-7")]
+    public string tileIndices;
+
     [Tooltip("The number of prefabs spawned on the tile")]
     public int spawnCount;
+
     public bool applyRandomTransform = true;
 }
 
@@ -366,7 +430,7 @@ public class PrefabStruct
 public class TerrainTextureRules
 {
     [Tooltip("Tile index from EncounterManager tileLookup")]
-    public int tileTypeIndex;
+    public string terrainIndices;
 
     [Tooltip("Terrain Layer used for this tile")]
     public TerrainLayer terrainLayer;
