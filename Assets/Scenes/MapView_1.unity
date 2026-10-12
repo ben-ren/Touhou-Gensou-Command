@@ -7447,12 +7447,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: tileLookup.Array.data[8].tileType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tileLookup.Array.data[9].tileType
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tilesAssignedToPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: prefabStructs.Array.data[0].prefab
@@ -7551,11 +7555,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7900475683670150940, guid: 3bfdae0bb732ad84faf6c54ca5721b76, type: 3}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: tilesAssignedToPrefabs.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 2739902837032595424, guid: c43dbf13e35a3f045bda09821448ca39, type: 3}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tilesAssignedToPrefabs.Array.data[0].tileIndex
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tilesAssignedToPrefabs.Array.data[0].spawnCount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: tilesAssignedToPrefabs.Array.data[1].spawnCount
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
@@ -7565,6 +7577,10 @@ PrefabInstance:
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tilesAssignedToPrefabs.Array.data[0].tileIndices
       value: 3-5,14,22-24,35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: tilesAssignedToPrefabs.Array.data[1].tileIndices
+      value: 6-8,15,25-27,36
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: terrainAssignedToTiles.Array.data[0].terrainLayer
@@ -7736,6 +7752,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
       propertyPath: tilesAssignedToPrefabs.Array.data[0].applyRandomTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}
+      propertyPath: tilesAssignedToPrefabs.Array.data[1].applyRandomTransform
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2611864835827198323, guid: cc62903d4aa454d4d8078fe4fa7fac45, type: 3}

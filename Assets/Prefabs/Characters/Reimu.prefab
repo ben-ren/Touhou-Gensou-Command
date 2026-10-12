@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f75ab5fa2357d459bd3799cfa1fb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoTurnAround
+  heightOffset: 5
 --- !u!114 &7277064195985394220
 MonoBehaviour:
   m_ObjectHideFlags: 0

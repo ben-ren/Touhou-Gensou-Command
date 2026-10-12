@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AutoTurnAround : MonoBehaviour
 {
+    public float heightOffset;
     Terrain terrain;
     PlayerController p_con;
     BasicAI ai;
@@ -38,7 +39,7 @@ public class AutoTurnAround : MonoBehaviour
     void ClampObjectToHeightmap()
     {
         float terrainHeight = terrain.SampleHeight(transform.position);
-        float Y_clamp = terrainHeight + 10f;
+        float Y_clamp = terrainHeight + heightOffset;
 
         if (transform.position.y < Y_clamp)
         {

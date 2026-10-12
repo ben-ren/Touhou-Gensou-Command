@@ -227,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TerrainEditor
   terrainPrefabs:
   - prefab: {fileID: 0}
-    tileTypeIndex: 0
+    tileIndices: 
     spawnCount: 0
     applyRandomTransform: 0
   textureRules: []
